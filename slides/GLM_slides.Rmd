@@ -1,0 +1,8 @@
+---
+title: "GLM_slides"
+author: "Peter Edelsbrunner"
+date: "March 20, 2015"
+output: beamer_presentation
+bibliography: ../bibliography.bib
+csl: ../apa.csl
+---
