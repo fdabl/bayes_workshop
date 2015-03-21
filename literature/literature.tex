@@ -69,6 +69,8 @@
   
   \item \fullcite{nickerson2000null}
   
+  \item \fullcite{sellke2001calibration}
+  
   \item \fullcite{haller2002misinterpretatiogns}
   
   \item \fullcite{lee2005bayesian}
@@ -99,6 +101,8 @@
   
   \item \fullcite{rouder2014p}
   
+  \item \fullcite{hoenig2001abuse}
+  
   \item \fullcite{wagenmakers2014power}
   
   \textbf{Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed. Thus low powered experiment can lead highly valuable information, while high powered experiments might be uninformative. As Ioannidis \cite{ioannidis2005most} and others \cite{button2013power} have shown, low power effects the likelihood that a significant finding actually reflects a true effect; because using Bayes' theorem}
@@ -115,15 +119,39 @@
 \section{Bayesian Statistics}
 
 \subsection{Motivation}
-\begin{description}
+\begin{description}  
+  \item \fullcite{edwards1963bayesian}
+  
+  \textbf{This is the earlierst exposition of Bayesian ideas specifically written for psychologists. It is quite extensive, in-depth and gives a broad overview about Bayesian merits. It is considered a classic.}
+  
   \item \fullcite{wagenmakers2011psychologists}
   
+  \item \fullcite{dienes2011bayesian}
+  
+  \textbf{Clarifies the differences between frequentist and Bayesian statistics with respect to optional stopping, planned versus post hoc comparisons and multiple testing. Discusses the likelihood principle and how classical statistics violates it. Argues that if you want to be rational (which scientist would not?) you should be using Bayesian inference.
+  }
+  
+  \item \fullcite{rouder2013hierarchical}
+  
   \item \fullcite{wagenmakers2014need}
+  
+  \item \fullcite{dienes2015bayes}
 \end{description}
 
 
 \subsection{Priors}
 \begin{description}
+  \item \fullcite{lindley1957statistical}
+  
+  \textbf{The ''Jeffreys-Lindley`` paradox is an intriguing finding. Assume a normal model $N(\theta, \sigma^2)$ with known variance $\sigma^2$, $H_0: \theta = \theta_0$ and $H_1: \theta \neq \theta_1$. For many prior distributions over $\theta$ and any $\alpha \in [0, 1]$ we can find a sample size $N$ such that}
+  
+  \begin{itemize}
+    \item the sample mean $\hat x$ is significantly different from $\theta_0$ at level $\alpha$
+    \item the posterior probability that $\theta = \theta_0$ is at least as big as $1 - \alpha$
+  \end{itemize}
+  
+  \textbf{see also \cite{sprenger2013testing} and \cite{robert2014jeffreys}. Stated differently, while the p-value would lead to the rejection of $H_0$, the Bayes factor- under certain diffuse prior distributions - would lead to acceptance of $H_0$. It also shows that as the prior on $\theta$ gets more diffuse, the Bayes factor favours $H_0$ without bound. It is important to note that the p-value does not look at the data under $H_1$, while the Bayes factor quantifies evidence under $H_0$ and $H_1$ - the marginal likelihoods (this is one reason why in frequentist statistics one cannot accept $H_0$).
+  }
  
   \item \fullcite{liu2008bayes}
   
@@ -132,8 +160,6 @@
   \item \fullcite{vanpaemel2010prior}
   
   \textbf{Argues that the marginal likelihood - and thus the Bayes factor - is an appropriate measure for evaluating psychological models precisely because of its sensitivity to the prior. Priors instantiate psychological theory and restrict the parameter values in the formal model; they are thus the antidote to the \emph{Greek letter syndrome}, which leads sufferers to not consider the meaning of the parameters and ignore the underlying theory they instantiate. Concludes in arguing that one does not need sensitivity analysis, since the prior instantiates theory (it is not an arbitrary assumption). Contrary to \cite{liu2008bayes}, users of posterior measures should use sensitivity analysis. Note that the paper talks about evaluation of formal mathematical models that instantiate theories, not models used for data analysis like regression.}
-  
-  
 \end{description}
 
 
@@ -168,8 +194,6 @@
   \item \fullcite{ly2014jeffreys}
   
   \textbf{Introduces the ''default`` or ''objective`` priors developed by Harrold Jeffreys to have certain desirable properties. Introduces them by means of the t-test and the Pearson correlation. Very in-depth, not light on mathematics.}
-  
-
 \end{description}
 
 
@@ -194,12 +218,18 @@
   \item \fullcite{morey2011bayes}
  
   \item \fullcite{wetzels2011statistical}
+  
+  \item \fullcite{dienes2014using}
 
   \item \fullcite{wagenmakers2015absence}
   
   \textbf{Builds on work by \cite{donnellan2014association} who in nine experiments with over 3.000 participants in total failed to replicate \cite{bargh2012substitutability}. Since one cannot within the framework of null hypothesis significance testing support the null hypothesis, Wagenmakers and colleagues use Bayesian inference to do just that. Also excellent exposition on how high powered experiments do not necessarily yield high evidential value, see also \cite{wagenmakers2014power}. Three studies consisting of a sample size of 210, 494 and 553 participants were uninformative!}
-  
+
+  \item \fullcite{nieuwenstein2015making}
+
+  \item \fullcite{verhagen2014bayesian}
 \end{description}
+
 
 \subsection{Problems?}
 \begin{description}
@@ -255,15 +285,15 @@
 \begin{description}
   \item \fullcite{simmons2011false}
   
-  \textbf{Introduces the term ''p-hacking``, that is exploiting one's freedom in data collection, statistical analysis and reporting in order to increase the chance of a significant finding (which then will most likely turn out to be a false positive). Demonstrates that basically anything can be presented as significant, using an experimental study and simulations}
+  \textbf{Introduces the term ''p-hacking``, that is exploiting one's freedom in data collection, statistical analysis and reporting in order to increase the chance of a significant finding (which then will most likely turn out to be a false positive). Demonstrates that basically anything can be presented as significant, using an experimental study and simulations.}
   
   \item \fullcite{john2012measuring}
   
-  \textbf{Asking over 2.000 psychologists, report the prevalence of ''questionable research practices'' such as ''failing to report all dependent measures in a studie`` ($\sim 64\%$), ''optional stopping`` ($\sim 56\%$), ''harking`` ($\sim 31\%$) etc.}
+  \textbf{Asking over 2.000 psychologists, report the prevalence of ''questionable research practices'' such as ''failing to report all dependent measures in a study`` ($\sim 64\%$), ''optional stopping`` ($\sim 56\%$), ''harking`` ($\sim 31\%$) etc.}
   
   \item \fullcite{gelman2013garden}
   
-  \textbf{Beautiful paper arguing that ''p-hacking`` can be an entirely unconscious process where researchers have only but the best intentions in mind! Draws on examples from the literature to discuss a hidden multiple comparison problem - the garden of forking paths. Psychological studies, although presented as confirmatory, are exploratory in nature.}
+  \textbf{Beautiful paper arguing that ''p-hacking`` can be an entirely unconscious process where researchers have only the best intentions in mind! Draws on examples from the literature to discuss a hidden multiple comparison problem - the garden of forking paths. Psychological studies, although presented as confirmatory, are frequently exploratory in nature.}
 \end{description}
 
 
