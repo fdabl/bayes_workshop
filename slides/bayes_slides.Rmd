@@ -1,8 +1,164 @@
 ---
-title: "bayes_slides"
-author: "Fabian Dablander"
-date: "March 20, 2015"
-output: beamer_presentation
+title: "Bayesian Inference"
+author: "Fabian Dablander, Peter Edelsbrunner"
 bibliography: ../bibliography.bib
 csl: ../apa.csl
+output:
+  ioslides_presentation:
+    widescreen: yes
+    incremental: true
+    css: styles.css
 ---
+
+
+## Attend at your own peril
+- you will hear things you probably have never heard before ...
+- ... and neither has your statistics teacher or thesis advisor
+- all this will be **heavy** statistical re-education
+- you will be a different person after this workshop
+- but trust us, it will be awesome
+
+## outline
+- the status quo in statistics
+- p-values: a death in five acts
+- confidence intervals and statistical power
+- A simple solution: Bayesian inference
+- Issues in Bayesian inference
+- How-to: JASP and BayesFactor
+- Recap, closing thoughts, and suggestions
+
+# the status quo in statistics
+
+## Bird's View {.vcenter}
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+What students are taught   What students are **not** taught
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+## how did we end up here?
+- start with Thomas Bayes, Laplace
+- mention Legendre, Gauss and the central-limit theorem
+- talk briefly about Gosset (Student), t-test (?)
+- R.A. Fisher, only $H_0$, varying $\alpha$, strength of evidence
+- Neyman-Pearson, also $H_1$, power, $\beta$, behavioral statistics
+- how all this was bastardized and unified [@gigerenzer1993superego]
+- how people use it now [@gigerenzer2004mindless; @gigerenzer2014surrogate]
+
+## confusions about classical concepts
+- frequentist concept of probability as the root of all evil
+- p-values [@oakes1986statistical]
+- both students and teachers are confused [@haller2002misinterpretations]
+- confidence intervals [@hoekstra2014robust]
+
+## what this lead to (maybe drop this)
+- @bakker2012rules
+- @simmons2011false
+- @gelman2013garden
+
+
+# p-values: a death in five acts
+
+## act I
+- sampling distributions and never observed data [@wagenmakers2007practical]
+- define p-value as p(D or more extreme D|$H_0$)
+- make it clear that we want p($H_0$|D); shark example from Dienes
+
+## act II
+- depends on researcher's intention
+- funny story about grant application [@wagenmakers2008bayesian]
+- binomial versus negative binomial sampling plan [@wagenmakers2007practical; @kruschke2010doing]
+
+## act III
+- optional stopping [@sanborn2014frequentist; @rouder2014optional]
+- use p-hack R code to show inflated alpha
+
+## act IV
+- violently biased against $H_0$
+- free lunch [@rouder2009bayesian; @rouder2014lunch]
+- can't support $H_0$
+
+## act V
+- finally, answer the wrong question (don't quantify evidence; @wagenmakers2007practical)
+
+## act VI (?)
+- asymptotics (introduce the **mid p-value**)
+
+## act VII (?)
+- ad-hoc estimators (no unified rule)
+- Stein's paradox [@efron1977stein]
+
+
+# confidence intervals and power
+
+## CI
+- @morey2015fallacy
+- maybe this can all be said when introducing frequentist probability?
+- I don't want to spend too much time on all this frequentist stuff ...
+
+## Power
+- briefly mention @ioannidis2005most and @button2013power
+- a power fallacy [@wagenmakers2014power]
+- can't accept $H_0$, even in high powered experiments [@wagenmakers2015absence]
+- go from comparing p-value under H0 to p-value under H1 ...
+- ... to introducing likelihoods (and then marginal likelihoods for Bayes factor)
+
+# Bayesian Inference
+
+## deriving Bayes Rule
+- use a funny example; maybe ESP
+
+## Bayes factors
+- computationally hard
+- Savage-Dickey! [@wagenmakers2010bayesian]
+
+## solutions
+- show that all frequentist problems vanish
+- conceptualize probability as degree of belief
+- parameters have distributions
+- intentions: likelihood (binom vs negbinom)
+- optional stopping: b-hack code (?)
+- multiple comparisons: b-hack code (?)
+- power and evidence for $H_0$: @wagenmakers2015absence
+- bias against $H_0$: re-analysis of literature [@wetzels2011statistical]
+
+
+## question is ...
+- "Why can't we all just be Bayesian?" (Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
+- we can now!
+
+# how-to
+
+## JASP
+- various data sets
+- I would like to have 30 minutes for this part
+
+## BayesFactor
+- for the R people
+- briefly demo-ing it, depending on the audience
+
+
+# Issues in Bayesian Inference
+
+## priors
+- Lindley's Paradox [@lindley1957statistical; @degroot1982lindley]
+- show impact of prior in Savage-Dickey
+
+## estimation versus testing
+- Kruschke's ROPE testing [@kruschke2013bayesian]
+- answer different questions [@wagenmakers2014paradox]
+
+
+# closing thoughts
+
+## blabla
+
+# We should all just be Bayesian
+
+## references

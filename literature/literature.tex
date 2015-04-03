@@ -71,7 +71,7 @@
   
   \item \fullcite{sellke2001calibration}
   
-  \item \fullcite{haller2002misinterpretatiogns}
+  \item \fullcite{haller2002misinterpretations}
   
   \item \fullcite{lee2005bayesian}
     
@@ -97,9 +97,9 @@
   
   \item \fullcite{hoekstra2014robust}
   
-  \item \fullcite{rouder2014fallacy}
+  \item \fullcite{morey2015fallacy}
   
-  \item \fullcite{rouder2014p}
+  \item \fullcite{rouder2014lunch}
   
   \item \fullcite{hoenig2001abuse}
   
@@ -124,6 +124,10 @@
   
   \textbf{This is the earlierst exposition of Bayesian ideas specifically written for psychologists. It is quite extensive, in-depth and gives a broad overview about Bayesian merits. It is considered a classic.}
   
+  \item \fullcite{raftery1995bayesian}
+  
+  \item \fullcite{kass1995bayes}
+  
   \item \fullcite{wagenmakers2011psychologists}
   
   \item \fullcite{dienes2011bayesian}
@@ -143,7 +147,7 @@
 \begin{description}
   \item \fullcite{lindley1957statistical}
   
-  \textbf{The ''Jeffreys-Lindley`` paradox is an intriguing finding. Assume a normal model $N(\theta, \sigma^2)$ with known variance $\sigma^2$, $H_0: \theta = \theta_0$ and $H_1: \theta \neq \theta_1$. For many prior distributions over $\theta$ and any $\alpha \in [0, 1]$ we can find a sample size $N$ such that}
+  \textbf{The ''Jeffreys-Lindley`` paradox is an intriguing finding. Assume a normal model $N(\theta, \sigma^2)$ with known variance $\sigma^2$, $H_0: \theta = \theta_0$ and $H_1: \theta \neq \theta_0$. For many prior distributions over $\theta$ and any $\alpha \in [0, 1]$ we can find a sample size $N$ such that}
   
   \begin{itemize}
     \item the sample mean $\hat x$ is significantly different from $\theta_0$ at level $\alpha$
@@ -152,6 +156,8 @@
   
   \textbf{see also \cite{sprenger2013testing} and \cite{robert2014jeffreys}. Stated differently, while the p-value would lead to the rejection of $H_0$, the Bayes factor- under certain diffuse prior distributions - would lead to acceptance of $H_0$. It also shows that as the prior on $\theta$ gets more diffuse, the Bayes factor favours $H_0$ without bound. It is important to note that the p-value does not look at the data under $H_1$, while the Bayes factor quantifies evidence under $H_0$ and $H_1$ - the marginal likelihoods (this is one reason why in frequentist statistics one cannot accept $H_0$).
   }
+  
+  \item \fullcite{degroot1982lindley}
  
   \item \fullcite{liu2008bayes}
   
@@ -181,7 +187,7 @@
   
   \item \fullcite{rouder2012regression}
   
-  \textbf{Enlightening paper. Frequentist statistics cannot support $H_0$ - absence of evidence is not evidence of absence - since significance testing is asymmetric; alternative models are not specified; free lunch problem, see also \cite{rouder2014p}. This leads to the p-value being biased against $H_0$, see also \cite{wagenmakers2007practical, rouder2009bayesian}. The Bayes factor is introduced via example of linear regression.}
+  \textbf{Enlightening paper. Frequentist statistics cannot support $H_0$ - absence of evidence is not evidence of absence - since significance testing is asymmetric; alternative models are not specified; free lunch problem, see also \cite{rouder2014lunch}. This leads to the p-value being biased against $H_0$, see also \cite{wagenmakers2007practical, rouder2009bayesian}. The Bayes factor is introduced via example of linear regression.}
   
   \textbf{Instead of only allowing for point alternative hypotheses - like likelihood-ratio tests do -, Bayes factor allows for interval alternatives; the alternative becomes the average likelihood of the point alternatives weighted by the prior. By reparameterizing the model in terms of standardized effect size with $\beta \sim Cauchy(s)$ the Bayes factor becomes invariant to transformations. Additional beneficial properties include \emph{Consistency}, i.e. if $M_1$ then $B_{10} \sim \inf$; conversely if $M_0$ then $B_{10} \sim 0$. Note that p-values are not consistent, since they are randomly distributed under $H_0$; and \emph{Consistency in information}, i.e. data should affect the Bayes factor only through $R^2$.}
   
@@ -204,6 +210,11 @@
   \item \fullcite{wagenmakers2014paradox}
 \end{description}
 
+
+\subsection{Objective versus Subjective Bayes}
+\begin{description}
+  \item \fullcite{berger2006case}
+\end{description}
 
 \subsection{Model Comparison}
 \begin{description}
@@ -237,7 +248,6 @@
   
   \item \fullcite{rouder2014optional}
 \end{description}
-
 
 
 
