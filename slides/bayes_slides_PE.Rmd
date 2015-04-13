@@ -103,7 +103,34 @@ What students are taught   What students are **not** taught
       -> Discuss: What does the p-value tell us?
       -> Is there something strange about it? Yes?
       - in that case, let's explore why we use this stuff!
--->      
+-->
+
+<div align="center">
+<img height='500' src='mult_risk.png'>
+</div>
+
+## An Example: Risk Behaviour and Social Status <!-- Peter -->
+
+```{r, eval=FALSE}
+
+setwd("C:/Users/.../bayes_workshop/data") # Set working directory
+risk_bayes <- read.csv("riskdata_bayes.csv") # Load data
+attach(risk_bayes) # Set data as working file
+summary(lm(risksum~ZPop+ZLike)) # Multiple regression
+
+```
+
+<div align="center">
+<img height='300' src='R_output_linreg.png'>
+</div>
+
+## An Example: Risk Behaviour and Social Status <!-- Peter -->
+
+- What does *p* tell us?
+
+- *The probability to get data this or more extreme in case that in the underlying population there is no association between popularity/likeability and risk behaviour is less than 0.1%*
+
+- Does this sound *strange* to you?
 
 ## History: How did we get Here? <!-- Fabian -->
 
