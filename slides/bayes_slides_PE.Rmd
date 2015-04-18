@@ -1,0 +1,299 @@
+---
+title: "Bayesian Statistics"
+author: "Fabian Dablander, Peter Edelsbrunner"
+#bibliography: "C:/Users/petere/Documents/GitHub/bayes_workshop-master/bibliography.bib"
+csl: apa.csl
+output:
+  ioslides_presentation:
+    widescreen: yes
+    incremental: true
+    css: styles.css
+---
+
+
+<!--  GENERAL REMARKS:
+      - I changed the order of the five death acts of the p-value; this is jsut a suggestion
+        I think that it would fit nicely ti bring the H0 and H1-related acts after each other,
+        culminating in the fact that theyanswer the wrong question;
+        therefore, I moved the optional stopping to be the second act
+        - I marked each slide with the name of who I think should present it.
+          You'll notice two things:
+          First, you present much more than me. This has the reason that I think when one person
+          presents more than the other it is nicer, but also I think that all topics I marked wit hyour name
+          just fit you so well :D I think you could talk great about everything I marked with your name.
+          Second, in my suggestionas it is now, I'd have three short parts. This might seem strange since we switch
+          quite "often" but from my experience, all short workshops I've seen so far
+          that were given by two people, it turned out to be especially nice when they switched;
+          it just relaxes the atmosphere. Also, thrice is not so often I think...
+-->
+
+<!-- I'd not show but rather say these things while presenting the title slide
+
+## Attend at your own peril
+- you will hear things you probably have never heard before ...
+- ... and neither has your statistics teacher or thesis advisor
+- all this will be **heavy** statistical re-education
+- you will be a different person after this workshop
+- but trust us, it will be awesome
+
+-->
+
+## Outline <!-- Fabian -->
+
+<!--  Comment on the outline:
+      The sub-points are not important to short or mention here,
+      they jsut provide a structure for ourselves
+--> 
+
+- Statistics: The Status Quo
+    * 1.1 A Bird's View
+    * 1.2 An Example
+    * 1.3 The History
+- p-Values: A Death in Five Acts
+    * 2.1 Probabilities: Data vs. hypotheses
+    * 2.2 Sampling: When to stop?
+    * 2.3 Hypotheses: Researchers' Intentions
+    * 2.4 Hypotheses: H0 vs. H1
+    * 2.5 Hypothesis: Which question to answer?
+    
+## Outline
+    
+- Confidence Intervals and Statistical Power
+    * 3.1 ES and CI: A Solution?
+    * 3.2 Power: A Fallacy
+    
+- A Simple Solution: Bayesian Inference
+    * 4.1 Baye's Theorem
+    * 4.2 Bayes Factor
+    * 4.3 Credibility Intervals
+
+## Outline
+
+- Issues in Bayesian inference
+    * 5.1 Computation
+    * 5.2 Priors
+    * 5.3 Teach me!
+ 
+- Teach me!
+    * 6.1 JASP
+    * 6.2 BayesFactor
+
+- Where to go from here?
+
+# The Status Quo in Statistics
+
+## A Bird's View {.vcenter} <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+What students are taught   What students are **not** taught
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+## An Example: Risk Behaviour and Social Status <!-- Peter -->
+
+<!--  Show example in R: Research Question:
+      Is Risk Behaviour related to Popularity (how popular classs peers rate you)
+      and to Likeability (how much class peers like you)
+      -> Discuss: What does the p-value tell us?
+      -> Is there something strange about it? Yes?
+      - in that case, let's explore why we use this stuff!
+-->
+
+<div align="center">
+<img height='500' src='mult_risk.png'>
+</div>
+
+## An Example: Risk Behaviour and Social Status <!-- Peter -->
+
+```{r, eval=FALSE}
+
+setwd("C:/Users/.../bayes_workshop/data") # Set working directory
+risk_bayes <- read.csv("riskdata_bayes.csv") # Load data
+attach(risk_bayes) # Set data as working file
+summary(lm(risksum~ZPop+ZLike)) # Multiple regression
+
+```
+
+<div align="center">
+<img height='300' src='R_output_linreg.png'>
+</div>
+
+## An Example: Risk Behaviour and Social Status <!-- Peter -->
+
+- What does *p* tell us?
+
+- *The probability to get data this or more extreme in case that in the underlying population there is no association between popularity/likeability and risk behaviour is less than 0.1%*
+
+- Does this sound *strange* to you?
+
+## History: How did we get Here? <!-- Fabian -->
+
+<!-- would skip
+- start with Thomas Bayes, Laplace
+- mention Legendre, Gauss and the central-limit theorem
+- talk briefly about Gosset (Student), t-test (?)
+-->
+
+- R.A. Fisher, only $H_0$, varying $\alpha$, strength of evidence
+- Neyman-Pearson, also $H_1$, power, $\beta$, behavioral statistics
+- how all this was bastardized and unified [@gigerenzer1993superego]
+- how people use it now [@gigerenzer2004mindless; @gigerenzer2014surrogate]
+
+<!--  explain what Fisher meant,
+      explain what Neyman/Pearson meant
+      explain what "unification" of these means/led to
+      explain that how it is used now is called "frequentist statistics"
+      so this term is now properly introduced,
+      and that this is indeed what they are learning at university!
+-->
+
+## Confusions about Classical Concepts <!-- Fabian -->
+- Probability as the *frequentist* views it
+- The p-value as the *frequentist* views it [@oakes1986statistical]
+- Confusion about p-values [@haller2002misinterpretations]
+- Confusion about confidence intervals [@hoekstra2014robust]
+
+<!--  explain what frequentists mean with "probability" -> infinite blabla
+      explain what the p-value therefore means
+      explain that there is confusion about the p-value
+      explain that the same confusion surrounds CIs;
+      mention that CIs will be explained later
+-->
+
+
+<!-- would drop the garden and all that; nice but too much
+## what this led to (maybe drop this)
+- @bakker2012rules
+- @simmons2011false
+- @gelman2013garden
+-->
+
+
+# p-values: a death in five acts <!-- Fabian -->
+ - What a researcher wants: Provide evidence for a hypothesis!
+ - Does the p-value give this?
+ 
+<!--  what we as researchers want to do is provide evidence for "our" hypothesis
+      coming up, I explain why frequentist statistics and the p-value fail to do that
+      you can probably all sense from your statistics class and from what we have discussed so far
+      that p-values tell us something strange; now, I will confirm this impression
+      by showing you why the p-value is somnething stupid
+      -> wouldn't use "NHST" here but rather stick to "the p-value"
+      -> unless we really nicely introduce what NHST means;
+      -> perhaps using the term "the p-value" is sufficient for our means?
+-->
+
+## act I <!-- Fabian -->
+- sampling distributions and never observed data [@wagenmakers2007practical]
+- define p-value as p(D or more extreme D|$H_0$)
+- make it clear that we want p($H_0$|D); shark example from Dienes
+
+## act II <!-- Fabian -->
+- optional stopping [@sanborn2014frequentist; @rouder2014optional]
+- use p-hack R code to show inflated alpha
+
+## act III <!-- Fabian -->
+- depends on researcher's intention
+- funny story about grant application [@wagenmakers2008bayesian]
+- binomial versus negative binomial sampling plan [@wagenmakers2007practical; @kruschke2010doing]
+
+## act IV <!-- Fabian -->
+- violently biased against $H_0$
+- free lunch [@rouder2009bayesian; @rouder2014lunch]
+- can't support $H_0$
+
+## act V <!-- Fabian -->
+- finally, answer the wrong question (don't quantify evidence; @wagenmakers2007practical)
+
+# Effect Sizes and Confidence Intervals: The *Frequentist* Solution?
+
+## ES & CI <!-- Peter -->
+- @Cumming2014psychscience
+
+## Sorry, **No** Solution <!-- Peter -->
+- @Morey2014essential
+- @morey2015fallacy
+
+<!--  Peter explains what ES and CI are
+      and why Cumming thinks they are the solution
+      to the p-value problems
+      then, Peter explains the problems with interpretations of CIs
+      and the Morey et al argument about hypothesis testing
+      In addition, there are other problems here,
+      that Fabian discusses...
+-->
+
+
+## Power <!-- Fabian -->
+- briefly mention @ioannidis2005most and @button2013power
+- a power fallacy [@wagenmakers2014power]
+- can't accept $H_0$, even in high powered experiments [@wagenmakers2015absence]
+- go from comparing p-value under H0 to p-value under H1 ...
+- ... to introducing likelihoods (and then marginal likelihoods for Bayes factor)
+
+<!-- explain issue with the power fallacy
+-->
+
+# Bayesian Inference <!-- Fabian -->
+
+## deriving Bayes Rule <!-- Fabian -->
+- use a funny example; maybe ESP
+
+## Bayes factors <!-- Fabian -->
+- computationally hard
+- Savage-Dickey! [@wagenmakers2010bayesian]
+
+## Credibility Intervals <!-- Fabian -->
+- Explain what they tell
+
+## solutions <!-- Fabian -->
+- show that all frequentist problems vanish
+- conceptualize probability as degree of belief
+- parameters have distributions
+- intentions: likelihood (binom vs negbinom)
+- optional stopping: b-hack code (?)
+- multiple comparisons: b-hack code (?)
+- power and evidence for $H_0$: @wagenmakers2015absence
+- bias against $H_0$: re-analysis of literature [@wetzels2011statistical]
+
+
+## *Why aren't we all Bayesians - Can you Teach me?* <!-- Peter -->
+- "Why can't we all just be Bayesian?" (Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
+- we can now!
+- Computation
+- Priors
+- Software
+
+<!--  Peter explains issues with computational power,
+      subjectivity of priors, (perhaps Lindley's paradox)
+      and software for implementation,
+      mitigating all arguments and leading over to Fabian and JASP
+-->
+
+<!-- UNTIL HERE WE SHOULD HAVE ABOUT 1h30 minutes! --> 
+
+# Teach me!
+
+## JASP <!-- Fabian -->
+- various data sets
+- I would like to have 30 minutes for this part
+
+## BayesFactor <!-- Fabian -->
+- for the R people
+- briefly demo-ing it, depending on the audience
+
+# Wrap up <!-- Fabian -->
+
+# We should all just be Bayesian <!-- Fabian -->
+<!--  "In 20 years, our children will ask us
+      why we've ever been frequentist,
+      and the answer will be difficult"
+-->
+
+## References
