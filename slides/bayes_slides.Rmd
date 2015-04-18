@@ -13,8 +13,8 @@ output:
 
 ## Attend at your own peril
 - you will hear things you probably have never heard before ...
-- ... and neither has your statistics teacher or thesis advisor
-- all this will be **heavy** statistical re-education
+- ... and neither has your statistics teacher nor your thesis advisor
+- all this will be **heavy** statistics re-education
 - you will be a different person after this workshop
 - but trust us, it will be awesome
 
@@ -26,6 +26,10 @@ output:
 - Issues in Bayesian inference
 - How-to: JASP and BayesFactor
 - Recap, closing thoughts, and suggestions
+- (non nested model comparison: BF vs AIC, BIC, DIC, NML)
+- (Bayesian replication tests)
+- (Computing Bayes factors)
+- (hierarchical modeling)
 
 # the status quo in statistics
 
@@ -131,7 +135,7 @@ What students are taught   What students are **not** taught
 
 ## question is ...
 - "Why can't we all just be Bayesian?" (Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
-- we can now!
+- "If we all become Bayesians, it will be due to practical reasons, not because of the mathematics" - Dennis Lindley
 
 # how-to
 
@@ -160,5 +164,29 @@ What students are taught   What students are **not** taught
 ## blabla
 
 # We should all just be Bayesian
+
+# quotes
+
+## Fisher
+- it is his "personal conviction ... that the theory of inverse probability is founded upon an error, and must be wholly rejected"
+
+## Neyman
+- "We are inclined to think that as far
+as a particular hypothesis is concerned, no test based upon the theory
+of probability can by itself provide any valuable evidence of
+the truth or falsehood of that hypothesis. But we may look at the
+purpose of tests from another view-point. Without hoping to know
+whether each separate hypothesis is true or false, we may search
+for rules to govern our behaviour with regard to them, in following
+which we insure that, in the long run of experience, we shall
+not be too often wrong"
+
+## bonmots
+- "everybody wants to go to heaven but nobody wants to die"
+- "I do not believe that the statistics community should provide false pretences of having
+technical solutions that can satisfy the pitiful whimpers we are enticed to resolve:
+“I do not want to do a subjective analysis, and hence I will not use Bayesian methodology.”
+Rather, I think the scientific community needs to stand up and say ”Pity you!
+Welcome to the human race.”"
 
 ## references

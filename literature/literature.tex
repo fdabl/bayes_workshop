@@ -7,6 +7,7 @@
 \usepackage{csquotes}
 \usepackage{amsmath}
 
+\usepackage{csquotes}
 \usepackage{color}
 \usepackage{attrib}
 \usepackage{enumitem}
@@ -24,7 +25,7 @@
 \addbibresource{../bibliography.bib}
 
 
-\title{Commented Literature Review}
+\title{Commented Literature List \\ (Draft)}
 \author{Fabian Dablander}
 \date{\today}
 
@@ -56,14 +57,20 @@
 
 \section{Deficits of Frequentist Statistics}
 
+\begin{displayquote}
+\textbf{``The textbooks are wrong. The teaching is wrong. The seminar you just attended is wrong. The most prestigious journal in your scientific field is wrong.''} - Ziliak and McCloskey (2008)
+\end{displayquote}
+
 \begin{description}
   \item \fullcite{bakan1966test}
   
   \item \fullcite{royall1986effect}
+  
+  \item \fullcite{berger1988statistical}
    
   \item \fullcite{cohen1994earth}
   
-  \item \fullcite{cohen1994earth2}
+  \item \fullcite{cohen1990things}
   
   \item \fullcite{loftus1996psychology}
   
@@ -72,6 +79,10 @@
   \item \fullcite{sellke2001calibration}
   
   \item \fullcite{haller2002misinterpretations}
+  
+  \item \fullcite{gigerenzer2004mindless}
+  
+  \textbf{This is required reading.}
   
   \item \fullcite{lee2005bayesian}
     
@@ -95,12 +106,16 @@
   
   \textbf{Is similar to \cite{wagenmakers2007practical} in that it discusses the disadvantages of null hypothesis significance testing. Additionally notes that the p-value cannot be used to compare non-nested models, and that it relies on ad-hoc principles since it does not have as solid a foundation as Bayesian inference (probability theory) and thus does not specify a unique solution to every statistical problem. Discusses the advantages of Bayesian inference, i.e. coherence, automatic parsimony, extension to non-nested models, no optional stopping, possibility to quantify evidence in favour of the null etc. Features a hilarious anecdote about the subjective nature of the p-value.}
   
+  \item \fullcite{johansson2011hail}
+  
+  \textbf{This is essentially a recap of two books: Royall (1997) and Dienes (2008). After discussing Fisher's and Neyman's stance on significance testing and their deficits, introduces likelihoods as a measure to quantify statistical evidence. Bayesian inference extends the likelihood paradigm by assigning prior distributions over parameters to allow composite hypotheses. All in all, this is an excellent paper.}
+  
   \item \fullcite{hoekstra2014robust}
   
   \item \fullcite{morey2015fallacy}
   
   \item \fullcite{rouder2014lunch}
-  
+    
   \item \fullcite{hoenig2001abuse}
   
   \item \fullcite{wagenmakers2014power}
@@ -154,10 +169,12 @@
     \item the posterior probability that $\theta = \theta_0$ is at least as big as $1 - \alpha$
   \end{itemize}
   
-  \textbf{see also \cite{sprenger2013testing} and \cite{robert2014jeffreys}. Stated differently, while the p-value would lead to the rejection of $H_0$, the Bayes factor- under certain diffuse prior distributions - would lead to acceptance of $H_0$. It also shows that as the prior on $\theta$ gets more diffuse, the Bayes factor favours $H_0$ without bound. It is important to note that the p-value does not look at the data under $H_1$, while the Bayes factor quantifies evidence under $H_0$ and $H_1$ - the marginal likelihoods (this is one reason why in frequentist statistics one cannot accept $H_0$).
+  \textbf{see also \cite{sprenger2013testing} and \cite{robert2014jeffreys}. Stated differently, while the p-value would lead to the rejection of $H_0$, the Bayes factor- under certain diffuse prior distributions - would lead to acceptance of $H_0$. It also shows that as the prior on $\theta$ gets more diffuse, the Bayes factor favours $H_0$ without bound. It is important to note that the p-value does not look at the data under $H_1$, while the Bayes factor quantifies evidence under $H_0$ and $H_1$ - the marginal likelihoods (this is one reason why in frequentist statistics one cannot accept $H_0$). They answer different questions.
   }
   
   \item \fullcite{degroot1982lindley}
+  
+  \textbf{Short take on Lindley's paradox demonstrating that one should not use diffuse priors when testing hypothesis, since they favour the null; this is because by spreading out their prior, the marginal likelihood decreases.}
  
   \item \fullcite{liu2008bayes}
   
@@ -177,7 +194,7 @@
   
   \item \fullcite{wagenmakers2010bayesian}
   
-  \textbf{In general, the Bayes factor - or more precisely the marginal likelihood - is hard to compute. An incredible mathematical result, the Savage-Dickey density ratio, allows one to calculate the Bayes factor in one go:}
+  \textbf{In general, Bayes factors, that is marginal likelihoods, are hard to compute. An important mathematical result, the Savage-Dickey density ratio, allows one to calculate the Bayes factor in one go:}
   
   \begin{equation*}
     BF_{01} = \frac{p(D|H_0)}{p(D|H_1)} = \frac{p(\Phi = \Phi_0|D, H_1)}{p(\Phi = \Phi_0|H_1)}
@@ -208,6 +225,8 @@
   \item \fullcite{kruschke2013bayesian}
   
   \item \fullcite{wagenmakers2014paradox}
+  
+  \textbf{This is an important paper demonstrating that parameter estimation and hypothesis testing are not (always) equivalent. While we learn something about the parameter with every observation we make, the observation need not be helpful in choosing between different hypotheses or models. Hypothesis testing via parameter estimation (i.e. saying that the interval excludes zero) is inappropriate. They answer different questions.}
 \end{description}
 
 
@@ -219,6 +238,19 @@
 \subsection{Model Comparison}
 \begin{description}
   \item \fullcite{vandekerckhove2014model}
+  
+  \textbf{Bayes factors, unlike p-values, are not limited to nested models. Like the AIC and BIC they can be used to compare completely different theoretical models. In choosing between models, one has to make a trade-off between goodness of fit, i.e. how well the model explains the data at hand, and parsimony. Highly complex models will have a higher goodness of fit - because the also fit noise. Commonly employed methods to account for model complexity are the AIC and BIC. However, since they only count the parameters of the models, they do not account for their respective functional form. Bayes factors to exactly that. Additionally, they employ an automatic Ockham's razor, since complex models spread out their predictions, decreasing the marginal likelihood. Read the paper!}
+\end{description}
+
+\subsection{Replication}
+\begin{description}
+
+  \item \fullcite{simonsohn2015small}
+  
+  \textbf{Only here because I don't like it. And to show the contrast to the paper down below - which I prefer much more.}
+
+  \item \fullcite{verhagen2014bayesian}
+
 \end{description}
 
 
@@ -237,8 +269,6 @@
   \textbf{Builds on work by \cite{donnellan2014association} who in nine experiments with over 3.000 participants in total failed to replicate \cite{bargh2012substitutability}. Since one cannot within the framework of null hypothesis significance testing support the null hypothesis, Wagenmakers and colleagues use Bayesian inference to do just that. Also excellent exposition on how high powered experiments do not necessarily yield high evidential value, see also \cite{wagenmakers2014power}. Three studies consisting of a sample size of 210, 494 and 553 participants were uninformative!}
 
   \item \fullcite{nieuwenstein2015making}
-
-  \item \fullcite{verhagen2014bayesian}
 \end{description}
 
 
@@ -291,7 +321,7 @@
 
 \section{Miscellaneous}
 
-\subsection{p-hacking}
+\subsection{p-hacking et al.}
 \begin{description}
   \item \fullcite{simmons2011false}
   
@@ -304,6 +334,10 @@
   \item \fullcite{gelman2013garden}
   
   \textbf{Beautiful paper arguing that ''p-hacking`` can be an entirely unconscious process where researchers have only the best intentions in mind! Draws on examples from the literature to discuss a hidden multiple comparison problem - the garden of forking paths. Psychological studies, although presented as confirmatory, are frequently exploratory in nature.}
+  
+  \item \fullcite{bakker2012rules}
+  
+  \textbf{In the game of psychological science, you either reach significance, or you die.}
 \end{description}
 
 
