@@ -12,8 +12,7 @@ bootstrap <- function(diff, samples = 100) {
 
 
 # example I will use; written for clarity, not efficiency ;)
-bin <- c(0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-nbin <- c(0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1)
+dat <- c(0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1)
 
 binom.boot <- function(dat, samples = 10000) {
     n <- length(dat) # is fixed!
@@ -44,8 +43,8 @@ nbinom.boot <- function(dat, samples = 10000) {
 }
 
 
-b1 <- binom.boot(bin)
-b2 <- nbinom.boot(nbin)
+b1 <- binom.boot(dat)
+b2 <- nbinom.boot(dat)
 par(mfrow = c(1,2))
 hist(b1, main = "binomial sampling", xlab = "k", freq = FALSE, ylab = "p(z | theta, N)")
 hist(b2, main = "negative binomial sampling", xlab = "N", freq = FALSE, ylab = "p(N | theta, z)")

@@ -278,6 +278,8 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 - either fix $N = 26$ and count the number of correct answers
 - or ask so many questions until one gets $k = 8$ correct answers
 - first one is binomial, the second one is negative binomial
+- $p(k | \theta, N) = \binom{n}{k} \theta^k (1 - \theta)^{n - k}$
+- $p(N | \theta, z) = \binom{n - 1}{k - 1} \theta^k (1 - \theta)^{n - k}$
 
 ## note
 - a frequentist **needs** this sampling distribution
@@ -290,6 +292,40 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 - we will draw independent random samples from our actual observed data, and compute the test statistic of that draw
 - in the binomial case, the test statistic is the **number of correct answers**
 - in the negative binomial case, the test statistic is the **number of questions**
+
+## binomial bootstrapping
+```{r}
+binom.boot <- function(dat, samples = 10000) {
+    n <- length(dat) # is fixed!
+    result <- numeric(samples)
+
+    for (i in 1:samples) {
+        draw <- sample(dat, n, replace = TRUE)
+        result[i] <- sum(draw)
+    }
+
+    result
+}
+```
+
+## negative binomial bootstrapping
+```{r}
+nbinom.boot <- function(dat, samples = 10000) {
+    k <- sum(dat) # is fixed!
+    result <- numeric(samples)
+
+    for (i in 1:samples) {
+        ss <- sample(c(0, 1), 1, prob = c(0.5, 0.5))
+
+        while (sum(ss) != k) {
+            ss <- c(ss, sample(c(0, 1), 1, prob = c(0.5, 0.5)))
+        }
+
+        result[i] <- length(ss)
+    }
+    result
+}
+```
 
 ## practical difference
 <img src="img/sampling_binomial.png" height="500" width="700"/>
@@ -313,7 +349,8 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 -->
 
 ## act I <!-- Fabian -->
-- p-value depends on the intention of the researcher
+- result of statistical analysis depends on the intention of the researcher
+- because those intentions define the space of all possible (unobserved) data
 - demonstrate on binomial versus negative binomial example
 - funny story about grant application [@wagenmakers2008bayesian]
 - binomial versus negative binomial sampling plan [@wagenmakers2007practical; @kruschke2010doing]
@@ -433,11 +470,41 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - briefly mention @ioannidis2005most and @button2013power
 - a power fallacy [@wagenmakers2014power]
 - via Bayes's Rule, we can show that $\frac{1 - \beta}{\alpha}$ is the statistical evidence of $p < \alpha$
+- thus, on average, high powered experiments yield informative data
 - but when the data are in, we can't rely on power anymore
 - "Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed."
 - draw urn example of @wagenmakers2014power
 
-## implications thereof
+## recap
+- p-values are subjective
+- p-values are biased against $H_0$
+- p-values don't quantify statistical evidence
+- p-values address the wrong question
+- statistical power, as well as confidence intervals, average over all possible, but unobserved data
+- inference based on p-values cannot support $H_0$
+- but invariances are of theoretical importance [@rouder2009bayesian]!
+
+# Likelihoods
+
+## likelihoods
+- in conditional probability, say $p(D|H)$, the hypothesis is fixed and the data vary
+- in likelihoods, $L(H|D)$, the data is fixed and the hypothesis varies
+- $L(H|D) \propto K \times p(D|H)$, need not sum to one
+- law of likelihood: data supports $H_0$ **over** $H_1$ iff $p(D|H_0) > p(D|H_1)$
+- principle of likelihood: likelihood function contains all information relevant for statistical evidence
+
+## likelihood function
+- is just the likelihood, $L(\theta|D)$, plotted for every value of $\theta$
+- Shiny demo!
+
+## likelihood ratios
+- make terrible sense, right?
+- however, we often don't know the point value of the alternative (true effect size)
+- we can quantify our uncertainty with a **prior probability distribution**
+- write stuff on the pinboard
+
+
+## implications
 - can't accept $H_0$, even in high powered experiments [@wagenmakers2015absence]
 - go from comparing p-value under H0 to p-value under H1 ...
 - ... to introducing likelihoods (and then marginal likelihoods for Bayes factor)
@@ -473,6 +540,7 @@ This whole thing is the crucial argument!!
 ## Bayes factors <!-- Fabian -->
 - computationally hard
 - Savage-Dickey! [@wagenmakers2010bayesian]
+<img src="img/sdratio_plot.png" height="500" />
 
 ## Credibility Intervals <!-- Fabian -->
 - Explain what they tell
