@@ -61,12 +61,14 @@ output:
     
 - Confidence Intervals and Statistical Power
     * 3.1 ES and CI: A Solution?
-    * 3.2 Power: A Fallacy
-    * 3.3 The elegant Bayesian
+    * 3.2 A Power fallacy
     
-- A Simple Solution: Bayesian Inference
-    * 4.1 Bayes' Theorem
-    * 4.2 Bayes Factor
+- Intermediate Step
+    * 4.1 Likelihood Ratios, with demo
+    
+- An elegant extension: Bayesian Inference
+    * 4.1 Prior distributions
+    * 4.2 Bayes factors, with demo
     * 4.3 Credibility Intervals
 
 ## Outline
@@ -96,7 +98,6 @@ Irrelevant                 Relevant
 What students are taught   What students are **not** taught
 
 <div id="contrast">borrowed from EJ Wagenmakers</div>
-
 ## put succinctly ...
 > "The textbooks are wrong. The teaching is wrong. The seminar
 > you just attended is wrong. The most prestigious journal in your
@@ -151,6 +152,10 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 
 ## Ronald Fisher
 
+> "No scientific worker has a fixed level of significance at which from year to year, and in all
+> circumstances, he rejects hypotheses; he rather gives his mind to each particular case in the light
+> of his evidence and his ideas."
+
 ## Neyman-Pearson
 > "We are inclined to think that as far
 > as a particular hypothesis is concerned, no test based upon the theory
@@ -169,11 +174,26 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
       and that this is indeed what they are learning at university!
 -->
 
-## Confusions about Classical Concepts <!-- Fabian -->
-- Probability as the *frequentist* views it
-- The p-value as the *frequentist* views it [@oakes1986statistical]
-- Confusion about p-values [@haller2002misinterpretations]
-- Confusion about confidence intervals [@hoekstra2014robust]
+## what is probability? <!-- Fabian -->
+- for frequentists, probability is the long-run average frequency of events
+- for example, the probability of a coin coming up heads is the proportion of heads in an **infinite** amount of tosses
+- to ask about the probability of the next coin toss being heads is **nonsensical**
+- the next coin toss is either heads, or it is not
+- single events don't have probability; the proportion of certain outcomes with respect to a reference class do!
+- **repeatability** becomes a crucial ingredient
+- Fisher: geneticist, worked  in agriculture, did lots of repeatable experiments
+- Jeffreys: geophysicist, looked at earthquakes etc., no way of repeating experiments
+
+## what is probability?
+- frequentists cannot talk about
+ * the probability of a 3rd world war
+ * climate change
+ * you failing your next exam
+ * any non repeatable event
+- these issues are about **uncertainty**, and need a Bayesian take on probability
+- by conceptualising probability as long-run average frequency, classical statistics deprived itself of answering the essential question in science
+- ***what is the probability that my hypothesis / theory is true?***
+
 
 <!--  explain what frequentists mean with "probability" -> infinite blabla
       explain what the p-value therefore means
@@ -284,7 +304,7 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 ## note
 - a frequentist **needs** this sampling distribution
 - often, properties of the sampling distribution can be derived analytically from the sample data
-- for example, the variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{var_{data}}{N}$
+- for example, the variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{s^2}{N}$
 - this is one reason why frequentism got so much traction: it is computationally trivial
 
 ## bootstrapping
@@ -331,8 +351,8 @@ nbinom.boot <- function(dat, samples = 10000) {
 <img src="img/sampling_binomial.png" height="500" width="700"/>
 
 ## frequentist inference
-- that the parameter $\theta$ is assumed fixed
-- what is allowed to vary, is the data
+- assumes that the parameter $\theta$ is fixed
+- only the data is allowed to vary
 - we can intuit that confidence intervals, statistical power etc. are not properties of the data
 - they are properties of the **testing procedure**
 
@@ -473,7 +493,7 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - thus, on average, high powered experiments yield informative data
 - but when the data are in, we can't rely on power anymore
 - "Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed."
-- draw urn example of @wagenmakers2014power
+- urn drawing example from @wagenmakers2014power
 
 ## recap
 - p-values are subjective
@@ -481,7 +501,7 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - p-values don't quantify statistical evidence
 - p-values address the wrong question
 - statistical power, as well as confidence intervals, average over all possible, but unobserved data
-- inference based on p-values cannot support $H_0$
+- inference based on p-values cannot support $H_0$ [@wagenmakers2015absence]
 - but invariances are of theoretical importance [@rouder2009bayesian]!
 
 # Likelihoods
@@ -490,8 +510,9 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - in conditional probability, say $p(D|H)$, the hypothesis is fixed and the data vary
 - in likelihoods, $L(H|D)$, the data is fixed and the hypothesis varies
 - $L(H|D) \propto K \times p(D|H)$, need not sum to one
-- law of likelihood: data supports $H_0$ **over** $H_1$ iff $p(D|H_0) > p(D|H_1)$
-- principle of likelihood: likelihood function contains all information relevant for statistical evidence
+- **law of likelihood**: data supports $H_0$ **over** $H_1$ iff $p(D|H_0) > p(D|H_1)$
+- **likelihood principle**: all information relevant for statistical evidence is contained in the likelihood function
+- for both the binomial and the negative binomial case, the likelihood is $\theta^k (1 - \theta)^{n-k}$
 
 ## likelihood function
 - is just the likelihood, $L(\theta|D)$, plotted for every value of $\theta$
@@ -502,13 +523,6 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - however, we often don't know the point value of the alternative (true effect size)
 - we can quantify our uncertainty with a **prior probability distribution**
 - write stuff on the pinboard
-
-
-## implications
-- can't accept $H_0$, even in high powered experiments [@wagenmakers2015absence]
-- go from comparing p-value under H0 to p-value under H1 ...
-- ... to introducing likelihoods (and then marginal likelihoods for Bayes factor)
-- it is Fisher's "personal conviction ... that the theory of inverse probability is founded upon an error, and must be wholly rejected"
 
 <!--
 here I can basically introduce everything! I will start with a binomial example, about answering questions
@@ -533,6 +547,22 @@ This whole thing is the crucial argument!!
 -->
 
 # Bayesian Inference <!-- Fabian -->
+
+## prior distributions
+- familiar equation: $\frac{p(H_0|D)}{p(H_1|D)} = \frac{p(D|H_0)}{p(D|H_1)} \times \frac{p(H_0)}{p(H_1)}$
+- in words: $\text{posterior odds} = \text{Bayes factor} \times {\text{prior odds}}$
+- problem: cannot test composite hypothesis with likelihood ratios
+- want to quantify my uncertainty over the range of possible alternative values with a prior distribution
+- important distinction: prior on parameters, prior on models
+
+## prior distributions
+- in the **early** days with little computing power, **conjugate** priors were used
+- these are priors where the  **posterior** distribution is in the same family as the **prior** distribution
+- a conjugate prior for the binomial case is the **Beta distribution**
+
+## Beta distribution
+- [demo!](http://87.106.45.173:3838/felix/BayesLessons/BayesianLesson1.Rmd)
+
 
 ## deriving Bayes Rule <!-- Fabian -->
 - use a funny example; maybe ESP
@@ -570,7 +600,9 @@ This whole thing is the crucial argument!!
       mitigating all arguments and leading over to Fabian and JASP
 -->
 
-<!-- UNTIL HERE WE SHOULD HAVE ABOUT 1h30 minutes! --> 
+<!-- UNTIL HERE WE SHOULD HAVE ABOUT 1h15 minutes! => I think we can do this! The first part will be a little dry,
+but I think the concepts are important :)
+--> 
 
 # Teach me!
 
