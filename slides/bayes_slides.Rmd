@@ -46,10 +46,9 @@ output:
 --> 
 
 - Statistics: The Status Quo
-    * 1.1 A Bird's View
+    * 1.1 A Bird's Eye's View
     * 1.2 An Example
-    * 1.3 The History
-    * 1.4 Frequentist inference, bootstrapped
+    * 1.3 Notes on the history of statistics
 - p-Values: A Death in Five Acts
     * 2.1 Sampling: Hidden subjectivity
     * 2.2 Sampling: When to stop?
@@ -59,34 +58,195 @@ output:
     
 ## Outline
     
-- Confidence Intervals and Statistical Power
-    * 3.1 ES and CI: A Solution?
-    * 3.2 A Power fallacy
+- Confidence Intervals and Effect size: A Frequentist solution?
     
-- Intermediate Step
-    * 4.1 Likelihood Ratios, with demo
+- Likelihoods, with demo
     
-- An elegant extension: Bayesian Inference
+- Elegant extension: Bayesian Inference
     * 4.1 Prior distributions
     * 4.2 Bayes factors, with demo
     * 4.3 Credibility Intervals
 
 ## Outline
 
-- Issues in Bayesian inference
-    * 5.1 Computation
-    * 5.2 Priors
-    * 5.3 Teach me!
- 
-- Teach me!
+- Practical Bayes
     * 6.1 JASP
-    * 6.2 BayesFactor
+    * 6.2 turning the hands of time
+    * 6.3 loneliness and bathing habits
+    * 6.4 do women talk more than men?
+    * 6.5 testes size and caregiving
 
 - Where to go from here?
 
+## note
+- if you have internet, please install http://jasp-stats.org
+- let's do it!
+
 # The Status Quo in Statistics
 
-## A Bird's View <!-- Fabian -->
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -95,9 +255,39 @@ Paradoxical                Intuitive
 Irrational                 Rational
 Ugly                       Pretty
 Irrelevant                 Relevant
-What students are taught   What students are **not** taught
+.                          .
 
 <div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+what's tought              .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye's View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+what's tought              what's not tought
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
 ## put succinctly ...
 > "The textbooks are wrong. The teaching is wrong. The seminar
 > you just attended is wrong. The most prestigious journal in your
@@ -143,36 +333,71 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 - Does this sound *strange* to you?
 
 
-## History: How did we get Here? <!-- Fabian -->
+## history: how did we get here? <!-- Fabian -->
+- quick question: how old do you think is **modern statistics**?
 
-- R.A. Fisher, only $H_0$, varying $\alpha$, strength of evidence
-- Neyman-Pearson, also $H_1$, power, $\beta$, behavioral statistics
-- how all this was bastardized and unified [@gigerenzer1993superego]
-- how people use it now [@gigerenzer2004mindless; @gigerenzer2014surrogate]
+## Ronald A. Fisher
+<img src="img/fisher.jpg" width=500 height=500 />
 
-## Ronald Fisher
 
+## Ronald A. Fisher
+- **Statistical Methods for Research Workers** (1925)
+- **Design of Experiments** (1935)
+- only talked about $H_0$ and $\alpha$; no alternative hypothesis! no power!
+- p-value indicates **strength of evidence**!
+- that is, $p = 0.001$ is **better** than $p = 0.049$
+
+
+## Ronald A. Fisher
 > "No scientific worker has a fixed level of significance at which from year to year, and in all
 > circumstances, he rejects hypotheses; he rather gives his mind to each particular case in the light
 > of his evidence and his ideas."
+
+## Jerzy Neyman and Egon Pearson
+- extended Fisher's work, but **changed it substantially**
+- introduced the alternative hypothesis, $H_1$
+- concept of a $\beta$ error; statistical power
+- $p < \alpha$, or $p > \alpha$
+- binary cut-offs; not **statistical evidence**!
+- they did **behavioral statistics**
 
 ## Neyman-Pearson
 > "We are inclined to think that as far
 > as a particular hypothesis is concerned, no test based upon the theory
 > of probability can by itself provide any valuable evidence of
-> the truth or falsehood of that hypothesis. But we may look at the
+> the truth or falsehood of that hypothesis.
+
+
+## Neyman-Pearson
+> "We are inclined to think that as far
+> as a particular hypothesis is concerned, no test based upon the theory
+> of probability can by itself provide any valuable evidence of
+> the truth or falsehood of that hypothesis.
+
+> But we may look at the
 > purpose of tests from another view-point. **Without hoping to know**
 > **whether each separate hypothesis is true or false**, we may search
 > for rules to **govern our behaviour** with regard to them, in following
 > which we insure that, in the long run of experience, we shall not be too often wrong."
 
-<!--  explain what Fisher meant,
-      explain what Neyman/Pearson meant
-      explain what "unification" of these means/led to
-      explain that how it is used now is called "frequentist statistics"
-      so this term is now properly introduced,
-      and that this is indeed what they are learning at university!
--->
+## unification
+- in the 40s and 50s **psychologists** (i.e. Guilford) wrote popular statistics books
+- they **did not** distinguish between Fisher's and Neyman-Pearson's approach (they **hated** each other!)
+- Null Hypothesis Significance Testing is a hybrid between those two **incompatible** paradigms
+
+## unification
+> statisticians "have already overrun every branch of science with a rapidity of conquest
+> rivalled only by Attila, Mohammed, and the Colorado beetle."
+
+- did Piaget ever compute a p-value?
+- did Skinner? what's with Köhler? Pavlov? [@gigerener1993superego]
+
+## mindless statistics
+- 1a) setup a statistical hypothesis of **no difference** or **zero correlation**
+- 1b) don't specify the predictions of your research hypothesis
+- 2a) Use 0.05 as a convention for rejecting the null
+- always use this procedure [@gigerenzer20014mindless]
+
 
 ## what is probability? <!-- Fabian -->
 - for frequentists, probability is the long-run average frequency of events
@@ -193,14 +418,6 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 - these issues are about **uncertainty**, and need a Bayesian take on probability
 - by conceptualising probability as long-run average frequency, classical statistics deprived itself of answering the essential question in science
 - ***what is the probability that my hypothesis / theory is true?***
-
-
-<!--  explain what frequentists mean with "probability" -> infinite blabla
-      explain what the p-value therefore means
-      explain that there is confusion about the p-value
-      explain that the same confusion surrounds CIs;
-      mention that CIs will be explained later
--->
 
 # what is in a p-value? <!-- Fabian -->
 
@@ -274,8 +491,335 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 
 ## statement 6
 - You have a reliable experimental finding in the sense that, if the experiment were repeated a great number of times, you would obtain a significant result on 99% of occasions.
-- that's the **replication fallacy**
+- that's the **replication fallacy** [@haller2002misinterpretations]
 
+## how often do people get that wrong?
+<img src="img/haller_misinterpretation.png" width=600 height=500 />
+
+
+# p-values: a death in five acts <!-- Fabian -->
+
+## act I <!-- Fabian -->
+<img src="img/sampling_distribution.png" width=700 height=500 />
+
+
+## act I <!-- Fabian -->
+- result of statistical analysis depends on the intention of the researcher
+- because those intentions define the space of all possible (unobserved) data [@wagenmakers2007practical]
+
+<!--
+  use this later also for Bayesian inference and the likelihood principle
+-->
+
+## act II <!-- Fabian -->
+- optional stopping [@sanborn2014frequentist; @rouder2014optional]
+- look at data, run test, gather more data, run test, etc.
+
+## act II, demo
+```{r, message = FALSE, eval = FALSE}
+source("http://rynesherman.com/phack.r") # read in the p-hack function
+
+res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
+   maxN=200, alpha=.05, alternative="two.sided", graph=TRUE, sims=2000)
+```
+
+## act II, demo
+<img src="img/phack1.png" />
+
+## act II, implications
+- ethical
+- money & ressources
+- just downright horrible
+
+## act II, Bayes note
+> "the rules governing when data collection stops are irrelevant to data interpretation. It
+> is entirely appropriate to collect data **until a point has been proven or disproven**, or until
+> the data collector runs out of time, money, or patience."
+
+- Edwards et al. (1963)
+
+
+## act III <!-- Fabian -->
+- don't quantify statistical evidence; @wagenmakers2007practical
+- $p = 0.04, n = 10$ is more evidence than $p = 0.04, n = 1000$
+- in fact, the latter is support for $H_0$!
+- are violently biased against $H_0$
+
+## act IV <!-- Fabian -->
+- violently biased against $H_0$
+- underlying logic of p-values: either the null hypothesis is false, or a rare event has occured
+
+## p-values: flawed reasoning
+- the following is logically correct:
+- (Premise): If Hypothesis $H$ is true, then event $X$ will not occur.
+- (Premise): Event $X$ occured.
+- (Conclusion): Hypothesis $H$ is not true.
+
+## p-values: flawed reasoning
+- this **does not** translate to probabilistic settings
+- (Premise): If Hypothesis $H$ is true, then event $X$ is **unlikely**.
+- (Premise): Event $X$ occured.
+- (Conclusion): Hypothesis $H$ is **probably not true**.
+
+## p-values: flawed reasoning
+- take this example as demonstration:
+- (Premise): If Jane is an American, then it will be unlikely that she is a U. S. Congressperson.
+- (Premise): Jane is a U. S. Congressperson.
+- (Conclusion): Jane is probably not an American.
+- by only looking at $p(D|H_0)$, p-values are violently biased against $H_0$
+
+## the case of Sally Clark
+- both Clark's babies died, where $p(\text{baby dies}) = \frac{1}{8543}$
+- thus the probability that both babies died is roughly 1 in 73 million
+- since this is soo incredibly low ($p < 0.00001$ or whatnot), Clark **probably killed** her babies
+- indeed, in November 1999, a jury found poor Sally guilty of double murder
+
+## what the hell just happened?
+
+## the case of Sally Clark
+> "The jury needs to weigh up two competing explanations for the babies’ deaths: SIDS or murder. The fact that two deaths by SIDS is
+> quite unlikely is, taken alone, of little value. Two deaths by murder may well be even
+> more unlikely. What matters is the relative likelihood of the deaths under each
+> explanation, not just how unlikely they are under one explanation."
+
+- **President of the Royal Statistical Society** (2002)
+
+## the case of Sally Clark
+- in fact, $p(\text{baby dies} | \text{sudden infant death})$ is higher than $p(\text{baby dies} | \text{murder})$
+- the ratio of these two - the **likelihood ratio** - is the proper measure of statistical evidence
+- statistical evidence is **always** relative; there is **no free lunch**
+
+
+## act V <!-- Fabian -->
+- p-value give you $p(\text{D or more extreme}|H_0)$
+- what we want is $p(H|D)$, the probability that our hypothesis,   is true!
+- there is a subtle, but important difference
+- $p(\text{you are dead} | \text{shark has bitten off your head})$ is very high :(
+- $p(\text{shark has bitten off your head} | \text{you are dead})$ is very low!
+
+
+## Effect Sizes and Confidence Intervals: The *Frequentist* Solution?
+- Effect Size
+    * A measure of the strength of an effect
+    * e.g., a correlation of *r* = .35, a difference between experimental conditions of Cohen's <em>d</em> = 0.30
+    
+- Confidence interval
+    * The area within which in 95% of replications (same experiment/measures, same sample size drawn from the same population) the real parameter (effect) will be
+
+- Example:
+    * *There was a significant difference between the control group and the intervention group, p = .002, d = 0.34 [0.22, 0.44]*
+
+## Effect Sizes and Confidence Intervals: A Solution?
+
+<div align="center">
+<img height='400' src='img/cummingcover.png'>
+</div>
+
+## Cumming, 2014
+* *"We need to make substantial changes to how we conduct research"*
+
+## Cumming, 2014
+- Replicate (x)
+- Adapt meta-analytical thinking (x)
+- Avoid NHST (x)
+- Don't trust any p-value (x)
+
+## Cumming, 2014
+
+<div align="center">
+<img height='500' src='img/cumming_25table.png'>
+</div>
+
+## Cumming, 2014
+
+- ES are the main research outcome (...?)
+- The CI tells us the precision of a study (...?)
+  	* ...a much better approach than declaring the result "statistically significant" (...?)
+- "Enjoy the benefits!" (...?)
+
+## Cumming, 2014
+
+* So, what does a SINGLE confidence interval tell me?
+* Nothing
+
+## ES and CI are NOT the solution
+### Part I: Morey et al., 2014
+
+* "For psychological science to be a healthy science, both estimation and hypothesis testing are needed."
+* Estimation is necessary in pretheoretical work before clear predictions can be made, and for theory revision.
+* Hypothesis testing, not estimation, is necessary for testing the quantitative predictions of theories.
+* None is more informative than the other
+* They answer different questions.
+* Estimation alone produces a massive catalogue devoid of theoretical content
+* Hypothesis testing alone may cause researchers to miss rich, meaningful structure in data.
+* It is crucial for estimation and hypothesis testing to be advocated side by side
+
+## ES and CI are NOT the solution
+### Part II: Hoekstra et al., 2014
+
+<div align="center">
+<img height='400' src='img/hoekstra_CIquestions.png'>
+</div>
+
+## ES and CI are NOT the solution
+### Part II: Hoekstra et al., 2014
+
+<div align="center">
+<img height='400' src='img/hoekstra_results.png'>
+</div>
+
+## ES and CI are NOT the solution
+### Part III: Lee, 2014
+
+(Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
+
+<div align="center">
+<img height='400' src='img/michaellee.png'>
+</div>
+
+## recap
+- p-values are subjective
+- p-values are biased against $H_0$
+- p-values don't quantify statistical evidence
+- p-values address the wrong question
+- confidence intervals are equally flawed
+- inference based on p-values cannot support $H_0$
+- but invariances are of theoretical importance!
+
+# Likelihoods
+
+## likelihoods
+- in conditional probability, say $p(D|H)$, the hypothesis is fixed and the data vary
+- in likelihoods, $L(H|D)$, the data is fixed and the hypothesis varies
+- $L(H|D) \propto K \times p(D|H)$, need not sum to one
+- **law of likelihood**: data supports $H_0$ **over** $H_1$ iff $p(D|H_0) > p(D|H_1)$
+- **likelihood principle**: all information relevant for statistical evidence is contained in the likelihood function
+- for both the binomial and the negative binomial case, the likelihood is $\theta^k (1 - \theta)^{n-k}$
+
+## likelihood function
+- is just the likelihood, $L(\theta|D)$, plotted for every value of $\theta$
+- Shiny demo!
+
+## likelihood ratios
+- make terrible sense, right?
+- however, we often don't know the point value of the alternative (true effect size)
+- we can quantify our uncertainty with a **prior probability distribution**
+- write stuff on the pinboard
+
+<!--
+here I can basically introduce everything! I will start with a binomial example, about answering questions
+correctly in a quizz (this is the example I use when introducing frequentist inference above; in the bootstrap example).
+That parameters have a distribution; that the data is fixed. In frequentism, this is reversed. Thus one can easily see why confidence intervals
+and the like cannot speak about the specific data set.
+
+I will show that Bayes only uses likelihoods, thereof the sampling plan (binomial vs. negative binomial) does not matter.
+First I will write down $\frac{p(H_0|\theta)}{p(H_1|\theta)} = \frac{p(\theta|H_0)}{p(\theta|H_1)} \times \frac{p(H_0)}{p(H_1)}$
+as the fundamental equation; even frequentists agree. The second term, the likelihood ratio, quantifies the statistical evidence; it's the
+amount we should update our prior beliefs given the data. Likelihoodists no compute the likelihood ratio, say the probability of the data given
+$\theta = \frac{1}{2}$ versus $\theta = \frac{3}{4}$. We will see that there is a problem, since we are uncertain about the alternative, composite hypothesis;
+the null hypothesis of guessing is clear, though. So we assume a distribution over the alternative, say a uniform or Cauchy distribution. I will demonstrate here
+that the huge problem was that those "diffuse" priors are not invariant of transformations. I will mention Harold Jeffreys.
+
+Now we see that there are two priors! One over the parameter, and one over the models (expressed in the prior odds). This is crucial. This, then, basically is
+Bayesian inference. I will show that although ESP skeptics and non-skeptics will disagree over the prior odds, they will not disagree over the Bayesian likelihood
+ratio, the Bayes factor. This is vital. I will then compute this. I will show that when the parameter is not bounded to [0, 1], using diffuse priors is a bad idea,
+since it leads to unbounded support for $H_0$ - the Jeffreys-Lindley paradox.
+
+This whole thing is the crucial argument!!
+-->
+
+# Bayesian Inference <!-- Fabian -->
+
+## prior distributions
+- familiar equation: $\frac{p(H_0|D)}{p(H_1|D)} = \frac{p(D|H_0)}{p(D|H_1)} \times \frac{p(H_0)}{p(H_1)}$
+- in words: $\text{posterior odds} = \text{Bayes factor} \times {\text{prior odds}}$
+- problem: cannot test composite hypothesis with likelihood ratios
+- want to quantify my uncertainty over the range of possible alternative values with a prior distribution
+- important distinction: prior on parameters, prior on models
+
+## Beta distribution
+- [demo!](http://87.106.45.173:3838/felix/BayesLessons/BayesianLesson1.Rmd)
+
+## Bayes factors <!-- Fabian -->
+- computationally hard
+- Savage-Dickey! [@wagenmakers2010bayesian]
+<img src="img/sdratio_plot.png" height="500" />
+
+## Credibility Intervals <!-- Fabian -->
+- Explain what they tell
+- short note on estimation versus testing [@morey2014hypothesis]
+
+## solutions <!-- Fabian -->
+- tackle the frequentist problems
+- conceptualize probability as degree of belief
+- parameters have distributions
+- likelihood principle!!
+
+## *Why aren't we all Bayesians?* <!-- Peter -->
+- "Why can't we all just be Bayesian?" (Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
+- we can now!
+- Computationally intensive
+    * Nowadays, no problem with MCMC
+- Subjectivity of priors
+    * A "good" thing or a "bad" thing?
+- What "type of model" is this?
+    * Exactly the same as the models you know!
+- Software
+    * R: BUGS/JAGS
+    * JASP
+
+
+# practical Bayes
+
+## JASP
+- what is the time?
+- is developed by the lab of EJ Wagenmakers
+- lead developer is Jonathan Love
+
+
+## JASP
+- various data sets
+- Wagenmakers et al. are advocates of pre-registration, confirmatory research, direct replications
+- in the remaining time we will analysis data sets from some replications
+
+
+## turning the hands of time
+- counter clockwise movements lead to an orientation towards the future and novelty (Topolski and Sparenberg, 2012)
+- Wagenmakers and colleagues directly replicate this research
+
+## turning the hands of time
+<img src="img/turning_hands.png" height="500" width="700"/>
+
+## analysis
+
+## bathing habits
+- John Bargh (again! I love this guy!)
+- lonely people compensate the lack of social warmth by taking warmer showers and baths
+- ummmmmmm, really?
+
+## analysis
+- must be Bayesian to quantify support for $H_0$
+- because there is a difference between $p > 0.05$, the data are uninformative
+- and $p > 0.05$, data are informative and support $H_0$
+- classical statistics **does not make** this distinction
+
+## a power fallacy
+- "Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed."
+- urn drawing example from @wagenmakers2014power
+- high power **does not** imply **diagnostic** data!
+
+
+# Wrap up <!-- Fabian -->
+
+# We should all just be Bayesian <!-- Fabian -->
+<!--  "In 20 years, our children will ask us
+      why we've ever been frequentist,
+      and the answer will be difficult"
+-->
+
+## References
+
+# addendum
 # frequentist inference <!-- Fabian -->
 
 ## how a frequentist draws inference
@@ -356,136 +900,6 @@ nbinom.boot <- function(dat, samples = 10000) {
 - we can intuit that confidence intervals, statistical power etc. are not properties of the data
 - they are properties of the **testing procedure**
 
-# p-values: a death in five acts <!-- Fabian -->
- 
-<!--  what we as researchers want to do is provide evidence for "our" hypothesis
-      coming up, I explain why frequentist statistics and the p-value fail to do that
-      you can probably all sense from your statistics class and from what we have discussed so far
-      that p-values tell us something strange; now, I will confirm this impression
-      by showing you why the p-value is somnething stupid
-      -> wouldn't use "NHST" here but rather stick to "the p-value"
-      -> unless we really nicely introduce what NHST means;
-      -> perhaps using the term "the p-value" is sufficient for our means?
--->
-
-## act I <!-- Fabian -->
-- result of statistical analysis depends on the intention of the researcher
-- because those intentions define the space of all possible (unobserved) data
-- demonstrate on binomial versus negative binomial example
-- funny story about grant application [@wagenmakers2008bayesian]
-- binomial versus negative binomial sampling plan [@wagenmakers2007practical; @kruschke2010doing]
-
-<!--
-  use this later also for Bayesian inference and the likelihood principle
--->
-
-## act II <!-- Fabian -->
-- optional stopping [@sanborn2014frequentist; @rouder2014optional]
-- use p-hack R code to show inflated alpha
-
-## act II, demo
-```{r, message = FALSE, eval = FALSE}
-source("http://rynesherman.com/phack.r") # read in the p-hack function
-
-res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
-   maxN=200, alpha=.05, alternative="two.sided", graph=TRUE, sims=2000)
-```
-
-## act II, demo
-<img src="img/phack1.png" />
-
-## act II, implications
-- ethical
-- money & ressources
-- just downright horrible
-
-## act III <!-- Fabian -->
-- don't quantify statistical evidence; @wagenmakers2007practical
-- $p = 0.04, n = 10$ is more evidence than $p = 0.04, n = 1000$
-- in fact, the latter is support for $H_0$!
-- are violently biased against $H_0$
-
-## act IV <!-- Fabian -->
-- cannot accept $H_0$
-- violently biased against $H_0$
-- underlying logic of p-values: either the null hypothesis is false, or a rare event has occured
-
-## p-values: flawed reasoning
-- the following is logically correct:
-- (Premise): If Hypothesis $H$ is true, then event $X$ will not occur.
-- (Premise): Event $X$ occured.
-- (Conclusion): Hypothesis $H$ is not true.
-
-## p-values: flawed reasoning
-- this **does not** translate to probabilistic settings
-- (Premise): If Hypothesis $H$ is true, then event $X$ is **unlikely**.
-- (Premise): Event $X$ occured.
-- (Conclusion): Hypothesis $H$ is **probably not true**.
-
-## p-values: flawed reasoning
-- take this example as demonstration:
-- (Premise): If Jane is an American, then it will be unlikely that she is a U. S. Congressperson.
-- (Premise): Jane is a U. S. Congressperson.
-- (Conclusion): Jane is probably not an American.
-- by only looking at $p(D|H_0)$, p-values are violently biased against $H_0$
-
-## the case of Sally Clark
-- both Clark's babies died, where $p(\text{baby dies}) = \frac{1}{8543}$
-- thus the probability that both babies died is roughly 1 in 73 million
-- since this is soo incredibly low ($p < 0.00001$ or whatnot), Clark **probably killed** her babies
-- indeed, in November 1999, a jury found poor Sally guilty of double murder
-
-## what the hell just happened?
-
-## the case of Sally Clark
-> "The jury needs to weigh up two competing explanations for the babies’ deaths: SIDS or murder. The fact that two deaths by SIDS is
-> quite unlikely is, taken alone, of little value. Two deaths by murder may well be even
-> more unlikely. What matters is the relative likelihood of the deaths under each
-> explanation, not just how unlikely they are under one explanation."
-
-- **President of the Royal Statistical Society** (2002)
-
-## the case of Sally Clark
-- in fact, $p(\text{baby dies} | \text{sudden infant death})$ is higher than $p(\text{baby dies} | \text{murder})$
-- the ratio of these two - the **likelihood ratio** - is the proper measure of statistical evidence
-- statistical evidence is **always** relative; there is **no free lunch**
-
-## Berkson (1938)
-> “My view is that there is never any valid reason for rejection of the null hypothesis except on the
-> willingness to embrace an alternative one. No matter how rare an experience is under a
-> null hypothesis, this does not warrant logically, and in practice we do not allow it, to reject
-> the null hypothesis if, for any reasons, no alternative hypothesis is credible.”
-- free lunch [@rouder2009bayesian; @rouder2014lunch]
-- can't support $H_0$
-
-## act V <!-- Fabian -->
-- answer the wrong question, p(H|D), p(D|H)
-- make it clear that we want p($H_0$|D); shark example from Dienes
-
-
-# Effect Sizes and Confidence Intervals: The *Frequentist* Solution?
-
-## ES & CI <!-- Peter -->
-- @Cumming2014psychscience
-
-## Sorry, **No** Solution <!-- Peter -->
-- @Morey2014essential
-- @morey2015fallacy
-
-<!--  Peter explains what ES and CI are
-      and why Cumming thinks they are the solution
-      to the p-value problems
-      then, Peter explains the problems with interpretations of CIs
-      and the Morey et al argument about hypothesis testing
-      In addition, there are other problems here,
-      that Fabian discusses...
-      
-      PETER! Maybe do the same I do with the p-value?
-      The Hoekstra et al. (2014) paper about the confusions?
-      We can ask the students !!
--->
-
-
 ## Power <!-- Fabian -->
 - briefly mention @ioannidis2005most and @button2013power
 - a power fallacy [@wagenmakers2014power]
@@ -494,132 +908,3 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - but when the data are in, we can't rely on power anymore
 - "Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed."
 - urn drawing example from @wagenmakers2014power
-
-## recap
-- p-values are subjective
-- p-values are biased against $H_0$
-- p-values don't quantify statistical evidence
-- p-values address the wrong question
-- statistical power, as well as confidence intervals, average over all possible, but unobserved data
-- inference based on p-values cannot support $H_0$ [@wagenmakers2015absence]
-- but invariances are of theoretical importance [@rouder2009bayesian]!
-
-# Likelihoods
-
-## likelihoods
-- in conditional probability, say $p(D|H)$, the hypothesis is fixed and the data vary
-- in likelihoods, $L(H|D)$, the data is fixed and the hypothesis varies
-- $L(H|D) \propto K \times p(D|H)$, need not sum to one
-- **law of likelihood**: data supports $H_0$ **over** $H_1$ iff $p(D|H_0) > p(D|H_1)$
-- **likelihood principle**: all information relevant for statistical evidence is contained in the likelihood function
-- for both the binomial and the negative binomial case, the likelihood is $\theta^k (1 - \theta)^{n-k}$
-
-## likelihood function
-- is just the likelihood, $L(\theta|D)$, plotted for every value of $\theta$
-- Shiny demo!
-
-## likelihood ratios
-- make terrible sense, right?
-- however, we often don't know the point value of the alternative (true effect size)
-- we can quantify our uncertainty with a **prior probability distribution**
-- write stuff on the pinboard
-
-<!--
-here I can basically introduce everything! I will start with a binomial example, about answering questions
-correctly in a quizz (this is the example I use when introducing frequentist inference above; in the bootstrap example).
-That parameters have a distribution; that the data is fixed. In frequentism, this is reversed. Thus one can easily see why confidence intervals
-and the like cannot speak about the specific data set.
-
-I will show that Bayes only uses likelihoods, thereof the sampling plan (binomial vs. negative binomial) does not matter.
-First I will write down $\frac{p(H_0|\theta)}{p(H_1|\theta)} = \frac{p(\theta|H_0)}{p(\theta|H_1)} \times \frac{p(H_0)}{p(H_1)}$
-as the fundamental equation; even frequentists agree. The second term, the likelihood ratio, quantifies the statistical evidence; it's the
-amount we should update our prior beliefs given the data. Likelihoodists no compute the likelihood ratio, say the probability of the data given
-$\theta = \frac{1}{2}$ versus $\theta = \frac{3}{4}$. We will see that there is a problem, since we are uncertain about the alternative, composite hypothesis;
-the null hypothesis of guessing is clear, though. So we assume a distribution over the alternative, say a uniform or Cauchy distribution. I will demonstrate here
-that the huge problem was that those "diffuse" priors are not invariant of transformations. I will mention Harold Jeffreys.
-
-Now we see that there are two priors! One over the parameter, and one over the models (expressed in the prior odds). This is crucial. This, then, basically is
-Bayesian inference. I will show that although ESP skeptics and non-skeptics will disagree over the prior odds, they will not disagree over the Bayesian likelihood
-ratio, the Bayes factor. This is vital. I will then compute this. I will show that when the parameter is not bounded to [0, 1], using diffuse priors is a bad idea,
-since it leads to unbounded support for $H_0$ - the Jeffreys-Lindley paradox.
-
-This whole thing is the crucial argument!!
--->
-
-# Bayesian Inference <!-- Fabian -->
-
-## prior distributions
-- familiar equation: $\frac{p(H_0|D)}{p(H_1|D)} = \frac{p(D|H_0)}{p(D|H_1)} \times \frac{p(H_0)}{p(H_1)}$
-- in words: $\text{posterior odds} = \text{Bayes factor} \times {\text{prior odds}}$
-- problem: cannot test composite hypothesis with likelihood ratios
-- want to quantify my uncertainty over the range of possible alternative values with a prior distribution
-- important distinction: prior on parameters, prior on models
-
-## prior distributions
-- in the **early** days with little computing power, **conjugate** priors were used
-- these are priors where the  **posterior** distribution is in the same family as the **prior** distribution
-- a conjugate prior for the binomial case is the **Beta distribution**
-
-## Beta distribution
-- [demo!](http://87.106.45.173:3838/felix/BayesLessons/BayesianLesson1.Rmd)
-
-
-## deriving Bayes Rule <!-- Fabian -->
-- use a funny example; maybe ESP
-
-## Bayes factors <!-- Fabian -->
-- computationally hard
-- Savage-Dickey! [@wagenmakers2010bayesian]
-<img src="img/sdratio_plot.png" height="500" />
-
-## Credibility Intervals <!-- Fabian -->
-- Explain what they tell
-- short note on estimation versus testing [@morey2014hypothesis]
-
-## solutions <!-- Fabian -->
-- show that all frequentist problems vanish
-- conceptualize probability as degree of belief
-- parameters have distributions
-- intentions: likelihood (binom vs negbinom)
-- optional stopping: b-hack code (?)
-- multiple comparisons: b-hack code (?)
-- power and evidence for $H_0$: @wagenmakers2015absence
-- bias against $H_0$: re-analysis of literature [@wetzels2011statistical]
-
-
-## *Why aren't we all Bayesians - Can you Teach me?* <!-- Peter -->
-- "Why can't we all just be Bayesian?" (Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
-- we can now!
-- Computation
-- Priors
-- Software
-
-<!--  Peter explains issues with computational power,
-      subjectivity of priors, (perhaps Lindley's paradox)
-      and software for implementation,
-      mitigating all arguments and leading over to Fabian and JASP
--->
-
-<!-- UNTIL HERE WE SHOULD HAVE ABOUT 1h15 minutes! => I think we can do this! The first part will be a little dry,
-but I think the concepts are important :)
---> 
-
-# Teach me!
-
-## JASP <!-- Fabian -->
-- various data sets
-- I would like to have 30 minutes for this part
-
-## BayesFactor <!-- Fabian -->
-- for the R people
-- briefly demo-ing it, depending on the audience
-
-# Wrap up <!-- Fabian -->
-
-# We should all just be Bayesian <!-- Fabian -->
-<!--  "In 20 years, our children will ask us
-      why we've ever been frequentist,
-      and the answer will be difficult"
--->
-
-## References
