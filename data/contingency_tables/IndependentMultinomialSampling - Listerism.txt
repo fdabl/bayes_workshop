@@ -1,0 +1,22 @@
+title: Listerism
+description: "Of 10 cases treated by Lister's method, 7 did well and 3 suffered from blood-poisoning; of
+14 cases treated with ordinary dressings, 9 did well and 5 had blood-poisoning; what are the odds that the
+success of Lister's method was due to chance?" Independent multinomial sampling plan.
+source: "Winsor, C. P. (1948). Probability and Listerism. Human Biology, 20, 161-169."
+hypothesis of interest: Is there an association between Listerism and treatment success?
+
+tags:
+  - IndependentMultinomialSampling
+
+variables:
+  - name: Method
+    type: Nominal
+    description: Method of treatment (Lister or Standard)
+    
+  - name: Outcome
+    type: Nominal
+    description: Outcome of treatment (Did Well or Blood Poisoning)
+    
+  - name: Count
+    type: Ordinal
+    description: The number of method-outcome combination in each "Method x Outcome" cell of the design

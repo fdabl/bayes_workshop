@@ -1,0 +1,17 @@
+title: Gender Differences in Talkativeness
+description: Are women more talkative than men? An independent t-test.
+source: "Moore, McCabe, Craig (2012). Introduction to the Practice of Statistics (7th ed.). New York, NY: W.H. Freeman and Company, Chapter 1, p. 69; from Mehl,M.R., Vazire,S., Ramirez-Esparza,N., Slatcher,R.B., & Pennebaker,J.W. (2007). Are women really more talkative than men? Science, 317, 82. http://www.sciencemag.org/content/317/5834/82.short"
+hypothesis of interest: The average number of words spoken per day is higher for women then for men (USA sample, 2003).
+
+tags:
+  - IndependentTtest
+
+variables:
+
+  - name: Gender
+    type: Nominal
+    description: 1 = man; 2 = woman
+    
+  - name: Words Per Day
+    type: Continuous
+    description: The average number of words spoken per day

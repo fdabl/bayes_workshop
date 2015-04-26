@@ -10,46 +10,20 @@ output:
     css: styles.css
 ---
 
-
-<!--  GENERAL REMARKS:
-      - I changed the order of the five death acts of the p-value; this is jsut a suggestion
-        I think that it would fit nicely ti bring the H0 and H1-related acts after each other,
-        culminating in the fact that theyanswer the wrong question;
-        therefore, I moved the optional stopping to be the second act
-        - I marked each slide with the name of who I think should present it.
-          You'll notice two things:
-          First, you present much more than me. This has the reason that I think when one person
-          presents more than the other it is nicer, but also I think that all topics I marked wit hyour name
-          just fit you so well :D I think you could talk great about everything I marked with your name.
-          Second, in my suggestionas it is now, I'd have three short parts. This might seem strange since we switch
-          quite "often" but from my experience, all short workshops I've seen so far
-          that were given by two people, it turned out to be especially nice when they switched;
-          it just relaxes the atmosphere. Also, thrice is not so often I think...
--->
-
-<!-- I'd not show but rather say these things while presenting the title slide
-
-## Attend at your own peril
-- you will hear things you probably have never heard before ...
-- ... and neither has your statistics teacher or thesis advisor
-- all this will be **heavy** statistical re-education
-- you will be a different person after this workshop
-- but trust us, it will be awesome
-
--->
-
 ## Outline <!-- Fabian -->
 
-<!--  Comment on the outline:
-      The sub-points are not important to short or mention here,
-      they just provide a structure for ourselves
---> 
-
 - Statistics: The Status Quo
-    * 1.1 A Bird's Eye's View
+    * 1.1 A Bird's Eye View
     * 1.2 An Example
     * 1.3 Notes on the history of statistics
-- p-Values: A Death in Five Acts
+    
+- frequentist inference, bootstrapped
+<!-- was not in the original workshop (would have taken too long)
+     I've put it here for people to look through it, if they wanted to
+-->
+
+
+- p-values: A Death in Five Acts
     * 2.1 Sampling: Hidden subjectivity
     * 2.2 Sampling: When to stop?
     * 2.3 Inference: Statistical Evidence
@@ -84,7 +58,7 @@ output:
 
 # The Status Quo in Statistics
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     .
@@ -99,7 +73,7 @@ Ad-hoc                     .
 
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -115,7 +89,7 @@ Ad-hoc                     Axiomatic
 
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -131,7 +105,7 @@ Incoherent                 .
 
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -146,7 +120,7 @@ Incoherent                 Coherent
 
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -162,7 +136,7 @@ Paradoxical                .
 
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -176,7 +150,7 @@ Paradoxical                Intuitive
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -190,7 +164,7 @@ Irrational                 .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -204,7 +178,7 @@ Irrational                 Rational
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -218,7 +192,7 @@ Ugly                       .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -232,7 +206,7 @@ Ugly                       Pretty
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -246,7 +220,7 @@ Irrelevant                 .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -260,7 +234,7 @@ Irrelevant                 Relevant
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -274,7 +248,7 @@ what's taught              .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye's View <!-- Fabian -->
+## A Bird's Eye View <!-- Fabian -->
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -285,7 +259,7 @@ Ugly                       Pretty
 Irrelevant                 Relevant
 what's taught              what's not taught
 
-<div id="contrast">borrowed from EJ Wagenmakers</div>
+<div id="contrast">borrowed from [EJ Wagenmakers](https://docs.google.com/file/d/0B-Ww24m3ZkEyMEpudlVsX3pRVzA/edit)</div>
 
 
 ## put succinctly ...
@@ -312,12 +286,8 @@ what's taught              what's not taught
 ## An Example: Risk Behaviour and Social Status <!-- Peter -->
 
 ```{r, eval=FALSE}
-
-setwd("C:/Users/.../bayes_workshop/data") # Set working directory
 risk_bayes <- read.csv("riskdata_bayes.csv") # Load data
-attach(risk_bayes) # Set data as working file
-summary(lm(risksum~ZPop+ZLike)) # Multiple regression
-
+summary(lm(risksum ~ ZPop + ZLike, data = risk_bayes)) # Multiple regression
 ```
 
 <div align="center">
@@ -353,6 +323,8 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 > circumstances, he rejects hypotheses; he rather gives his mind to each particular case in the light
 > of his evidence and his ideas."
 
+- R.A. Fisher (1956), as cited in [@gigerenzer2014surrogate, p.1]
+
 ## Jerzy Neyman and Egon Pearson
 - extended Fisher's work, but **changed it substantially**
 - introduced the alternative hypothesis, $H_1$
@@ -379,6 +351,8 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 > **whether each separate hypothesis is true or false**, we may search
 > for rules to **govern our behaviour** with regard to them, in following
 > which we insure that, in the long run of experience, we shall not be too often wrong."
+
+- Neyman and Pearson (1933), as cited in [@johansson2011hail, p.118]
 
 ## unification / bastardization
 - in the 40s and 50s **psychologists** (i.e. Guilford) wrote popular statistics books
@@ -426,6 +400,7 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 - you have a control group (n = 20) and a treatment group (n = 20)
 - you run an independent t-test and get $t(18) = 2.7, p = 0.01$
 - let's rate some statements!
+- from @haller2002misinterpretations, who got it from @oakes1986statistical
 
 ## statement 1
 - You have absolutely disproved the null hypothesis of no difference.
@@ -495,6 +470,86 @@ summary(lm(risksum~ZPop+ZLike)) # Multiple regression
 
 ## how often do people get it wrong?
 <img src="img/haller_misinterpretation.png" width=600 height=500 />
+
+# frequentist inference <!-- Fabian -->
+
+## how a frequentist draws inference
+- suppose you are being asked 26 questions about Bayesian statistics ($N = 26$)
+- you happen to answer 8 correctly ($k = 8$)
+- are you better than guessing?
+- test $H_0: \theta = \frac{1}{2}$ against $H_1: \theta \neq \frac{1}{2}$
+  
+## how a frequentist draws inference
+- to obtain the **sampling distribution** assume that $H_0: \theta = \frac{1}{2}$ holds
+- imagine that the experiment is repeated very many times under **identical circumstances**
+- for each **hypothetical** experiment, calculate the test statistic of the **hypothetical** sample
+- the distribution of these test statistics are called the **sampling distribution**
+
+## graphically [@wagenmakers2007practical]
+<img src="img/sampling_distribution.png" />
+
+## sampling plan
+- there are two different ways to conduct the experiment
+- either fix $N = 26$ and count the number of correct answers
+- or ask so many questions until one gets $k = 8$ correct answers
+- first one is binomial, the second one is negative binomial
+- $p(k | \theta, N) = \binom{n}{k} \theta^k (1 - \theta)^{n - k}$
+- $p(N | \theta, z) = \binom{n - 1}{k - 1} \theta^k (1 - \theta)^{n - k}$
+
+## note
+- a frequentist **needs** this sampling distribution
+- often, properties of the sampling distribution can be derived analytically from the sample data
+- for example, the variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{s^2}{N}$
+- this is one reason why frequentism got so much traction: it is computationally trivial
+
+## bootstrapping
+- in order to **see** what happens here, let us simulate a large number of replications of the experiment!
+- we will draw independent random samples from our actual observed data, and compute the test statistic of that draw
+- in the binomial case, the test statistic is the **number of correct answers**
+- in the negative binomial case, the test statistic is the **number of questions**
+
+## binomial bootstrapping
+```{r}
+binom.boot <- function(dat, samples = 10000) {
+    n <- length(dat) # is fixed!
+    result <- numeric(samples)
+
+    for (i in 1:samples) {
+        draw <- sample(dat, n, replace = TRUE)
+        result[i] <- sum(draw)
+    }
+
+    result
+}
+```
+
+## negative binomial bootstrapping
+```{r}
+nbinom.boot <- function(dat, samples = 10000) {
+    k <- sum(dat) # is fixed!
+    result <- numeric(samples)
+
+    for (i in 1:samples) {
+        ss <- sample(c(0, 1), 1, prob = c(0.5, 0.5))
+
+        while (sum(ss) != k) {
+            ss <- c(ss, sample(c(0, 1), 1, prob = c(0.5, 0.5)))
+        }
+
+        result[i] <- length(ss)
+    }
+    result
+}
+```
+
+## practical difference
+<img src="img/sampling_binomial.png" height="500" width="700"/>
+
+## frequentist inference
+- assumes that the parameter $\theta$ is fixed
+- only the data is allowed to vary
+- we can intuit that confidence intervals, statistical power etc. are not properties of the data
+- they are properties of the **testing procedure**
 
 
 # p-values: a death in five acts <!-- Fabian -->
@@ -725,14 +780,21 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - for both the binomial and the negative binomial case, the likelihood is $\theta^k (1 - \theta)^{n-k}$
 - intentions do not matter
 - and there is no issue with optional stopping!
+- for more, see @royall1997statistical
 
 ## likelihood function
 - is just the likelihood, $L(\theta|D)$, plotted for every value of $\theta$
 - Shiny demo!
+```{r, eval = FALSE}
+library('shiny')
+
+setwd('~/code/bayes_workshop/code')
+runApp('likelihood')
+```
 
 ## likelihood ratio
 - make terrible sense, right?
-- Bayes' rule
+- derive Bayes' rule (pinboard)
 - are the factor by which we update our prior beliefs to obtain posterior beliefs
 - $\frac{p(H_0)}{p(H_1)}$
 - $\frac{p(H_0|D)}{p(H_1|D)}$
@@ -743,6 +805,13 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - however, we often don't know the point value of the alternative (true effect size)
 - we can quantify our uncertainty with a **prior probability distribution**
 - write stuff on the pinboard
+
+## note on priors
+> "Today one wonders how it is possible that orthodox logic continues to be taught in some places year after year and praised as 'objective', while Bayesians are charged with 'subjectivity'.
+Orthodoxians, preoccupied with fantasies about nonexistent data sets and, in principle, unobservable limiting frequencies - while ignoring relevant prior information - are in no position to charge
+anybody with 'subjectivity'."
+
+- Jaynes (2003), as cited in [@lee2014bayesian, p.61]
 
 # Bayesian Inference <!-- Fabian -->
 
@@ -759,8 +828,9 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - Savage-Dickey! [@wagenmakers2010bayesian]
 <img src="img/sdratio_plot.png" height="500" />
 
-## Interpretation
-<img src="img/BF_scale.png" height=500 />
+## Interpretation 
+<img src="img/BF_scale.png" height=400 />
+- from @vandekerckhove2014model
 
 ## Credibility Intervals <!-- Fabian -->
 - **real** confidence intervals
@@ -800,34 +870,111 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 
 ## turning the hands of time
 - counter clockwise movements lead to an orientation towards the future and novelty (Topolski and Sparenberg, 2012)
-- Wagenmakers and colleagues directly replicate this research
+- @wagenmakers2015turning directly replicated this research
 
 ## turning the hands of time
 <img src="img/turning_hands.png" height="500" width="700"/>
 
-## analysis
+## preparation
+- open JASP and load the data file called **kitchen rolls**
+- look at the descriptives, plot the data
+
+## freq analysis
+- run a classical t-test, with rotation as independent and mean NEO as dependent variable
+<img src="../code/exercises/kitchenfreq_ttest.png" />
+
+## freq analysis
+- what does this p-value mean?
+- what does this confidence interval mean?
+- is there a difference between the groups?
+- did we replicate the finding?
+- well, we *cannot* support $H_0$ using frequentist statistics
+- let's be Bayesian!
+
+## Bayesian analysis
+- the model, a t-test, is the same
+- $BF_{01} = \frac{1}{BF_{01}}$
+<img src="../code/exercises/kitchenbayes_ttest1.png" />
+
+## Bayesian analysis
+- note that we expect the effect to be directional; it would be wrong to test two-sided
+- change the **hypothesis** to be *Group one > Group two*
+- how does the Bayes factor change?
+- note that here we specify a prior over the effect size $\theta \sim \text{Cauchy(scale=0.707)}$
+- in the pre-registration, Wagenmakers and colleagues said that they would use a scale of 1
+- change the width of the Cauchy under the section **prior**
+- what do you observe? what happens when you set the scale to 2000000000?
+- diffuse priors should not be used for hypothesis testing [@lindley1957statistical; @degroot1982lindley]
+
+## Bayesian analysis
+<img src="../code/exercises/kitchenbayes_ttest2.png" />
+
+## Bayesian analysis
+- we see that the Bayes factor changes; how robust is it?
+- run a sensitivity analysis, i.e. **a Bayes factor robustness check**
+<img src="../code/exercises/kitchenbayes_robust.png" />
+
+
+## Bayesian analysis
+- Bayes did not only allow us to quantify support for $H_0$ in a continuous fashion
+- it also allowed us to be incredibly flexible in data collection
+- run a **sequential analysis** to see this
+<img src="../code/exercises/kitchen_sensitivity.png" />
+
+## kitchen rolls wrap up
+- you can find the pre-registration form of this research [here](https://osf.io/p3isc/), see the section **sampling plan**
+- they failed to replicate the effect; the data were about 10 times more likely under $H_0$ then under $H_1$
+- descriptives point in the other direction as originally observed (higher openness when counter clock wise)
 
 ## bathing habits
-- John Bargh (again! I love this guy!)
-- lonely people compensate the lack of social warmth by taking warmer showers and baths
+- lonely people compensate the lack of social warmth by taking warmer showers and baths [@bargh2012bath]
 - ummmmmmm, really?
+- @donnellan2014association replicated this in 9 experiments with over 3000 participants
+- @wagenmakers2015absence re-analysed the data using Bayesian inference
+- found that three out of those nine experiments yielded uninformative data (1/3 < BF < 3), although they had high power!
+- data from [here](https://sites.google.com/site/erasmusmathpsych/2015-seminar/materials/bayesian-inference)
 
 ## analysis
-- must be Bayesian to quantify support for $H_0$
+- analyse bathing data from experiments 2, 6, and 9
+- first plot the descriptives, then run a classical correlation, then a Bayesian one
+- what do you observe?
+- for Bayesian inference on correlations, which prior would you choose?
+- the following describe directed tests (positive correlation)
+
+## analysis experiment 2
+- very high p-value - what can we say?
+- BF says there is strong evidence for no correlation
+<img src="../code/exercises/bathing2.png" />
+
+## analysis experiment 6
+- significant p-value - what can we say?
+- BF says there is uninformative data!
+<img src="../code/exercises/bathing6.png" />
+
+## analysis experiment 9
+- p-value is high - what can we say?
+- BF says there is strong evidence for no correlation
+<img src="../code/exercises/bathing9.png" />
+
+## bathing wrap up
+- p-values are uniformly distributed under $H_0$
+- must be Bayesian to quantify support for $H_0$ 
 - because there is a difference between $p > 0.05$, the data are uninformative
 - and $p > 0.05$, data are informative and support $H_0$
-- classical statistics **does not make** this distinction
+- classical statistics **does not make** this distinction (for more, see [this](http://goo.gl/p0N1QE))
+- run the tests using undirected hypotheses!
+
+## there are moar data sets!
+- you can find them in the **/data** directory
+- check them out on your own :)
 
 ## a power fallacy
 - "Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed."
-- $p(H|D)$ becomes $p(H|p < \alpha)$
-- thus on average, $\frac{1 - \beta}{\alpha}$ is the **updating factor**
-- however, when the data are observed, we can go beyond power!
 - urn 0: 9 green balls and 1 blue ball
 - urn 1: 9 green balls and 1 orange ball
 - draw one ball (power = 10%); but it's orange! highly informative
 - draw nine balls (power = 90%); but all green! uninformative
-- high power **does not** imply **diagnostic** data! @wagenmakers2014power
+- high power **does not** imply **diagnostic** data! [@wagenmakers2014power]
 
 # Wrap up <!-- Fabian -->
 
@@ -838,93 +985,3 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 -->
 
 ## References
-
-# addendum
-# frequentist inference <!-- Fabian -->
-
-## how a frequentist draws inference
-- suppose you are being asked 26 questions about Bayesian statistics ($N = 26$)
-- you happen to answer 8 correctly ($k = 8$)
-- are you better than guessing?
-- test $H_0: \theta = \frac{1}{2}$ against $H_1: \theta \neq \frac{1}{2}$
-  
-## how a frequentist draws inference
-- to obtain the **sampling distribution** assume that $H_0: \theta = \frac{1}{2}$ holds
-- imagine that the experiment is repeated very many times under **identical circumstances**
-- for each **hypothetical** experiment, calculate the test statistic of the **hypothetical** sample
-- the distribution of these test statistics are called the **sampling distribution**
-
-## graphically
-<img src="img/sampling_distribution.png" />
-
-## sampling plan
-- there are two different ways to conduct the experiment
-- either fix $N = 26$ and count the number of correct answers
-- or ask so many questions until one gets $k = 8$ correct answers
-- first one is binomial, the second one is negative binomial
-- $p(k | \theta, N) = \binom{n}{k} \theta^k (1 - \theta)^{n - k}$
-- $p(N | \theta, z) = \binom{n - 1}{k - 1} \theta^k (1 - \theta)^{n - k}$
-
-## note
-- a frequentist **needs** this sampling distribution
-- often, properties of the sampling distribution can be derived analytically from the sample data
-- for example, the variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{s^2}{N}$
-- this is one reason why frequentism got so much traction: it is computationally trivial
-
-## bootstrapping
-- in order to **see** what happens here, let us simulate a large number of replications of the experiment!
-- we will draw independent random samples from our actual observed data, and compute the test statistic of that draw
-- in the binomial case, the test statistic is the **number of correct answers**
-- in the negative binomial case, the test statistic is the **number of questions**
-
-## binomial bootstrapping
-```{r}
-binom.boot <- function(dat, samples = 10000) {
-    n <- length(dat) # is fixed!
-    result <- numeric(samples)
-
-    for (i in 1:samples) {
-        draw <- sample(dat, n, replace = TRUE)
-        result[i] <- sum(draw)
-    }
-
-    result
-}
-```
-
-## negative binomial bootstrapping
-```{r}
-nbinom.boot <- function(dat, samples = 10000) {
-    k <- sum(dat) # is fixed!
-    result <- numeric(samples)
-
-    for (i in 1:samples) {
-        ss <- sample(c(0, 1), 1, prob = c(0.5, 0.5))
-
-        while (sum(ss) != k) {
-            ss <- c(ss, sample(c(0, 1), 1, prob = c(0.5, 0.5)))
-        }
-
-        result[i] <- length(ss)
-    }
-    result
-}
-```
-
-## practical difference
-<img src="img/sampling_binomial.png" height="500" width="700"/>
-
-## frequentist inference
-- assumes that the parameter $\theta$ is fixed
-- only the data is allowed to vary
-- we can intuit that confidence intervals, statistical power etc. are not properties of the data
-- they are properties of the **testing procedure**
-
-## Power <!-- Fabian -->
-- briefly mention @ioannidis2005most and @button2013power
-- a power fallacy [@wagenmakers2014power]
-- via Bayes's Rule, we can show that $\frac{1 - \beta}{\alpha}$ is the statistical evidence of $p < \alpha$
-- thus, on average, high powered experiments yield informative data
-- but when the data are in, we can't rely on power anymore
-- "Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed."
-- urn drawing example from @wagenmakers2014power

@@ -1,16 +1,3 @@
-x1 <- rnorm(30, mean = 55, sd = 5)
-x2 <- rnorm(30, mean = 50, sd = 5)
-
-bootstrap <- function(diff, samples = 100) {
-    sapply(1:samples, function(i) 
-          (mean(sample(diff, length(diff), replace = TRUE))))
-}
-
-#boot <- bootstrap(x1 - x2)
-#term <- qt(0.975, 29) * sd(boot)
-#cis <- c(mean(boot) - term, mean(boot) + term)
-
-
 # example I will use; written for clarity, not efficiency ;)
 dat <- c(0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1)
 
@@ -75,3 +62,17 @@ nbinom.p2 <- pnbinom(8, 26, 0.5) * 2
 all.ps <- rbind(c(binom.p, binom.p2), c(nbinom.p, nbinom.p2))
 colnames(all.ps) <- c('bootstrap', 'not bootstrap')
 rownames(all.ps) <- c('binomial', 'neg binomial')
+
+
+## miscellaneous
+x1 <- rnorm(30, mean = 55, sd = 5)
+x2 <- rnorm(30, mean = 50, sd = 5)
+
+bootstrap <- function(diff, samples = 100) {
+    sapply(1:samples, function(i) 
+          (mean(sample(diff, length(diff), replace = TRUE))))
+}
+
+#boot <- bootstrap(x1 - x2)
+#term <- qt(0.975, 29) * sd(boot)
+#cis <- c(mean(boot) - term, mean(boot) + term)
