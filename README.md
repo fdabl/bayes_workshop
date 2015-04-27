@@ -14,7 +14,7 @@ reading [this](http://www.in-mind.org/article/a-perfect-storm-the-record-of-a-re
 [this](http://ejwagenmakers.com/2007/pValueProblems.pdf).
 
 ## what now? (Science 2.0)
-I suggest you register on twitter and follow [Eric-Jan Wagenmakers](https://twitter.com/EJWagenmakers), [Richard Morey](https://twitter.com/richarddmorey), [Jeff Rouder](https://twitter.com/JeffRouder), [Daniel Lakens](https://twitter.com/lakens), [Alexander Etz](https://twitter.com/AlxEtz), [Joe Hilgard](https://twitter.com/JoeHilgard). By following their conversations, you quickly find the other interesting people. Twitter is a blast!
+After you've checked out the slides, I suggest you register on twitter and follow [Eric-Jan Wagenmakers](https://twitter.com/EJWagenmakers), [Richard Morey](https://twitter.com/richarddmorey), [Jeff Rouder](https://twitter.com/JeffRouder), [Daniel Lakens](https://twitter.com/lakens), [Alexander Etz](https://twitter.com/AlxEtz), [Joe Hilgard](https://twitter.com/JoeHilgard). By following their conversations, you quickly find other interesting people. Twitter is a blast!
 
 Science is changing, and blogs are an excellent way to get your information and stay up to date. I suggest you follow the blog by [Daniel Lakens](http://daniellakens.blogspot.nl/), [Richard Morey](http://bayesfactor.blogspot.co.uk/), [Jeff Rouder](http://jeffrouder.blogspot.de/), [John Kruschke](http://doingbayesiandataanalysis.blogspot.de/), [Alexander Etz](http://alexanderetz.com/), and the publication page of [EJ Wagenmakers](http://ejwagenmakers.com/papers.html).
 
@@ -26,7 +26,7 @@ As for papers to read, just check out the literature list in **literature/**. Th
 
 - Default Bayes factors for model selection in regression, [here](http://www.tandfonline.com/doi/abs/10.1080/00273171.2012.734737#)
 
-In terms of books, I recommend the practical one by Michael Lee and EJ Wagenmakers, see [here](http://bayesmodels.com/). A rather verbose, but extensive one is Kruschke's [new one](https://sites.google.com/site/doingbayesiandataanalysis/). For a consice one, check [Kaplan](http://www.amazon.com/Bayesian-Statistics-Social-Sciences-Methodology/dp/1462516513). For likelihoods, see Royall's [classic](http://www.crcpress.com/product/isbn/9780412044113).
+In terms of books, I recommend the practical one by Michael Lee and EJ Wagenmakers, see [here](http://bayesmodels.com/). A rather verbose, but extensive one is Kruschke's [new one](https://sites.google.com/site/doingbayesiandataanalysis/). For a concise one, check [Kaplan](http://www.amazon.com/Bayesian-Statistics-Social-Sciences-Methodology/dp/1462516513). For likelihoods, see Royall's [classic](http://www.crcpress.com/product/isbn/9780412044113).
 
 ## data
-The data for the exercises are in JASP or from [here](https://sites.google.com/site/erasmusmathpsych/2015-seminar/materials/bayesian-inference) under JASP examples.
+The data for the exercises are either in JASP itself, or from [here](https://docs.google.com/file/d/0B-Ww24m3ZkEyLS1MbUdfQ1VZRXc/edit); courtesy of [Wagenmakers](https://sites.google.com/site/erasmusmathpsych/2015-seminar/materials/bayesian-inference).
