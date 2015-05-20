@@ -6,7 +6,7 @@ csl: "../apa.csl"
 output:
   ioslides_presentation:
     widescreen: yes
-    incremental: true
+    incremental: false
     css: styles.css
 ---
 
