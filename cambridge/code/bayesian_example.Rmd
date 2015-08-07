@@ -1,0 +1,246 @@
+---
+title: "Bayesian example"
+author: "Fabian Dablander"
+date: "August 7, 2015"
+output: html_document
+---
+
+# 1. Overview
+
+Bayesian statistics assumes a joint distribution over parameters and data, $p(\theta, \textbf{y})$. By the definition of conditional probability, this can be written as $p(\theta, \textbf{y}) = p(\textbf{y}|\theta)p(\theta)$, where the first term on the right-hand side is the likelihood and the second one the prior distribution over parameters. Rearranging this with some more conditional probability (Bayes' Rule) yields the following:
+
+$$
+\begin{align*}
+p(\theta, \textbf{y}) &= p(\textbf{y}|\theta)p(\theta) \\
+p(\theta|\textbf{y})p(\textbf{y}) &= p(\textbf{y}|\theta)p(\theta) \\
+p(\theta|\textbf{y}) &= \frac{p(\textbf{y}|\theta)p(\theta)}{p(\textbf{y})} \\
+p(\theta|\textbf{y}) &\sim p(\textbf{y}|\theta)p(\theta) \\
+\end{align*}
+$$
+
+Dropping $p(\textbf{y})$ is justified because it does not depend on $\theta$; it is just a normalizing constant so that $p(\theta|\textbf{y})$ integrates to 1 (is a proper probability distribution).
+
+# 2. Example
+Say we want to test whether wearing hats will increase creativity. We gather 100 participants and let 50 wear hats while doing a creativity task and the other not:
+```{r, fig.width = 6, fig.height = 6}
+set.seed(1774) # Laplace easter egg ;)
+
+hat <- rnorm(50, 60, 10)
+nohat <- rnorm(50, 50, 10)
+dat <- data.frame(score = c(nohat, hat), hat = rep(0:1, each = 50))
+
+boxplot(score ~ hat, dat, col = 'grey96',
+        ylab = 'creativity score', xlab = 'condition',
+        main = 'effect of hats on creativity')
+```
+
+We are primarily interested in the means of these groups, $\mu$, not the variances, $\sigma^2$. The variance is called *nuisance* parameter. Plugging in the parameters yields:
+
+$$
+\begin{equation}
+p(\mu, \sigma^2|\textbf{y}) \sim p(\textbf{y}|\mu, \sigma^2)p(\mu, \sigma^2)
+\end{equation}
+$$
+
+Let's first tackle the easy part: the likelihood.
+
+### Likelihood
+The likelihood $p(\textbf{y}|\mu, \sigma^2)$ embodies our statistical model. The world is complex, so we make abstractions and idealizations. We assume that creativity scores are normally distributed. An individual data point, $y$, is thus described as follows:
+
+$$
+\begin{equation*}
+p(y|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp(\frac{-(y - \mu)^2}{2\sigma^2})
+\end{equation*}
+$$
+
+We not only have one data point, but many. Assuming [*exchangeability*](https://en.wikipedia.org/wiki/Exchangeable_random_variables), i.e. the distribution over the data \textbf{y} is invariant to permutations of the indices of the individual data points, we can apply the multiplication rule of probability -- $p(A, B) = p(A)p(B)$ -- to our data:
+
+$$
+\begin{equation*}
+p(y|\mu, \sigma^2) = \prod_{i = 1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp(\frac{-(y_i - \mu)^2}{2\sigma^2})
+\end{equation*}
+$$
+
+which is frequently written as:
+
+$$
+\begin{equation*}
+\mathcal{L}(\mu, \sigma^2; \textbf{y}) = \prod_{i = 1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp(\frac{-(y_i - \mu)^2}{2\sigma^2})
+\end{equation*}
+$$
+
+This is to avoid confusion because likelihood is not a probability. The likelihood describes the how likely the data is, given certain parameter values. For example, the likelihood for $y = 50$ for $\sigma = 15$ and $\mu = 40$ and $\mu = 50$, respectively, is: 
+
+$$
+\begin{align*}
+\mathcal{L}(\mu = 40, \theta = 15; y = 50) &= .0213 \\
+\mathcal{L}(\mu = 50, \theta = 15; y = 50) &= .0266
+\end{align*}
+$$
+
+Of course, exchangeability is quite a strong assumption. Often, this is not the case -- which leads to hierarchical modeling. In conclusion, we have specified a normal model to our data, which depends on the parameters $\mu$ and $\sigma^2$.
+
+
+### Prior
+In equation 1 above, $p(\mu, \sigma^2)$ features prominently. However, it is somewhat awkward to specify one's prior beliefs over both $\mu$ and $\sigma^2$ simultanously. It would be much easier to seperate them, specifying one's belief over $\mu$ independently from $\sigma^2$. That is, one might assume that they are independent so one can write: $p(\mu, \sigma^2) = p(\mu)p(\sigma^2)$. How should we specify the priors? For $\mu$, it makes sense to assume a normal distribution centered at $\mu_0$ with variance $\sigma_0{^2}$. The variance $\sigma^2$ is bounded to be positive, so we might want to specify an inverse gamma distribution. In summary:
+
+$$
+\begin{align*}
+\mu &\sim \mathcal{N}(\mu_0, \omega_0^2) \\
+\sigma^2 &\sim \mathcal{IG}(\nu_0 / 2, \nu_0 \sigma_0^2 / 2)
+\end{align*}
+$$
+
+### Posterior
+
+Here's the cool thing: the normal distribution is a *conjugate* prior for $\mu$, and the gamma distribution is a *conjugate* prior for $\sigma^2$. A prior is conjugate if -- when combined with the likelihood -- the posterior is of the same family. This means that the posterior distribution over $\mu$, $p(\mu|\textbf{y})$ will be a normal distribution and the posterior distribution over $\sigma^2$, $p(\sigma^2|\textbf{y})$ will be an inverse gamma distribution.
+
+However, the setting here is *semi-conjugate*, because we insisted on the priors being independent. For this reason, the posterior over $\mu$ is conditional on $\sigma$, that is $p(\mu|\sigma^2, \textbf{y})$. Additionally, the posterior over $\sigma$ is conditional on $\mu$, that is $p(\sigma^2|\mu, \textbf{y})$. Before we solve this problem -- *computationally* -- a few remarks on conjugacy.
+
+#### Conjugacy
+Before the computer revolution, Bayesians needed to retort to conjugate priors. This is so because with conjugacy, the whole Bayesian computation reduces to simple arithmetic! Once we have specified the parameters $\mu_0, \omega_0^2, \nu_0, \sigma_0^2$ of the prior distributions, the posterior distributions become:
+
+$$
+\begin{align*}
+\mu|\sigma^2, \textbf{y} &\sim \mathcal{N}(\mu_1, \omega_1^{2}) \\
+\sigma^2|\mu, \textbf{y} &\sim \mathcal{IG}(\nu_1 / 2, \nu_1 \sigma_1^2 / 2) \\
+\end{align*}
+$$
+
+$\mu_1$, $\omega_1{^2}$, $\nu_1$, and $\sigma_1^2$ are simple combinations of both the information in the data and the prior. Specifically:
+
+$$
+\mu_1 = \frac{\frac{n}{\sigma^2} \hat y + \frac{1}{\omega_0^2}}{\frac{n}{\sigma^2} + \frac{1}{\omega_0^2}}
+$$
+
+$$
+\omega_1^2 = \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\omega_0^2}}
+$$
+
+and, for the variance, $v_1 = v_0 + n$ and $v_1 \sigma_1^2 = \sum_{i = 1}^n (y_i - \mu)^2$.
+
+
+# 3. Gibbs Sampling
+Now, we want to draw inferences based on the marginal distribution of $\mu | \textbf{y}$, not on the conditional distribution $\mu | \sigma, \textbf{y}$. To get *both* marginal distributions of $\mu$ and $\sigma$, we use Gibbs sampling. This is a really nice technique which was first developed in the area of image recognition. Later in the 90s statisticians realized the power of this technique. It's quite intuitive, also. First, we have to define conditional probabilities for all parameters in our model -- which is what we did! Then we sample iteratively from these distributions, for each iteration conditioning on the current value of the parameters that are conditioned upon. Here is the R code:
+
+```{r}
+gibbs <- function(mu0, w0, v0, sigma0, y, n.iter = 5000) {
+  n <- length(y)
+  
+  v1 <- v0 + n
+  mu_post <- rep(mean(y), n.iter)
+  var_post <- rep(var(y), n.iter)
+  
+  for (i in 2:n.iter) {
+    mu <- mu_post[i-1]
+    sigma2 <- var_post[i-1]
+    
+    w1 <- 1 / (n / sigma2 + 1 / w0^2)
+    mu1 <- ((n / sigma2) * mean(y) + (1 / w0^2) * mu0) / (n / sigma2 + 1 / w0^2)
+    
+    mu_post[i] <- rnorm(1, mu1, w1)
+    
+    S <- sum((y - mu)^2)
+    var_post[i] <- 1 / rgamma(1, v1 / 2, S / 2)
+  }
+  
+  cbind(mu_post, var_post)
+}
+```
+
+```{r}
+plot_post <- function(samples, title) {
+  samples <- sort(samples)
+  hist(samples, breaks = 60, main = title)
+  abline(v = samples[length(samples) * 0.025], lwd = 2, lty = 'dashed', col = 'green')
+  abline(v = samples[length(samples) * 0.975], lwd = 2, lty = 'dashed', col = 'green')
+}
+
+post0 <- gibbs(50, 2, 4, 10, subset(dat$score, dat$hat == 0))
+post1 <- gibbs(50, 2, 4, 10, subset(dat$score, dat$hat == 1))
+
+par(mfrow = c(2, 2))
+plot_post(post0[, 1], title = 'Mean of no-hat group')
+plot_post(post0[, 2], title = 'Variance of no-hat group')
+plot_post(post1[, 1], title = 'Mean of hat group')
+plot_post(post1[, 2], title = 'Variance of hat group')
+```
+
+
+# 4. Posterior Predictive Checks
+## 4.1 Graphical posterior predictive checks
+Is our model adequate? Does it capture the relevant regularities in the data? To assess this, we might use *posterior predictive checks*. That is we compute:
+
+$$
+p(\textbf{y}_{rep}|\textbf{y}) = \int p(\textbf{y}_{rep}|\theta)p(\theta|\textbf{y})\mathrm{d}\theta
+$$
+
+Here's the R code:
+```{r, message = FALSE}
+library('ggplot2')
+library('gridExtra')
+
+
+ppsim <- function(sample, n, times = 100) {
+  replicate(times, rnorm(n, sample[, 1], sqrt(sample[, 2])))
+}
+
+
+plot_ppsim <- function(y, post, title = '') {
+  times <- 100
+  n <- length(y)
+  ppost <- ppsim(post, n, times)
+  
+  yrep <- ppost[, sample(1:times)[1]]
+  pred <- data.frame(score = c(y, yrep), type = factor(rep(c('y', 'yrep'), each = n)))
+  observed <- pred[pred$type == 'y', ]
+  predicted <- pred[pred$type == 'yrep', ]
+  
+  ggplot(pred, aes(x = score, fill = type)) +
+    geom_density(data = predicted, fill = 'red', alpha = .2) +
+    geom_density(data = observed, fill = 'blue', alpha = .2) +
+    theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12),
+          plot.title = element_text(size = 20, face = 'bold'),
+          strip.text.x = element_text(size = 14)) +
+    labs(x = 'creativity score', title = title) + xlim(10, 90)
+}
+```
+
+Graphical posterior predictive checks for the creativity scores of people who did not wear hats:
+
+```{r, fig.width = 6, fig.height = 6}
+ppost0 <- ppsim(post0, 50)
+plots0 <- lapply(1:6, function(.x) plot_ppsim(nohat, ppost0))
+do.call(grid.arrange, plots0)
+```
+
+Graphical posterior predictive checks for the creativity scores of people who did wear hats:
+
+```{r, fig.width = 6, fig.height = 6}
+ppost1 <- ppsim(post1, 50)
+plots1 <- lapply(1:6, function(.x) plot_ppsim(nohat, ppost1))
+do.call(grid.arrange, plots0)
+```
+
+## 4.2 Posterior Predictive *P* value
+We can apply a function *T* to each posterior predictive sample, yielding a distribution of test statistics. We can then check if the observed value lies in the tails of the distribution. If so, this indicates that our model is misspecified. Formally:
+
+$$
+p = p(T(y_{rep}, \theta)) \geq T(\textbf{y}, \theta|\textbf{y}))
+$$
+
+Contrary to the classical *p* value, here we want values close to .5. A simple example using the mean as the test statistic T yields:
+
+```{r}
+par(mfrow = c(1, 1))
+ppcheck <- function(ppsamples, test) apply(ppsamples, 2, test)
+
+T_mean <- ppcheck(ppost0, mean)
+hist(T_mean, breaks = 20, xlab = 'mean creativity score',
+     main = paste('posterior predictive p =', mean(T_mean > mean(nohat))))
+abline(v = mean(nohat), col = 'red', lwd = 2, lty = 'dashed')
+```
+
+
+
+
