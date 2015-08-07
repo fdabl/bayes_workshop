@@ -1,0 +1,214 @@
+---
+title: "Practical Bayesian inference"
+author: "Peter Edelsbrunner, Fabian Dablander"
+bibliography: "../../bibliography.bib"
+csl: "../../apa.csl"
+output:
+  ioslides_presentation:
+    widescreen: yes
+    incremental: false
+    css: styles.css
+---
+
+## Outline <!-- Fabian -->
+
+- A few remarks on the "replication crisis" in psychology
+
+- **Statistics: The Status Quo**
+    * 1.1 A Bird's Eye View
+    * 1.2 An Example
+    * 1.3 Notes on the history of statistics
+
+- **Problems with current statistical practices**
+    * 2.1 Null Hypothesis Significance Testing
+    * 2.2 Confidence intervals and statistical power
+    * 2.3 Aggregating Data
+
+## Outline
+
+- **The principled Bayesian**
+    * 3.1 Probability and Bayes' rule
+    * 3.2 Binomial example
+    * 3.3 Model comparison using Bayes factor
+
+- **A computational example**
+    * 4.1 Gibbs sampling
+    * 4.2 Model adequacy and posterior predictive checks
+
+- **Some more examples**
+    * 4.1 Various data sets analyzed JASP
+    * 4.2 Structural Equation Modeling
+
+- **Assignments**
+
+
+## Note
+- please install http://jasp-stats.org
+- if you're a hacker, git clone the repo **dostodabsi/bayes_workshop**
+- otherwise wait for the USB-stick; all materials are on there
+
+# The Bayesian Argument
+
+## Quantifying uncertainty
+- how much money would you bet on Germany winning against Brazil in soccer?
+- $\text{odds} = \frac{x}{1 - x}$
+- $\text{probability} = \frac{\text{odds}}{1 + \text{odds}}$
+- we use probability to quantify uncertainty
+
+## Urn example
++---------+---------+--------+
+|  10     | white   | black  |
++---------+---------+--------+
+| spotted |  2      |  1     |
++---------+---------+--------+
+|~spotted |  3      |  4     |
++---------+---------+--------+
+
+## Urn example
+
+
+# A more involved example
+
+## Setup
+- do hats boost creativity?
+
+```{r}
+set.seed(1774)
+
+hat <- rnorm(50, 60, 10)
+nohat <- rnorm(50, 50, 10)
+dat <- data.frame(score = c(nohat, hat), hat = rep(0:1, each = 50))
+```
+
+## Setup
+![hats_boxplot](img/creativity_hats.png)
+
+## Bayesian approach
+- specify a joint distribution over parameters and data, $p(\textbf{y}, \theta)$, thus:
+
+$$
+\begin{align*}
+p(\textbf{y}, \theta) &= p(\textbf{y}|\theta)p(\theta) \\
+p(\textbf{y}, \theta) &= p(\theta|\textbf{y})p(\theta) \\
+p(\theta|\textbf{y})p(\textbf{y}) &= p(\textbf{y}|\theta)p(\theta) \\
+p(\theta|\textbf{y}) &\sim p(\textbf{y}|\theta)p(\theta)
+\end{align*}
+$$
+
+- $p(\textbf{y}|\theta)$ is called the likelihood
+- for clarity -- because it is not probability! -- it is written as $\mathcal{L}(\theta; \textbf{y})$
+
+
+## Likelihood -- our statistical model
+- we assume that the data are normally distributed; for a single datum, thus:
+$$
+\begin{equation*}
+\mathcal{L}(\mu, \sigma^2; y) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp(\frac{-(y - \mu)^2}{2\sigma^2})
+\end{equation*}
+$$
+
+- invoking exchangeability, we can write:
+$$
+\begin{equation*}
+\mathcal{L}(\mu, \sigma^2; \textbf{y}) = \prod_{i = 1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp(\frac{-(y_i - \mu)^2}{2\sigma^2})
+\end{equation*}
+$$
+
+
+## Likelihood -- what is it?
+- likelihood denotes the probability of the data, given certain fixed parameter values
+
+$$
+\begin{align*}
+\mathcal{L}(\mu = 40, \theta = 15; y = 50) &= .0213 \\
+\mathcal{L}(\mu = 50, \theta = 15; y = 50) &= .0266
+\end{align*}
+$$
+
+- classical statistics heavily relies on the method *maximum likelihood*
+- pick those parameter values that *maximize* the likelihood
+
+## Likelihood -- not *that* objective
+- this simple example is rather straightforward
+- still, one might question the use of the normal distribution
+- it might be that there are outliers which would make the *t-distribution* a better choice
+- in general, exchangeability is often questionable -- which leads to hierarchical modeling
+
+
+## Prior
+- In Bayesian inference, we need to formalize our belief before seeing the data
+- doing this over $\mu$ and $\sigma^2$ simultanously is difficult
+- thus we make the simplifying assumption that the priors are independent
+- $p(\mu, \sigma^2) = p(\mu)p(\sigma^2)$
+- because we are simply estimating parameters, we do not need to specify informative priors
+
+## Prior specification
+$$
+\begin{align*}
+p(\mu) &\sim \mathcal{N}(\mu_0, \omega_0^2) \\
+p(\sigma^2) &\sim \mathcal{IG}(v_0, \frac{v_0 \sigma_0^2}{2})
+\end{align*}
+$$
+
+- we specify a normal over $\mu$, and an inverse gamma over $\sigma^2$
+- thus prior specification is *semi-conjugate*
+- what is conjugacy?
+
+## Conjugacy
+- a conjugate prior is a prior that when combined with the likelihood yields a posterior that is of the same
+distributional family as the prior
+
+$$
+\begin{align*}
+\mathcal{N}(\mu_0, \sigma_0^2) &\text{ is conjugate for } \mu \text{ in } \mathcal{N}(\mu, \sigma^2) \\
+\mathcal{IG}(\alpha, \beta) &\text{ is conjugate for } \sigma^2 \text{ in } \mathcal{N}(\mu, \sigma^2) \\
+\mathcal{Beta}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Bin}(n, p) \\
+\mathcal{Beta}(\alpha, \beta) &\text{ is conjugate to } \mathcal{NegBin}(n, p) \\
+\mathcal{Dir}(\omega) &\text{ is conjugate to } \mathcal{Mult}(\theta) \\
+\mathcal{G}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Pois}(n, \lambda) \\
+\mathcal{G}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Exp}(n, \lambda) \\
+\mathcal{Pareto}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Unif}(a, b) \\
+\end{align*}
+$$
+
+## Conjugacy
+- leads to trivial computation, e.g. in the binomial case:
+
+# JASP
+
+## JASP
+- developed by a research group around Jonathon Love in Amsterdam
+- provides a free, open-source, modern alternative to SPSS
+- does frequentist as well as Bayesian inference
+
+## Motivating example
+- in replication research, being able to support the null hypothesis is crucial
+- Topolski and Sparenberk (2012) found that counter clockwise movements lead to an orientation towards the future and novelty
+- Wagenmakers et al. (2015) directly replicated this research
+
+## turning the hands of time
+<img src="img/turning_hands.png" height="500" width="700"/>
+
+## Demo
+
+## kitchen rolls wrap up
+- you can find the pre-registration form of this research [here](https://osf.io/p3isc/), see the section **sampling plan**
+- they failed to replicate the effect; the data were about 10 times more likely under $H_0$ then under $H_1$
+- descriptives point in the other direction as originally observed (higher openness when counter clock wise)
+
+## bathing habits
+- lonely people compensate the lack of social warmth by taking warmer showers and baths [@bargh2012bath]
+- ummmmmmm, really?
+- @donnellan2014association tried to replicate this in 9 experiments with over 3000 participants
+- @wagenmakers2015absence re-analysed the data using Bayesian inference
+
+## Demo
+
+## bathing wrap up
+- p-values are uniformly distributed under $H_0$
+- must be Bayesian to quantify support for $H_0$ 
+- because there is a difference between $p > 0.05$, the data are uninformative
+- and $p > 0.05$, data are informative and support $H_0$
+- classical statistics **does not make** this distinction
+
+## References
