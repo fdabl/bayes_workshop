@@ -1,8 +1,8 @@
 ---
 title: "Bayesian Statistics"
 author: "Fabian Dablander, Peter Edelsbrunner"
-bibliography: "../bibliography.bib"
-csl: "../apa.csl"
+bibliography: "../../bibliography.bib"
+csl: "../../apa.csl"
 output:
   ioslides_presentation:
     widescreen: yes

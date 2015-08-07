@@ -51,7 +51,16 @@
   \textbf{This paper discusses the problems of the ''Massive Univariate Approach`` in-depth, ranging from heteroscedasticity to violations of additivity in modeling the HRF-response. Single subject analysis as well as multiple subject analysis (using the summary statistics approach) are discussed. In general, this paper shows how a research community's creativity is boosted when a beloved tool - the General Linear Model - gets into (deep) trouble.}
 \end{enumerate}
 
-
+\section{Hierarchical Modeling}
+\begin{enumerate}[label=-]
+    \item \fullcite{efron1977stein}
+    \item \fullcite{baayen2008mixed}
+    \item \fullcite{barr2013random}
+    \item \fullcite{bates2015parsimonious}
+    \item \fullcite{rouder2007signal}
+    \item \fullcite{rouder2005introduction}
+    \item \fullcite{rouder2013hierarchical}
+\end{enumerate}
 
 
 
@@ -76,6 +85,8 @@
   
   \item \fullcite{nickerson2000null}
   
+  \item \fullcite{berger1987testing}
+  
   \item \fullcite{sellke2001calibration}
   
   \item \fullcite{haller2002misinterpretations}
@@ -92,19 +103,9 @@
   
   \textbf{Also introduces Bayesian estimation and hypothesis testing on a coin toss example. Goes on to suggest the Bayesian Information Criterion (BIC) as simple alternative to significance testing.}
   
-  \begin{equation*}
-    BIC(H_i) = -2 \log L_i + k_i \log n
-  \end{equation*}
-  
-  \textbf{where $L_i$ is the maximum likelihood for model $H_i$, $k_i$ is the number of free parameters and $n$ is the sample size. Approximating the probability of the data given model $M_i$ we can write $P_{BIC}(D|H_i) = \exp{\frac{-BIC(H_i)}{2}}$ such that}
-  
-  \begin{equation*}
-    BF_{01} \sim \frac{P_{BIC}(D|H_0)}{P_{BIC}(D|H_1)} = \exp{\frac{BIC(H_0) - BIC(H_1)}{2}}
-  \end{equation*}
-  
   \item \fullcite{wagenmakers2008bayesian}
   
-  \textbf{Is similar to \cite{wagenmakers2007practical} in that it discusses the disadvantages of null hypothesis significance testing. Additionally notes that the p-value cannot be used to compare non-nested models, and that it relies on ad-hoc principles since it does not have as solid a foundation as Bayesian inference (probability theory) and thus does not specify a unique solution to every statistical problem. Discusses the advantages of Bayesian inference, i.e. coherence, automatic parsimony, extension to non-nested models, no optional stopping, possibility to quantify evidence in favour of the null etc. Features a hilarious anecdote about the subjective nature of the p-value.}
+  \textbf{Is similar to \cite{wagenmakers2007practical} in that it discusses the disadvantages of null hypothesis significance testing. Additionally notes that the p-value cannot be used to compare non-nested models, and that it relies on ad-hoc principles since it does not have as solid a foundation as Bayesian inference (probability theory) and thus does not specify a unique solution to every statistical problem. Discusses the advantages of Bayesian inference, i.e. coherence, automatic parsimony, extension to non-nested models, no optional stopping, possibility to quantify evidence in favour of the null etc. Features a hilarious anecdote about the subjective nature of the \emph{p} value.}
   
   \item \fullcite{johansson2011hail}
   
@@ -114,7 +115,7 @@
   
   \item \fullcite{morey2015fallacy}
   
-  \item \fullcite{rouder2014lunch}
+  \item \fullcite{rouder2015lunch}
     
   \item \fullcite{hoenig2001abuse}
   
@@ -169,7 +170,7 @@
     \item the posterior probability that $\theta = \theta_0$ is at least as big as $1 - \alpha$
   \end{itemize}
   
-  \textbf{see also \cite{sprenger2013testing} and \cite{robert2014jeffreys}. Stated differently, while the p-value would lead to the rejection of $H_0$, the Bayes factor- under certain diffuse prior distributions - would lead to acceptance of $H_0$. It also shows that as the prior on $\theta$ gets more diffuse, the Bayes factor favours $H_0$ without bound. It is important to note that the p-value does not look at the data under $H_1$, while the Bayes factor quantifies evidence under $H_0$ and $H_1$ - the marginal likelihoods (this is one reason why in frequentist statistics one cannot accept $H_0$). They answer different questions.
+  \textbf{see also \cite{sprenger2013testing} and \cite{robert2014jeffreys}. Stated differently, while the p-value would lead to the rejection of $H_0$, the Bayes factor- under certain diffuse prior distributions - would lead to acceptance of $H_0$. It also shows that as the prior on $\theta$ gets more diffuse, the Bayes factor favours $H_0$ without bound. It is important to note that the p-value does not look at the data under $H_1$, while the Bayes factor quantifies evidence under $H_0$ and $H_1$ - the marginal likelihoods (this is one reason why in frequentist statistics one cannot accept $H_0$).
   }
   
   \item \fullcite{degroot1982lindley}
@@ -204,7 +205,7 @@
   
   \item \fullcite{rouder2012regression}
   
-  \textbf{Enlightening paper. Frequentist statistics cannot support $H_0$ - absence of evidence is not evidence of absence - since significance testing is asymmetric; alternative models are not specified; free lunch problem, see also \cite{rouder2014lunch}. This leads to the p-value being biased against $H_0$, see also \cite{wagenmakers2007practical, rouder2009bayesian}. The Bayes factor is introduced via example of linear regression.}
+  \textbf{Enlightening paper. Frequentist statistics cannot support $H_0$ - absence of evidence is not evidence of absence - since significance testing is asymmetric; alternative models are not specified; free lunch problem, see also \cite{rouder2015lunch}. This leads to the p-value being biased against $H_0$, see also \cite{wagenmakers2007practical, rouder2009bayesian}. The Bayes factor is introduced via example of linear regression.}
   
   \textbf{Instead of only allowing for point alternative hypotheses - like likelihood-ratio tests do -, Bayes factor allows for interval alternatives; the alternative becomes the average likelihood of the point alternatives weighted by the prior. By reparameterizing the model in terms of standardized effect size with $\beta \sim Cauchy(s)$ the Bayes factor becomes invariant to transformations. Additional beneficial properties include \emph{Consistency}, i.e. if $M_1$ then $B_{10} \sim \inf$; conversely if $M_0$ then $B_{10} \sim 0$. Note that p-values are not consistent, since they are randomly distributed under $H_0$; and \emph{Consistency in information}, i.e. data should affect the Bayes factor only through $R^2$.}
   
@@ -229,10 +230,18 @@
   \textbf{This is an important paper demonstrating that parameter estimation and hypothesis testing are not (always) equivalent. While we learn something about the parameter with every observation we make, the observation need not be helpful in choosing between different hypotheses or models. Hypothesis testing via parameter estimation (i.e. saying that the interval excludes zero) is inappropriate. They answer different questions.}
 \end{description}
 
+\subsection{Posterior Predictive Checks}
+\begin{description}
+    \item \fullcite{gelman2003bayesian}
+    \item \fullcite{gelman2013understanding}
+    \item \fullcite{sinharay2006posterior}
+\end{description}
 
-\subsection{Objective versus Subjective Bayes}
+
+\subsection{Different strands of Bayesian statistics}
 \begin{description}
   \item \fullcite{berger2006case}
+  \item \fullcite{gelman2013philosophy}
 \end{description}
 
 \subsection{Model Comparison}
@@ -266,7 +275,7 @@
 
   \item \fullcite{wagenmakers2015absence}
   
-  \textbf{Builds on work by \cite{donnellan2014association} who in nine experiments with over 3.000 participants in total failed to replicate \cite{bargh2012substitutability}. Since one cannot within the framework of null hypothesis significance testing support the null hypothesis, Wagenmakers and colleagues use Bayesian inference to do just that. Also excellent exposition on how high powered experiments do not necessarily yield high evidential value, see also \cite{wagenmakers2014power}. Three studies consisting of a sample size of 210, 494 and 553 participants were uninformative!}
+  \textbf{Builds on work by \cite{donnellan2014association} who in nine experiments with over 3.000 participants in total failed to replicate \cite{bargh2012bath}. Since one cannot within the framework of null hypothesis significance testing support the null hypothesis, Wagenmakers and colleagues use Bayesian inference to do just that. Also excellent exposition on how high powered experiments do not necessarily yield high evidential value, see also \cite{wagenmakers2014power}. Three studies consisting of a sample size of 210, 494 and 553 participants were uninformative!}
 
   \item \fullcite{nieuwenstein2015making}
 \end{description}
@@ -284,6 +293,8 @@
 
 \section{Software}
 \begin{description}
+  \item \fullcite{stan}
+  
   \item \fullcite{bayesfactor}
   
   \textbf{This is an awesome R package written by Richard Morey. It does all the GLM things and contingency tables. Generalized Linear Models such as logistic regressions have yet to be implemented. Checkout the excellent \href{http://bayesfactorpcl.r-forge.r-project.org/}{documentation} which features many examples.}
@@ -316,6 +327,8 @@
   \item \fullcite{ioannidis2005most}
   
     \textbf{Very famous paper arguing how publication bias, false incentives and low power lead to most published research being false. Introduces a simple formula for the posterior predictive value of studies $PPV = \frac{(1 - \beta)R}{(1 - \beta)R + \alpha}$, i.e. the probability of a research finding being true, where $R$ are the pre-study odds of the hypothesis being true, $\beta$ is the Type II error rate, and $\alpha$ is the Type I error rate. For further reading on how low power undermines evidential values of studies, see also \cite{button2013power}}
+    
+  \item \fullcite{gelman2014beyond}
 \end{description}
 
 
@@ -343,13 +356,15 @@
 
 \subsection{Historical Notes on Modern Statistics}
 \begin{description}
+  \item \fullcite{lindley2004bayesian}
+  
   \item \fullcite{gigerenzer1993superego}
   
   \textbf{Excellent, must read paper about the ``inference revolution''. Using a Freudian analogy, describes R.A. Fisher as the Ego, specifying no alternative hypothesis, having no fixed $\alpha$-level and interpreting the p-value as strength of evidence. The Neyman-Pearson approach to statistical testing is described as the Superego, including an alternative hypothesis, specifying a pre-fixed $\alpha$ and $\beta$-level and interpreting the p-value as either being above the treshold or below - not as strength of evidence, but as decision to act: either reject the null hypothesis, or stay in limbo. Finally, the Freudian Id is Bayes, giving us what we really want: the probability of the hypothesis given the data $P(H|D)$. The p-value \emph{cannot} achieve this; it merely is the probability of the data given data as extreme or more extreme as the once observed, $P(D|H)$. Incredibly fun read.}
   
   \item \fullcite{berger2003could}
   
-  \item \fullcite{gigerenzer2014surrogate}
+  \item \fullcite{gigerenzer2015surrogate}
   
   \textbf{Recent exposition of statistical inference in general, and the problems with dogma. Also discusses Bayesian statistics.}
 \end{description}
