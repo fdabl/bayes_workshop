@@ -45,7 +45,7 @@
   
   \item \fullcite{poline2012general}
   
-  \textbf{This is a hilarious and well written paper. It gives an easy to understand introduction to the GLM using simple notation, and offers some psychological investigations on why neuroimaging people love it (one can easily incorporate a lot of different things, parameters for low frequency drift, motion correction etc.) The appendix derives $\hat{\beta}$ as the ordinary least square solution, which in the case of the GLM is the best linear unbiased estimate.}
+  \textbf{This is a hilarious and well written paper. It gives an easy to understand introduction to the GLM using simple notation, and offers some psychological investigations on why neuroimaging people love it (one can easily incorporate a lot of different things, parameters for low frequency drift, motion correction etc.).}
   \item \fullcite{monti2011statistical}
   
   \textbf{This paper discusses the problems of the ''Massive Univariate Approach`` in-depth, ranging from heteroscedasticity to violations of additivity in modeling the HRF-response. Single subject analysis as well as multiple subject analysis (using the summary statistics approach) are discussed. In general, this paper shows how a research community's creativity is boosted when a beloved tool - the General Linear Model - gets into (deep) trouble.}
@@ -60,6 +60,7 @@
     \item \fullcite{rouder2007signal}
     \item \fullcite{rouder2005introduction}
     \item \fullcite{rouder2013hierarchical}
+    \item \fullcite{sorensen2015hierarchical}
 \end{enumerate}
 
 
@@ -72,31 +73,18 @@
 
 \begin{description}
   \item \fullcite{bakan1966test}
-  
   \item \fullcite{royall1986effect}
-  
   \item \fullcite{berger1988statistical}
-   
   \item \fullcite{cohen1994earth}
-  
   \item \fullcite{cohen1990things}
-  
   \item \fullcite{loftus1996psychology}
-  
   \item \fullcite{nickerson2000null}
-  
   \item \fullcite{berger1987testing}
-  
   \item \fullcite{sellke2001calibration}
-  
   \item \fullcite{haller2002misinterpretations}
-  
   \item \fullcite{gigerenzer2004mindless}
-  
   \textbf{This is required reading.}
-  
   \item \fullcite{lee2005bayesian}
-    
   \item \fullcite{wagenmakers2007practical}
   
   \textbf{In my opinion the best exposition of the deficits of null hypothesis significance testing. Uses extremely illustrative examples to show that p values depend on data never observed (sampling distribution), on the subjective intentions of researchers (binomial vs. negative binomial), can lead to highly inflated Type I error rates due to optional stopping (see also \cite{simmons2011false}), do not quantify statistical evidence, and differ in their interpretation in small versus large sample sizes (the p-postulate is false).}
@@ -112,13 +100,9 @@
   \textbf{This is essentially a recap of two books: Royall (1997) and Dienes (2008). After discussing Fisher's and Neyman's stance on significance testing and their deficits, introduces likelihoods as a measure to quantify statistical evidence. Bayesian inference extends the likelihood paradigm by assigning prior distributions over parameters to allow composite hypotheses. All in all, this is an excellent paper.}
   
   \item \fullcite{hoekstra2014robust}
-  
   \item \fullcite{morey2015fallacy}
-  
   \item \fullcite{rouder2015lunch}
-    
   \item \fullcite{hoenig2001abuse}
-  
   \item \fullcite{wagenmakers2014power}
   
   \textbf{Power is a pre-experimental concept that averages over all possible outcomes of an experiment, only one of which is actually observed. Thus low powered experiment can lead highly valuable information, while high powered experiments might be uninformative. As Ioannidis \cite{ioannidis2005most} and others \cite{button2013power} have shown, low power effects the likelihood that a significant finding actually reflects a true effect; because using Bayes' theorem}
@@ -141,21 +125,16 @@
   \textbf{This is the earlierst exposition of Bayesian ideas specifically written for psychologists. It is quite extensive, in-depth and gives a broad overview about Bayesian merits. It is considered a classic.}
   
   \item \fullcite{raftery1995bayesian}
-  
   \item \fullcite{kass1995bayes}
-  
   \item \fullcite{wagenmakers2011psychologists}
-  
   \item \fullcite{dienes2011bayesian}
   
   \textbf{Clarifies the differences between frequentist and Bayesian statistics with respect to optional stopping, planned versus post hoc comparisons and multiple testing. Discusses the likelihood principle and how classical statistics violates it. Argues that if you want to be rational (which scientist would not?) you should be using Bayesian inference.
   }
   
-  \item \fullcite{rouder2013hierarchical}
-  
   \item \fullcite{wagenmakers2014need}
-  
   \item \fullcite{dienes2015bayes}
+  \item \fullcite{levy2009rise}
 \end{description}
 
 
@@ -190,9 +169,7 @@
 \subsection{Bayes Factor}
 \begin{description}
   \item \fullcite{rouder2009bayesian}
-  
   \item \fullcite{wetzels2009quantify}
-  
   \item \fullcite{wagenmakers2010bayesian}
   
   \textbf{In general, Bayes factors, that is marginal likelihoods, are hard to compute. An important mathematical result, the Savage-Dickey density ratio, allows one to calculate the Bayes factor in one go:}
@@ -212,10 +189,8 @@
   \textbf{Generalizes the default prior to multiple regression. Cauchy is computationally hard, so a multivariate normal prior is used for the slope parameters, with an inverse-gamma specified over the variance of the standardizes slope. After a short example, the authors discuss three concerns: \emph{the null model is never true}, \emph{all models are wrong} and the \emph{subjective nature} of Bayes.}
   
   \item \fullcite{rouder2012anova}
-  
   \item \fullcite{wetzels2012default}
-  
-  \item \fullcite{ly2014jeffreys}
+  \item \fullcite{ly2015jeffreys}
   
   \textbf{Introduces the ''default`` or ''objective`` priors developed by Harrold Jeffreys to have certain desirable properties. Introduces them by means of the t-test and the Pearson correlation. Very in-depth, not light on mathematics.}
 \end{description}
@@ -223,8 +198,9 @@
 
 \subsection{Parameter Estimation}
 \begin{description}
+  \item \fullcite{kruschke2011bayesian}
   \item \fullcite{kruschke2013bayesian}
-  
+  \item \fullcite{kruschke2015bayesian}
   \item \fullcite{wagenmakers2014paradox}
   
   \textbf{This is an important paper demonstrating that parameter estimation and hypothesis testing are not (always) equivalent. While we learn something about the parameter with every observation we make, the observation need not be helpful in choosing between different hypotheses or models. Hypothesis testing via parameter estimation (i.e. saying that the interval excludes zero) is inappropriate. They answer different questions.}
@@ -266,13 +242,9 @@
 \subsection{Applications}
 \begin{description}
   \item \fullcite{rouder2011bayes}
-  
   \item \fullcite{morey2011bayes}
- 
   \item \fullcite{wetzels2011statistical}
-  
   \item \fullcite{dienes2014using}
-
   \item \fullcite{wagenmakers2015absence}
   
   \textbf{Builds on work by \cite{donnellan2014association} who in nine experiments with over 3.000 participants in total failed to replicate \cite{bargh2012bath}. Since one cannot within the framework of null hypothesis significance testing support the null hypothesis, Wagenmakers and colleagues use Bayesian inference to do just that. Also excellent exposition on how high powered experiments do not necessarily yield high evidential value, see also \cite{wagenmakers2014power}. Three studies consisting of a sample size of 210, 494 and 553 participants were uninformative!}
@@ -284,8 +256,8 @@
 \subsection{Problems?}
 \begin{description}
   \item \fullcite{sanborn2014frequentist}
-  
   \item \fullcite{rouder2014optional}
+  \item \fullcite{schonbrodt2015sequential}
 \end{description}
 
 
@@ -294,7 +266,6 @@
 \section{Software}
 \begin{description}
   \item \fullcite{stan}
-  
   \item \fullcite{bayesfactor}
   
   \textbf{This is an awesome R package written by Richard Morey. It does all the GLM things and contingency tables. Generalized Linear Models such as logistic regressions have yet to be implemented. Checkout the excellent \href{http://bayesfactorpcl.r-forge.r-project.org/}{documentation} which features many examples.}
@@ -311,19 +282,12 @@
 
 \begin{description}
   \item \fullcite{cohen1962statistical}
-  
   \item \fullcite{sedlmeier1989studies}
-  
   \item \fullcite{maxwell2004persistence}
-  
   \item \fullcite{cumming2001primer}
-  
   \item \fullcite{button2013power}
-  
   \item \fullcite{fraley2014n}
-  
   \item \fullcite{yarkoni2009big}
-  
   \item \fullcite{ioannidis2005most}
   
     \textbf{Very famous paper arguing how publication bias, false incentives and low power lead to most published research being false. Introduces a simple formula for the posterior predictive value of studies $PPV = \frac{(1 - \beta)R}{(1 - \beta)R + \alpha}$, i.e. the probability of a research finding being true, where $R$ are the pre-study odds of the hypothesis being true, $\beta$ is the Type II error rate, and $\alpha$ is the Type I error rate. For further reading on how low power undermines evidential values of studies, see also \cite{button2013power}}
@@ -363,7 +327,6 @@
   \textbf{Excellent, must read paper about the ``inference revolution''. Using a Freudian analogy, describes R.A. Fisher as the Ego, specifying no alternative hypothesis, having no fixed $\alpha$-level and interpreting the p-value as strength of evidence. The Neyman-Pearson approach to statistical testing is described as the Superego, including an alternative hypothesis, specifying a pre-fixed $\alpha$ and $\beta$-level and interpreting the p-value as either being above the treshold or below - not as strength of evidence, but as decision to act: either reject the null hypothesis, or stay in limbo. Finally, the Freudian Id is Bayes, giving us what we really want: the probability of the hypothesis given the data $P(H|D)$. The p-value \emph{cannot} achieve this; it merely is the probability of the data given data as extreme or more extreme as the once observed, $P(D|H)$. Incredibly fun read.}
   
   \item \fullcite{berger2003could}
-  
   \item \fullcite{gigerenzer2015surrogate}
   
   \textbf{Recent exposition of statistical inference in general, and the problems with dogma. Also discusses Bayesian statistics.}
