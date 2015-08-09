@@ -32,7 +32,7 @@ shinyServer(function(input, output) {
         }
         
         ## Specified CI% but no null? Calc and report only CI
-        if(is.numeric(CI) && !is.numeric(null)) {
+        if (is.numeric(CI) && !is.numeric(null)) {
               CI.low <- qbeta((1 - CI)/2, a + k, b + N - k)
               CI.high <- qbeta(1 - (1 - CI)/2, a + k, b + N - k)
               
@@ -50,7 +50,7 @@ shinyServer(function(input, output) {
         }
         
         ## Specified null but not CI%? Calculate and report BF only 
-        if(is.numeric(null) && !is.numeric(CI)){
+        if (is.numeric(null) && !is.numeric(CI)){
             null.H0 <- dbeta(null, a, b)
             null.H1 <- dbeta(null, a + k, b + N - k)
             CI.low <- qbeta((1 - CI)/2, a + k, b + N - k)
@@ -59,7 +59,7 @@ shinyServer(function(input, output) {
         }
         
         ## Specified both null and CI%? Calculate and report both
-        if(is.numeric(null) && is.numeric(CI)){
+        if (is.numeric(null) && is.numeric(CI)){
                 null.H0 <- dbeta(null, a, b)
                 null.H1 <- dbeta(null, a + k, b + N - k)
                 CI.low <- qbeta((1 - CI)/2, a + k, b + N - k)
@@ -80,7 +80,7 @@ shinyServer(function(input, output) {
         }
       }
       output$update_plot <- renderPlot({
-        update_plot(input$a, input$b, input$k, input$N)
+        update_plot(input$a, input$b, input$k, input$N, null = .5)
       })
       
       output$BF_01 <- renderText({

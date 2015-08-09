@@ -1,4 +1,6 @@
-# Workshop on Bayesian Statistics
+# Workshop on Bayesian Statistics [under construction!]
+## Note
+This workshop is in progress. Because github is a great collaborative tool, and we do not want to make this repo private because of the last workshop, it's public. Bear this in mind!
 
 This repo contains all materials for the workshop presented at the 4th EFPSA congress and held by Peter Edelsbrunner and Fabian Dablander. In **slides/** you will find the presentation written in Rmarkdown. The slides are webpage, so just open **bayes_slides.html** with your browser! Code for demonstration and analysis are to be found in **code/**, while the various datasets are in **data/**.
 

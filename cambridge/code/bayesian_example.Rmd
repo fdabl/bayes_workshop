@@ -91,8 +91,9 @@ $$
 \end{align*}
 $$
 
-### Posterior
+We will specify uninformative priors below. For $\omega_0^2$, the variance of the prior over $\mu$, we pick a large value. For $\nu_0$ and $\sigma_0$ we pick small values -- approximating the Jeffreys' prior.
 
+### Posterior
 Here's the cool thing: the normal distribution is a *conjugate* prior for $\mu$, and the gamma distribution is a *conjugate* prior for $\sigma^2$. A prior is conjugate if -- when combined with the likelihood -- the posterior is of the same family. This means that the posterior distribution over $\mu$, $p(\mu|\textbf{y})$ will be a normal distribution and the posterior distribution over $\sigma^2$, $p(\sigma^2|\textbf{y})$ will be an inverse gamma distribution.
 
 However, the setting here is *semi-conjugate*, because we insisted on the priors being independent. For this reason, the posterior over $\mu$ is conditional on $\sigma$, that is $p(\mu|\sigma^2, \textbf{y})$. Additionally, the posterior over $\sigma$ is conditional on $\mu$, that is $p(\sigma^2|\mu, \textbf{y})$. Before we solve this problem -- *computationally* -- a few remarks on conjugacy.
@@ -124,7 +125,7 @@ and, for the variance, $v_1 = v_0 + n$ and $v_1 \sigma_1^2 = \sum_{i = 1}^n (y_i
 Now, we want to draw inferences based on the marginal distribution of $\mu | \textbf{y}$, not on the conditional distribution $\mu | \sigma, \textbf{y}$. To get *both* marginal distributions of $\mu$ and $\sigma$, we use Gibbs sampling. This is a really nice technique which was first developed in the area of image recognition. Later in the 90s statisticians realized the power of this technique. It's quite intuitive, also. First, we have to define conditional probabilities for all parameters in our model -- which is what we did! Then we sample iteratively from these distributions, for each iteration conditioning on the current value of the parameters that are conditioned upon. Here is the R code:
 
 ```{r}
-gibbs <- function(mu0, w0, v0, sigma0, y, n.iter = 5000) {
+gibbs <- function(mu0, w0, v0, sigma0, y, n.iter = 8000, burnin = n.iter / 4) {
   n <- length(y)
   
   v1 <- v0 + n
@@ -138,13 +139,13 @@ gibbs <- function(mu0, w0, v0, sigma0, y, n.iter = 5000) {
     w1 <- 1 / (n / sigma2 + 1 / w0^2)
     mu1 <- ((n / sigma2) * mean(y) + (1 / w0^2) * mu0) / (n / sigma2 + 1 / w0^2)
     
-    mu_post[i] <- rnorm(1, mu1, w1)
+    mu_post[i] <- rnorm(1, mu1, sqrt(w1))
     
     S <- sum((y - mu)^2)
     var_post[i] <- 1 / rgamma(1, v1 / 2, S / 2)
   }
   
-  cbind(mu_post, var_post)
+  cbind(mu_post, var_post)[-(1:burnin), ]
 }
 ```
 
@@ -156,8 +157,9 @@ plot_post <- function(samples, title) {
   abline(v = samples[length(samples) * 0.975], lwd = 2, lty = 'dashed', col = 'green')
 }
 
-post0 <- gibbs(50, 2, 4, 10, subset(dat$score, dat$hat == 0))
-post1 <- gibbs(50, 2, 4, 10, subset(dat$score, dat$hat == 1))
+# use uninformative priors, w0 = 100, nu0 = .001, sigma0 = .001
+post0 <- gibbs(50, 1000, .001, .001, subset(dat$score, dat$hat == 0))
+post1 <- gibbs(50, 1000, .001, .001, subset(dat$score, dat$hat == 1))
 
 par(mfrow = c(2, 2))
 plot_post(post0[, 1], title = 'Mean of no-hat group')
@@ -181,17 +183,16 @@ library('ggplot2')
 library('gridExtra')
 
 
-ppsim <- function(sample, n, times = 100) {
+ppsim <- function(sample, n, times = 5000) {
   replicate(times, rnorm(n, sample[, 1], sqrt(sample[, 2])))
 }
 
 
 plot_ppsim <- function(y, post, title = '') {
-  times <- 100
   n <- length(y)
-  ppost <- ppsim(post, n, times)
+  ppost <- ppsim(post, n)
   
-  yrep <- ppost[, sample(1:times)[1]]
+  yrep <- ppost[, sample(1:n)[1]]
   pred <- data.frame(score = c(y, yrep), type = factor(rep(c('y', 'yrep'), each = n)))
   observed <- pred[pred$type == 'y', ]
   predicted <- pred[pred$type == 'yrep', ]
@@ -208,18 +209,18 @@ plot_ppsim <- function(y, post, title = '') {
 
 Graphical posterior predictive checks for the creativity scores of people who did not wear hats:
 
-```{r, fig.width = 6, fig.height = 6}
-ppost0 <- ppsim(post0, 50)
+```{r, fig.width = 6, fig.height = 6, warning = FALSE}
+ppost0 <- ppsim(post0, length(nohat))
 plots0 <- lapply(1:6, function(.x) plot_ppsim(nohat, ppost0))
 do.call(grid.arrange, plots0)
 ```
 
 Graphical posterior predictive checks for the creativity scores of people who did wear hats:
 
-```{r, fig.width = 6, fig.height = 6}
-ppost1 <- ppsim(post1, 50)
-plots1 <- lapply(1:6, function(.x) plot_ppsim(nohat, ppost1))
-do.call(grid.arrange, plots0)
+```{r, fig.width = 6, fig.height = 6, warning = FALSE}
+ppost1 <- ppsim(post1, length(hat))
+plots1 <- lapply(1:6, function(.x) plot_ppsim(hat, ppost1))
+do.call(grid.arrange, plots1)
 ```
 
 ## 4.2 Posterior Predictive *P* value
@@ -229,18 +230,85 @@ $$
 p = p(T(y_{rep}, \theta)) \geq T(\textbf{y}, \theta|\textbf{y}))
 $$
 
-Contrary to the classical *p* value, here we want values close to .5. A simple example using the mean as the test statistic T yields:
+Contrary to the classical *p* value, here we want values close to .5. A simple example using *min* as the test statistic T to check for lower outliers yields:
 
 ```{r}
 par(mfrow = c(1, 1))
 ppcheck <- function(ppsamples, test) apply(ppsamples, 2, test)
+check_outlier <- function(samples) sort(samples)[.025 * length(samples)]
 
-T_mean <- ppcheck(ppost0, mean)
-hist(T_mean, breaks = 20, xlab = 'mean creativity score',
-     main = paste('posterior predictive p =', mean(T_mean > mean(nohat))))
-abline(v = mean(nohat), col = 'red', lwd = 2, lty = 'dashed')
+T_mean <- ppcheck(ppost0, min)
+hist(T_mean, breaks = 20, xlab = 'min creativity scores', col = 'grey96',
+     main = paste('posterior predictive p =', mean(T_mean >= min(nohat))))
+abline(v = min(nohat), col = 'red', lwd = 4, lty = 'dashed')
 ```
 
 
+# 5. Estimating the effect size
 
+Instead of getting a point estimate, as in classical statistics:
+```{r}
+library('compute.es')
 
+m <- lm(score ~ hat, data = dat)
+tval <- coef(summary(m))[2, 3] # 6.825
+eff <- tes(tval, n.1 = 50, n.2 = 50, verbose = FALSE)
+c(eff$l.d, eff$d, eff$u.d) # effect size estimate with 95% CI
+```
+
+we get a whole distribution:
+```{r}
+effect <- function(post0, post1, n = 50) {
+  s <- sqrt(((n - 1) * post0[, 2] + (n - 1) * post1[, 2]) / (n + n - 2))
+  (post1[, 1] - post0[, 1]) / s
+}
+
+d <- sort(effect(post0, post1))
+hist(d, breaks = 40, main = "Posterior distribution of Cohen's d", col = 'grey96')
+abline(v = mean(d), col = 'red', lty = 'dashed', lwd = 3)
+abline(v = d[.025 * length(d)], col = 'green', lty = 'dashed', lwd = 3)
+abline(v = d[.975 * length(d)], col = 'green', lty = 'dashed', lwd = 3)
+```
+
+# 6. JAGS
+Let's make our inference more robust! It might well be that there are outliers in your everyday data analysis problems. Instead of fitting a normal model, it is better to use the heavier-tailed t-distribution.
+
+Instead of rolling our own solution, I will use JAGS. On this example we can also see how to check if our sampling has converged.
+
+```{r, message = FALSE, warning = FALSE}
+library('rjags') # for communicating with JAGS
+library('ggmcmc') # for nice visualizations
+options(scipen = 100, digits = 5)
+ 
+model_string <- '
+model {
+    ### priors
+    sigma ~ dgamma(.00001, .00001) # [Jeffreys prior]
+    d ~ dnorm(0, invg)             # [prior on effect size d]
+    invg ~ dgamma(1/2, rsqr/2)     # [prior on variance of d]
+    b0 ~ dnorm(0, .0001)           # [mean of the non-hat group]
+    tau <- pow(sigma, -2)          # [precision = 1/variance]
+    b1 <- d * sigma                # [difference between non-hat & hat]
+    nu_min ~ dexp(1/29)            # [prior on the degrees of freedom for t-distribution]
+    nu <- nu_min + 1
+ 
+    ### likelihood
+    for (i in 1:N) {
+        y[i] ~ dt(mu[i], tau, nu)
+        mu[i] <- b0 + b1 * x[i]    # [t-test as a general linear model]
+    }
+}'
+ 
+params <- c('b0', 'b1', 'd', 'nu')
+data <- list('x' = dat$hat, 'y' = dat$score, 'rsqr' = sqrt(2)/2, 'N' = nrow(dat))
+model <- jags.model(textConnection(model_string), data = data, n.chains = 3, quiet = TRUE)
+samples <- coda.samples(model, n.iter = 5000, variable.names = params)
+summary(samples)
+```
+
+```{r}
+ss <- ggs(samples)
+ggs_density(ss)
+```
+
+We see that the degrees of freedom parameter $\nu$ is above 30 (but with great uncertainty!), so that the normal approximation is good.
