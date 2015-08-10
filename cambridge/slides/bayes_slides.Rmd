@@ -335,14 +335,12 @@ dat <- data.frame(score = c(nohat, hat), hat = rep(0:1, each = 50))
 ![hats_boxplot](img/creativity_hats.png)
 
 ## Bayesian approach
-- specify a joint distribution over parameters and data, $p(\textbf{y}, \theta)$, thus:
+- specify a joint distribution over parameters and data, $p(\textbf{y}, \mu, \sigma^2)$, thus:
 
 $$
 \begin{align*}
-p(\textbf{y}, \theta) &= p(\textbf{y}|\theta)p(\theta) \\
-p(\textbf{y}, \theta) &= p(\theta|\textbf{y})p(\theta) \\
-p(\theta|\textbf{y})p(\textbf{y}) &= p(\textbf{y}|\theta)p(\theta) \\
-p(\theta|\textbf{y}) &\sim p(\textbf{y}|\theta)p(\theta)
+p(\mu, \sigma^2|\textbf{y}) &= \frac{p(\textbf{y}|\mu, \sigma^2)p(\mu, \sigma^2)}{p(\textbf{y})} \\[1ex]
+p(\mu, \sigma^2|\textbf{y}) &\sim p(\textbf{y}|\mu, \sigma^2)p(\mu, \sigma^2)
 \end{align*}
 $$
 
@@ -374,8 +372,6 @@ $$
 \end{align*}
 $$
 
-- classical statistics heavily relies on the method of *maximum likelihood*
-- pick those parameter values that *maximize* the likelihood
 
 ## Likelihood -- not *that* objective
 - this simple example is rather straightforward
@@ -416,6 +412,52 @@ where $\omega^2$ depends on $\sigma^2$ and $S$ depends on $\mu$
 - we don't get marginal posterior distributions, $p(\mu|\textbf{y})$ and $p(\sigma^2|\textbf{y})$ when using independent priors
 - but it is those that we want for drawing inferences!
 - use Markov chain Monte Carlo methods (in this case: *Gibbs Sampling*)
+- before that, let's make a short detour on reaction times
+
+## distribution of reaction times
+- reaction times are not (log)normally distributed
+- instead, an Ex-Gaussian distribution fits best
+- it is the sum of an exponential and a Gaussian
+$$
+x | \eta \sim \mathcal{N}(\mu + \eta, \sigma^2) \\[1ex]
+\eta \sim \mathcal{Exp}(\nu)
+$$
+
+## distribution of reaction times
+- but we do not want $x | \eta$ (conditional probability)
+- we want $x$ (marginal probability)
+- analytically, one would "integrate out" $\nu$
+- however, that is not tractable -- so instead, we use Monte Carlo methods
+- this are computer based methods to solve hard problems
+
+## Monte Carlo integration
+- a quick note: we can sample randomly from different probability distributions
+- R has, for example, "rnorm", "rbeta", "rgamma", "rexp"
+- we sample from $\eta$ using "rexp" and use this value for $x | \eta$ in "rnorm"
+
+## Monte Carlo integration
+```{r}
+exgauss <- function(mu, sigma, rate, times = 1000) {
+  res <- rep(NA, times)
+  
+  for (i in 1:times) {
+    nu <- rexp(1, rate)
+    res[i] <- rnorm(1, mu + nu, sigma)
+  }
+  
+  res
+}
+```
+
+## Monte Carlo integration
+![exgauss](img/exgauss.png)
+
+## Monte Carlo integration
+- is quite a neat technique!
+- let's generalize it to Gibbs Sampling
+- in our creativity example, both distributions are conditional on each other
+- in a sense, now we have to do monte carlo integration for both of them
+- we do this iteratively, in each step drawing from both distributions, conditional on the other value
 
 ## Gibbs Sampling
 ```{r}
@@ -438,6 +480,13 @@ gibbs <- function(mu0, w0, v0, sigma0, y, n.iter = 8000, burnin = n.iter / 4) {
   cbind(mu_post, var_post)[-(1:burnin), ]
 }
 ```
+
+## Gibbs Sampling
+- why is this called a Markov chain Monte Carlo technique?
+- Markov chain because the values are dependent on each other
+- we don't want this, so we "burn-in" the first few samples
+- we can also do thinning -- only keep every second draw
+- it is important to check convergence
 
 ## Posterior distributions
 - for parameter estimation we can specify uninformative priors:
@@ -488,12 +537,6 @@ $$
 p = p(T(y_{rep}, \theta)) \geq T(\textbf{y}, \theta|\textbf{y}))
 $$
 
-- yes, this procedure uses the data twice
-- yes, it thus violates the likelihood principle
-- yes, under the null these *p* values are not uniformly distributed (low power)
-- yes, there are many possible functions *T* one could in principle cherry-pick
-- "It works in practice, but does it work in theory?" - Senn(2013, p. 67)
-
 ## Posterior predictive *p* values
 - for the hat condition it looks like there might be outliers
 - a simple (naive?) approach would be to use *min* as the test statistic
@@ -501,12 +544,22 @@ $$
 ## Posterior predictive *p* values
 ![creativity_min](img/creativity_ppc_min.png)
 
+## Effect size
+![creativity_effect](img/creativity_effect.png)
+
+## Effect size
+- in this case, it's obvious that hats make a substantial difference
+- these data pass the *interocular traumatic test*
+- they are so obvious -- it hits you right between the eyes!
+- in the real world, however, things are rarely that clear:
+- "... the enthusiast's interocular trauma may be the skeptic's random error. A little arithmetic to verify the extent of the trauma can yield great peace of mind for little cost." [@edwards1963bayesian, p. 217]
 
 # JASP
 ## JASP
 - developed by a research group around Jonathon Love in Amsterdam
 - provides a free, open-source, modern alternative to SPSS
 - does frequentist as well as Bayesian inference
+- computes Bayes factors -- providing us with a great peace of mind
 
 ## Motivating example
 - in replication research, being able to support the null hypothesis is crucial
