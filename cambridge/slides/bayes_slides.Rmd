@@ -1,5 +1,5 @@
 ---
-title: "Bayesian statistics: Why and how"
+title: "Bayesian statistics"
 author: "Peter Edelsbrunner, Fabian Dablander"
 bibliography: "../../bibliography.bib"
 csl: "../../apa.csl"
@@ -28,21 +28,23 @@ output:
 
 - **The principled Bayesian**
     * 3.1 Probability and Bayes' rule
-    * 3.2 Why most published research findings are false
-    * 3.3 Binomial example (coin tosses -- what else?)
+    * 3.2 Binomial example (coin tosses -- what else?)
     * 3.4 Model comparison using Bayes factor
 
 - **The practical Bayesian**
-    * 4.1 Creativity and Gibbs sampling
-    * 4.2 Model adequacy and posterior predictive checks
+    * 4.1 Creativity example
+    * 4.2 Monte Carlo methods
+    * 4.3 Markov chain Monte Carlo methods
+    * 4.4 Model adequacy and posterior predictive checks
 
 ## Outline
 
-- **Some examples of Bayesian inference**
-    * 4.1 Various data sets analyzed JASP
-    * 4.2 Structural Equation Modeling
+- **Software for Bayesian data analysis**
+    * 4.1 various data sets analysed in JASP
+    * 4.2 Mplus (Structure Equation Modeling)
 
-- **Assignments**
+- **Hands-on session**
+- **Discussion**
 
 
 ## Note
@@ -52,37 +54,60 @@ output:
 
 # The principled Bayesian
 
-## Probability: Sum
+## Probability: Sum rule
 - an urn holds $N$ balls: $R$ red, $B$ blue, the rest white
 - uncertainty of drawing a red ball: $R / N$
 - uncertainty of drawing a coloured ball: $R / N + B / N$
 
-## Probability: Product
+## Probability: Product rule
 - an urn holds $N$ balls: $R$ red, $1 - R$ white, $S$ spotted, $1 - S$ plain
-- given that, there are $T$ balls that are spotted *and* red
+- given that, there are $T$ spotted *and* red balls
 - uncertainty of drawing such a ball is: $T / N$
 - $\frac{T}{N} = \frac{R}{N} \times \frac{T}{R} = \frac{S}{N} \times \frac{T}{S}$
+- what does this mean?
 
-## Probability
-- more formally, we end up with:
+## Probability: Product rule {.small}
++---------------+---------------+--------------------+--------------------+
+|               |    RED        |      WHITE         |                    |
++===============+===============+====================+====================+
+| SPOTTED       |     T         |                    |         S          |
++---------------+---------------+--------------------+--------------------+
+| PLAIN         |               |                    |       1 - S        |
++---------------+---------------+--------------------+--------------------+
+|               |     R         |      1 - R         |         N          |
++---------------+---------------+--------------------+--------------------+
+
+## Probability: Product rule {.small}
+- we want to find $P(\text{spotted}, \text{red}) = T / N$
 $$
-\begin{align}
-P(A \text{ or } B) &= P(A) + P(B) - P(A \text{ and } B) \\[1ex]
-P(A \text{ and } B) &= P(A) \times P(B|A)
-\end{align}
+\begin{align*}
+P(\text{spotted}, \text{red}) &= P(\text{spotted}|\text{red})P(\text{red}) \\[1ex]
+\frac{T}{N} &= \frac{T}{R} \times \frac{R}{N} \\[3ex]
+P(\text{spotted}, \text{red}) &= P(\text{red}|\text{spotted})P(\text{spotted}) \\[1ex]
+\frac{T}{N} &= \frac{T}{S} \times \frac{S}{N}
+\end{align*}
 $$
 
 
-## Venn diagram (http://goo.gl/1B9F3V)
-![venn](img/venn_conditional.png)
+## Implication of Sum rule
+- $P(\text{red}) = P(\text{red}|\text{spotted}) + P(\text{red}|\text{plain})$
+- $P(\text{red})$ is called a marginal probability
+- by summing up all the conditional probabilities, we arrive at the marginal
+- this will be important when we talk about the marginal likelihood in model comparison
+
+
+## Summing up
+- we have derived the intuitive product and sum rule of probability
+- this is the core of Bayesian statistics -- I'm not kidding!
+- the rest is just being smart about how to apply them
 
 
 ## Derivation of Bayes' rule
 - it's just conditional probability:
 $$
 \begin{align}
-P(A \text{ and } B) &= P(A) \times P(B|A) \\[1ex]
-P(A \text{ and } B) &= P(B) \times P(A|B)
+P(\text{spotted}, \text{red}) &= P(\text{spotted}|\text{red})P(\text{red}) \\[1ex]
+P(\text{spotted}, \text{red}) &= P(\text{red}|\text{spotted})P(\text{spotted}) \\[1ex]
 \end{align}
 $$
 
@@ -90,52 +115,23 @@ $$
 
 $$
 \begin{align*}
-P(B) \times P(A|B) &= P(A) \times P(B|A) \\[1ex]
-P(A|B) &= \frac{P(A) \times P(B|A)}{P(B)}
+P(\text{spotted}|\text{red})P(\text{red}) &= P(\text{red}|\text{spotted})P(\text{spotted}) \\[1ex]
+P(\text{spotted}|\text{red}) &= \frac{P(\text{spotted}) \times P(\text{red}|\text{spotted})}{P(\text{red})}
 \end{align*}
 $$
 
-## Why most published research findings are false
-- Ioannidis (2005) argued that most published research findings are false
-- common misconception:
-    * $\alpha = .05$, thus number of false positives is only 5%
-    * problem: we compute $p(\textbf{y}|H)$ and not $p(H|\textbf{y})$
-    * ignores relevant prior information (the base rate of true hypotheses)
-
-## Why most published research findings are false
-![ioannidis](img/ioannidis.png)
-
-## Why most published research findings are false
+## Bayes' rule: intuition
+- what is the probability of my hypothesis, p($H$), given the data, $\textbf{y}$, I have collected?
 $$
-\begin{align*}
-PPV &= \frac{TP}{(TP + FP)} \\[1ex]
-PPV &= \frac{TP(TP + FN) / (TP + FN)}{TP (TP + FN) / (TP + FN) + FP}
-\end{align*}
+p(H|\textbf{y}) = \frac{p(H)p(\textbf{y}|H)}{p(\textbf{y})}
 $$
-
-- recall that:
-    * $prior = TP + FN$
-    * $power = TP / (TP + FN)$
-    
-- therefore:
-$$
-PPV = \frac{power \times prior}{power \times prior + \alpha}
-$$
-
-## Interim conclusion I
-- to make probability statement about a hypothesis -- you need a prior
-- people often forget the prior (base rate), which makes them overconfident
-- most published research is indeed likely to be false, due to:
-    * publication bias
-    * low statistical power [@cohen1962statistical; @button2013power]
-    * statistical analysis that is contingent on data [@simmons2011false; @gelman2013garden]
 
 
 ## Some terminology
 - with parameter vector $\theta$ and data $\textbf{y}$:
 $$
 \begin{align*}
-p(\theta|\textbf{y}) &= \frac{p(\textbf{y}|\theta)p(\theta)}{\textbf{y}} \\[1ex]
+p(\theta|\textbf{y}) &= \frac{p(\textbf{y}|\theta)p(\theta)}{p(\textbf{y})} \\[1ex]
 \text{posterior} &= \frac{\text{likelihood} \times \text{prior}}{\text{marginal likelihood}} \\[2ex]
 \text{posterior} &\sim \text{likelihood} \times \text{prior}
 \end{align*}
@@ -239,7 +235,7 @@ $$
 - $H_0: \delta = 0$ corresponds to a model where the parameter $\delta$ is fixed to 0
 - $H_1: \delta \neq 0$ corresponds to a model where the parameter $\delta$ is free to vary
 
-## Bayes factor: derivation
+## Bayes factor: Derivation
 - assume two models, $M_0$ and $M_1$, that instantiate $H_0$ and $H_1$, respectively
 - after we have collected data, $p(\textbf{y})$, which model should we prefer?
 - the probability of each model is computed using Bayes' rule:
@@ -318,7 +314,7 @@ $$
 
 
 ## Principled conclusion
-- this is the core of Bayesian statistics
+- again, the sum and product rule are the core of Bayesian statistics
 - "Bayesian" is somewhat of a misnomer
 - everything follows from the sum and product rule
 - the rest is just being smart on how to apply them
@@ -378,13 +374,6 @@ $$
 $$
 
 
-## Likelihood -- not *that* objective
-- this simple example is rather straightforward
-- still, one might question the use of the normal distribution
-- it might be that there are outliers which would make the *t-distribution* a better choice
-- in general, exchangeability is often questionable -- which leads to hierarchical modeling
-
-
 ## Prior
 - In Bayesian inference, we need to formalize our belief before seeing the data
 - doing this over $\mu$ and $\sigma^2$ simultanously is difficult
@@ -416,8 +405,8 @@ where $\omega^2$ depends on $\sigma^2$ and $S$ depends on $\mu$
 ## Posterior distribution
 - we don't get marginal posterior distributions, $p(\mu|\textbf{y})$ and $p(\sigma^2|\textbf{y})$ when using independent priors
 - but it is those that we want for drawing inferences!
-- use Markov chain Monte Carlo methods (in this case: *Gibbs Sampling*)
-- before that, let's make a short detour on reaction times
+- use **Markov chain Monte Carlo** methods (in this case: *Gibbs Sampling*)
+- let's first discuss Monte Carlo on a simple example
 
 ## distribution of reaction times
 - reaction times are not (log)normally distributed
@@ -431,13 +420,17 @@ $$
 ## distribution of reaction times
 - but we do not want $x | \eta$ (conditional probability)
 - we want $x$ (marginal probability)
-- analytically, one would "integrate out" $\nu$
+- analytically, one would apply the sum rule and "integrate out" $\nu$
 - however, that is not tractable -- so instead, we use Monte Carlo methods
 - this are computer based methods to solve hard problems
 
+## Monte Carlo principle
+- **anything we want to know about a random variable $\theta$ can be learned by sampling
+many times from f($\theta$), the density of $\theta$**
+- in R, we can sample randomly from different probability distributions
+- for example, "rnorm", "rbeta", "rgamma", "rexp"
+
 ## Monte Carlo integration
-- a quick note: we can sample randomly from different probability distributions
-- R has, for example, "rnorm", "rbeta", "rgamma", "rexp"
 - we sample from $\eta$ using "rexp" and use this value for $x | \eta$ in "rnorm"
 
 ## Monte Carlo integration
