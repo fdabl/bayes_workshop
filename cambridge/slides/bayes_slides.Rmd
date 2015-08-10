@@ -1,5 +1,5 @@
 ---
-title: "Practical Bayesian inference"
+title: "Bayesian statistics: Why and how"
 author: "Peter Edelsbrunner, Fabian Dablander"
 bibliography: "../../bibliography.bib"
 csl: "../../apa.csl"
@@ -10,7 +10,7 @@ output:
     css: styles.css
 ---
 
-## Outline <!-- Fabian -->
+## Outline
 
 - A few remarks on the "replication crisis" in psychology
 
@@ -35,7 +35,6 @@ output:
 - **The practical Bayesian**
     * 4.1 Creativity and Gibbs sampling
     * 4.2 Model adequacy and posterior predictive checks
-    * 4.3 JAGS and checking convergence
 
 ## Outline
 
@@ -69,7 +68,7 @@ output:
 $$
 \begin{align}
 P(A \text{ or } B) &= P(A) + P(B) - P(A \text{ and } B) \\[1ex]
-P(A \text{ and } B) &= P(A) \times P(A|B)
+P(A \text{ and } B) &= P(A) \times P(B|A)
 \end{align}
 $$
 
@@ -82,8 +81,8 @@ $$
 - it's just conditional probability:
 $$
 \begin{align}
-P(A \text{ and } B) &= P(A) \times P(A|B) \\[1ex]
-P(A \text{ and } B) &= P(B) \times P(B|A)
+P(A \text{ and } B) &= P(A) \times P(B|A) \\[1ex]
+P(A \text{ and } B) &= P(B) \times P(A|B)
 \end{align}
 $$
 
@@ -91,8 +90,8 @@ $$
 
 $$
 \begin{align*}
-P(A) \times P(A|B) &= P(B) \times P(B|A) \\[1ex]
-P(A|B) &= \frac{P(B) \times P(B|A)}{P(A)}
+P(B) \times P(A|B) &= P(A) \times P(B|A) \\[1ex]
+P(A|B) &= \frac{P(A) \times P(B|A)}{P(B)}
 \end{align*}
 $$
 
@@ -143,7 +142,6 @@ p(\theta|\textbf{y}) &= \frac{p(\textbf{y}|\theta)p(\theta)}{\textbf{y}} \\[1ex]
 $$
 
 ## Binomial example
-- so how do we update our beliefs?
 - first we quantify our beliefs with a prior distribution, $p(\theta)$
 - we specify our statistical model, $p(\textbf{y}|\theta)$
 - then we just plug in Bayes' rule, dropping the marginal likelihood:
@@ -203,13 +201,13 @@ $$
 ## Binomial example: likelihood
 - likelihoods quantify statistical evidence
 - $\theta = .5$ is $.375 / .049 = 7.65$ times more likely than $\theta = .9$ 
-- note that we have to be very certain about our alternative
-- later we will see how Bayes factors solve this problem
+- using this method, we can only compare *point* hypotheses
+- later we will see how Bayes factors relax this restriction
 
 
 ## Binomial example: posterior
 - the posterior is simply a combination of the prior and the likelihood
-- in binomial settings, we a simple updating rule:
+- in binomial settings, we a have simple updating rule:
 $$
 \begin{align*}
 p(\theta) &\sim \mathcal{Beta}(a, b) \\[1ex]
@@ -219,8 +217,11 @@ $$
 
 
 ## Binomial example: shiny
-- demo the shiny updating app
-- give appropriate credit to Alexander Etz (also for the pictures!)
+- Visualisations from a great blog post by [Alexander Etz](http://alexanderetz.com/2015/08/09/understanding-bayes-visualization-of-bf/)
+- explain:
+    * Bayesian updating
+    * Cromwell's Rule
+    * flat priors and maximum likelihood
 
 
 ## Interim conclusion II
@@ -287,8 +288,12 @@ $$
 - Bayes factors let us test composite hypothesis, like $H_0: \theta \neq 0$
 - for this, we have to specify a prior distribution over $\theta$
 
-## Bayes factor: Shiny demo
-- same demo as before, but with Bayes factors
+## Bayes factor: shiny demo
+- explain:
+    * Bayes factor interpretation
+    * Savage-Dickey density ratio
+    * parameter estimation versus hypothesis testing
+    * Bayes factor always interpretable -- regardless of sample size
 
 ## Bayes factor: Savage-Dickey density ratio
 - a neat mathematical trick to avoid computing the marginal likelihood:

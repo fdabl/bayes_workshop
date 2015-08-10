@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Practical Bayesian inference</title>
+  <title>Bayesian statistics: Why and how</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,7 +25,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Practical Bayesian inference',
+                title: 'Bayesian statistics: Why and how',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -92,7 +92,7 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Outline <!-- Fabian --></h2></hgroup><article  id="outline">
+<slide class=''><hgroup><h2>Outline</h2></hgroup><article  id="outline">
 
 <ul>
 <li><p>A few remarks on the &quot;replication crisis&quot; in psychology</p></li>
@@ -128,7 +128,6 @@
 <ul>
 <li>4.1 Creativity and Gibbs sampling</li>
 <li>4.2 Model adequacy and posterior predictive checks</li>
-<li>4.3 JAGS and checking convergence</li>
 </ul></li>
 </ul>
 
@@ -177,7 +176,7 @@
 <li>more formally, we end up with: \[
 \begin{align}
 P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\[1ex]
-P(A \text{ and } B) &amp;= P(A) \times P(A|B)
+P(A \text{ and } B) &amp;= P(A) \times P(B|A)
 \end{align}
 \]</li>
 </ul>
@@ -191,8 +190,8 @@ P(A \text{ and } B) &amp;= P(A) \times P(A|B)
 <ul>
 <li><p>it&#39;s just conditional probability: \[
 \begin{align}
-P(A \text{ and } B) &amp;= P(A) \times P(A|B) \\[1ex]
-P(A \text{ and } B) &amp;= P(B) \times P(B|A)
+P(A \text{ and } B) &amp;= P(A) \times P(B|A) \\[1ex]
+P(A \text{ and } B) &amp;= P(B) \times P(A|B)
 \end{align}
 \]</p></li>
 <li><p>which yields Bayes&#39; Rule:</p></li>
@@ -200,8 +199,8 @@ P(A \text{ and } B) &amp;= P(B) \times P(B|A)
 
 <p>\[
 \begin{align*}
-P(A) \times P(A|B) &amp;= P(B) \times P(B|A) \\[1ex]
-P(A|B) &amp;= \frac{P(B) \times P(B|A)}{P(A)}
+P(B) \times P(A|B) &amp;= P(A) \times P(B|A) \\[1ex]
+P(A|B) &amp;= \frac{P(A) \times P(B|A)}{P(B)}
 \end{align*}
 \]</p>
 
@@ -272,7 +271,6 @@ p(\theta|\textbf{y}) &amp;= \frac{p(\textbf{y}|\theta)p(\theta)}{\textbf{y}} \\[
 </article></slide><slide class=''><hgroup><h2>Binomial example</h2></hgroup><article  id="binomial-example">
 
 <ul>
-<li>so how do we update our beliefs?</li>
 <li>first we quantify our beliefs with a prior distribution, \(p(\theta)\)</li>
 <li>we specify our statistical model, \(p(\textbf{y}|\theta)\)</li>
 <li>then we just plug in Bayes&#39; rule, dropping the marginal likelihood: \[
@@ -343,15 +341,15 @@ p(\theta|\textbf{y}) \sim p(\textbf{y}|\theta)p(\theta)
 <ul>
 <li>likelihoods quantify statistical evidence</li>
 <li>\(\theta = .5\) is \(.375 / .049 = 7.65\) times more likely than \(\theta = .9\)</li>
-<li>note that we have to be very certain about our alternative</li>
-<li>later we will see how Bayes factors solve this problem</li>
+<li>using this method, we can only compare <em>point</em> hypotheses</li>
+<li>later we will see how Bayes factors relax this restriction</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Binomial example: posterior</h2></hgroup><article  id="binomial-example-posterior">
 
 <ul>
 <li>the posterior is simply a combination of the prior and the likelihood</li>
-<li>in binomial settings, we a simple updating rule: \[
+<li>in binomial settings, we a have simple updating rule: \[
 \begin{align*}
 p(\theta) &amp;\sim \mathcal{Beta}(a, b) \\[1ex]
 p(\theta|\textbf{y}) &amp;\sim \mathcal{Beta}(a + k, b + N - k)
@@ -362,8 +360,14 @@ p(\theta|\textbf{y}) &amp;\sim \mathcal{Beta}(a + k, b + N - k)
 </article></slide><slide class=''><hgroup><h2>Binomial example: shiny</h2></hgroup><article  id="binomial-example-shiny">
 
 <ul>
-<li>demo the shiny updating app</li>
-<li>give appropriate credit to Alexander Etz (also for the pictures!)</li>
+<li>Visualisations from a great blog post by <a href='http://alexanderetz.com/2015/08/09/understanding-bayes-visualization-of-bf/' title=''>Alexander Etz</a></li>
+<li>explain:
+
+<ul>
+<li>Bayesian updating</li>
+<li>Cromwell&#39;s Rule</li>
+<li>flat priors and maximum likelihood</li>
+</ul></li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Interim conclusion II</h2></hgroup><article  id="interim-conclusion-ii">
@@ -444,10 +448,17 @@ p(\textbf{y}|M_0) = \int p(\textbf{y}|\theta, M_0)p(\theta|M_0)\mathrm{d}\theta
 <li>for this, we have to specify a prior distribution over \(\theta\)</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Bayes factor: Shiny demo</h2></hgroup><article  id="bayes-factor-shiny-demo">
+</article></slide><slide class=''><hgroup><h2>Bayes factor: shiny demo</h2></hgroup><article  id="bayes-factor-shiny-demo">
 
 <ul>
-<li>same demo as before, but with Bayes factors</li>
+<li>explain:
+
+<ul>
+<li>Bayes factor interpretation</li>
+<li>Savage-Dickey density ratio</li>
+<li>parameter estimation versus hypothesis testing</li>
+<li>Bayes factor always interpretable &#8211; regardless of sample size</li>
+</ul></li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Bayes factor: Savage-Dickey density ratio</h2></hgroup><article  id="bayes-factor-savage-dickey-density-ratio">

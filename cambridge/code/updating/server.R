@@ -80,7 +80,9 @@ shinyServer(function(input, output) {
         }
       }
       output$update_plot <- renderPlot({
-        update_plot(input$a, input$b, input$k, input$N, null = .5)
+        null <- .5
+        if (!input$BF) null <- NULL
+        update_plot(input$a, input$b, input$k, input$N, null = null)
       })
       
       output$BF_01 <- renderText({
@@ -88,7 +90,9 @@ shinyServer(function(input, output) {
         b <- input$b
         k <- input$k
         N <- input$N
-        paste('BF_01', round(dbeta(.5, a, b) / dbeta(.5, a + k, b + N - k), 3))
+        label <- 'BF<span style="font-size: .6em;">01</span>: '
+        BF01 <- dbeta(.5, a + k, b + N - k) / dbeta(.5, a, b)
+        ifelse(!input$BF, '', paste(label, round(BF01, 3)))
       })
       
       output$BF_10 <- renderText({
@@ -96,7 +100,9 @@ shinyServer(function(input, output) {
         b <- input$b
         k <- input$k
         N <- input$N
-        paste('BF_10', round(1 / (dbeta(.5, a, b) / dbeta(.5, a + k, b + N - k)), 3))
+        label <- 'BF<span style="font-size: .6em;">10</span>: '
+        BF10 <- 1 / (dbeta(.5, a + k, b + N - k) / dbeta(.5, a, b))
+        ifelse(!input$BF, '', paste(label, round(BF10, 3)))
       })
 })
 

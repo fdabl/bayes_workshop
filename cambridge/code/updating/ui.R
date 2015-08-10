@@ -10,9 +10,10 @@ shinyUI(
         div(style = 'display: inline-block;', numericInput('N', label = h4('N'), value = 1)),
         br(),
         br(),
-        textOutput("BF_01"),
+        checkboxInput('BF', label = strong('Compute Bayes factor'), value = FALSE),
+        htmlOutput("BF_01"),
         br(),
-        textOutput("BF_10"),
+        htmlOutput("BF_10"),
         tags$head(tags$style("#BF_01, #BF_10 { font-size: 25px; }"))
         ),
       mainPanel(
