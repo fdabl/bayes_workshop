@@ -26,7 +26,8 @@
       // Slide settings
       settings: {
                 title: 'Bayesian statistics',
-                        useBuilds: true,
+                        subtitle: 'Fresh Statistics in Psychology | JRP Conference 2015',
+                useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
         enableTouch: true,
@@ -35,7 +36,7 @@
       // Author information
       presenters: [
             {
-        name:  'Peter Edelsbrunner, Fabian Dablander' ,
+        name:  '<p>Peter A. Edelsbrunner<br />ETH Zurich, Learning Sciences<br />&amp;<br />Fabian Dablander<br />University of Tubingen, Cognitive Science</p>' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -92,7 +93,129 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Outline</h2></hgroup><article  id="outline">
+<slide class=''><hgroup><h2>Note</h2></hgroup><article  id="note">
+
+<ul>
+<li>please install <a href='http://jasp-stats.org' title=''>http://jasp-stats.org</a></li>
+<li>and Mplus if you like (on the stick)</li>
+<li>if you&#39;re a hacker, git clone the repo <strong>dostodabsi/bayes_workshop</strong></li>
+<li>otherwise wait for the USB-stick; all materials are on there</li>
+</ul>
+
+<aside class='note'><section><p>STRUCTURE: 1. Peter (10 mins): THIS IS AN UPWARMER! Introduction based on Statistics Crowdsourcing-paper Introducing terms &quot;model&quot;, &quot;parameter&quot;, &quot;parameter estimation&quot;, &quot;hypothesis testing&quot; to lay the ground for Fabian; activate peoples&#39; curiosity and prior knowledge related to these terms so it can be changed in the workshop. In the end of this introductory part, Peter gives a very concise overview of the three parts ofthe workshop 2. Fabian (20 mins): &quot;Statistics - Dealing With Uncertainty&quot; 3. Peter &amp; Fabian (40 minutes): MAIN PART - 5 min Data example (Creativity &amp; Intelligence -&gt; thrilling topic! :D) -&gt; p-value interpretation - 5 min Frequentist statistics - 5 min p-value bashing - 5 min Geoff Cumming (transition to Likelihood) - 10 min Likelihood [Fabian] - 5 min Bayes Theorem [Peter] - 10-20 min: Explain more in depth and clearly the terms prior, likelihood, posterior, credibility interval, BayesFactor; end with structure of a Bayesian analysis which is the transition to the practical part 4. Pactical part (40 minutes) JASP: 30 minutes Mplus: 10 minutes 5. (super-short so won&#39;t be boring) Wrap up &amp; closing, pot. mention some other software and books, pot. questions</p></section></aside>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Statistics</h2></hgroup><article  id="statistics">
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-1">
+
+<aside class='note'><section><p>Statistics has something very critical in common with all the rest of science. There is no truth. The things that we believe nowadays to be flawless can be replaced by something totally different tomorrow. There is no correct way to do things in statistics. If you give dozens of statisticans around the world the same dataset with the research question, they will all do completely different things.</p></section></aside>
+
+<ul class = 'build'>
+<li>There is no truth</li>
+</ul>
+
+<ul class = 'build'>
+<li>No correct way</li>
+</ul>
+
+<ul class = 'build'>
+<li>Everyone does different things</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-2">
+
+<aside class='note'><section><p>Why do I tell you this? Do I want to tell you that statistics is nonsense? Everyone does different things in statistics and there is no correct way, so why use statistics?</p></section></aside>
+
+<ul class = 'build'>
+<li>So what?</li>
+</ul>
+
+<div align="center">
+<img height='500' src='img/bull.png'></div>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-3">
+
+<aside class='note'><section><p>Because is can be useful. The more wisely we choose our statistical methods, the more reliable and precise they will be in telling us about relations in the world and about the adequacy of our hypothesis.</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-4">
+
+<aside class='note'><section><p>Let&#39;s look at the study that I told you about.</p></section></aside>
+
+<p>Silberzahn, R., et al. (2015). Crowdsourcing data analysis: Do soccer referees give more red cards to dark skin toned players? Center for Open Science, <a href='https://osf.io/j5v8f/' title=''>https://osf.io/j5v8f/</a></p>
+
+<ul class = 'build'>
+<li>29 teams of statisticans around the world</li>
+</ul>
+
+<ul class = 'build'>
+<li>Same data set, same question</li>
+</ul>
+
+<ul class = 'build'>
+<li>What do they do?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-5">
+
+<aside class='note'><section><p>This actually happened. Last year, and many well known statisticans that you might know from Psychology participated. Raphael Silberzahn, Brian Nosek and two others people invited people to join their &quot;statistics crowdsourcing&quot; project. They gave 71 researchers in 29 teams the same dataset to try to answer the same question. The question was: Do soccer referees give more red cards to dark skin toned players?</p></section></aside>
+
+<div align="center">
+<img height='500' src='img/rc2.png'></div>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-6">
+
+<ul>
+<li>What would you do?</li>
+</ul>
+
+<div align="center">
+<img height='500' src='img/data.png'></div>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-7">
+
+<ul>
+<li>What do they do?</li>
+</ul>
+
+<div align="center">
+<img height='500' src='img/models.png'></div>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-8">
+
+<aside class='note'><section><p>What did the 27 teams find? Their results differed what most of you probably would rate very strongly. 20 found a significant positive efect of skin tone on red card. However, as you can see here, the effect size estimates differed strongly, and only those where the effect size estimate intervals start above 0 could be said to have found an effect. The odds ratios that the researchers estimated were between 0.89 and 2.89. Hence, while some teams estimated that dark skin tone players are a bit less likely to receive red cards, some estimated that they are three times as likely.</p></section></aside>
+
+<ul>
+<li>What do they find?</li>
+</ul>
+
+<div align="center">
+<img height='500' src='img/odds.png'></div>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-9">
+
+<aside class='note'><section><p>Why do I show you this example? Do I want to tell you that statistics is nonsense? Everyone does different things in statistics and there is no correct way, so why use statistics?</p></section></aside>
+
+<ul class = 'build'>
+<li>So what?</li>
+</ul>
+
+<ul>
+<li>This is part of a crisis in Psychology</li>
+</ul>
+
+<ul class = 'build'>
+<li>Can be useful</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Statistics</h2></hgroup><article  id="statistics-10">
+
+<aside class='note'><section><p>As we have seen, there was considerable variation in the statistical models that the researchers used. Some used linear models, some used logit models, some used nested models, some fixed effects models. Our focus today is not on statistical models. These researchers did not only use different models, they also obtained different results. What is the second ingredient for obtaining results, besides a statistical model? [ASK AUDIENCE] Yes, perfect. You have to estimate the model parameters! What do we obtain when we &quot;estimate a model&quot;? Exactly; we obtain estimates for the parameters of our model, for example how strong the connection between skin tone and probability of a red card is. We also obtain standard errors, and we obtain p-values. What should we use the p-values for? What do they tell us? Yes, we need them to tell whether a parameter is significant. For example, we want to know whether there is an association between skin tone and red cards. To answer this question, we can use p-values. To summarize, statistical modelling is combined of two ingredients. First, we have a model, which should represent our assumptions, for example our theory and resulting hypotheses. Our model depicts the relations between different things that we assume and want to test. Second, we have the estimation. Each of our assumptions is depicted as a parameter in the model. If we want to test an assumption, we have to estimate how large the parameter is, and whether it actually makes sense, so, if our hypothesis underlying the parameter is true. The model estimation is what we care about today. Statistical models are the same ones that you are used to, for example the t-test, the ANOVA or analysis of variance, regression and multiple regression, and so on. However, the question that we are concerned with today is the estimation: You choose your model based on theoretical assumptions related to your research question. But which assumptions underlie the parameter estimation? Do we just choose an estimation technique that gives us the best results, whatever that is? Most teams in the red cards paper used classical methods for parameter estimation and hypothesis testing. You might have heard of some of these , for example least squares estimation, and maximum likelihood estimation. However, five of the teams used so-called bayesian estimation. This is what we are concerned with today. It differs essentially from the classical estimation techniques. In many cases it yields results for parameter estimates that are very similar to those based on classical methods, but not always. Most importantly, bayesian estimation has very different theoretical assumptions than classical estimation. The result is that the parameter estimates are often &quot;the same&quot; but the conclusions that you can draw from your estimates and hypotesis tests are totally different. Therefore, today we talk about Bayesian Statistics. Does this sound intriguing to you? This was just a preview.</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Bayesian Statistics</h2></hgroup><article  id="bayesian-statistics">
+
+<aside class='note'><section><p>We have four main parts today. First, Fabian will discuss the question &quot;What is statistics?&quot; He will approach it in a way that lays the foundation for our understanding of all the rest. Then, we will tell you about the classical way of estimation and hypothesis testing, which is called frequentist statistics, and this well lead over to Bayesian estimation and hypothesis testing, in short Bayesian statistics, which is much nicer. Then, we will practice Bayesian statistics in a super nice free software <a href='#jasp' title=''>JASP</a>. I will also give you an overview how you can estimate all the models that you know in the Bayesian way [Mplus]. [In the fourth part, we will summarize and are looking forward to your questions.]</p></section></aside>
+
+</article></slide><slide class=''><hgroup><h2>Outline</h2></hgroup><article  id="outline">
 
 <ul>
 <li><p>A few remarks on the &quot;replication crisis&quot; in psychology</p></li>
@@ -143,14 +266,6 @@
 </ul></li>
 <li><strong>Hands-on session</strong></li>
 <li><strong>Discussion</strong></li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Note</h2></hgroup><article  id="note">
-
-<ul>
-<li>please install <a href='http://jasp-stats.org' title=''>http://jasp-stats.org</a></li>
-<li>if you&#39;re a hacker, git clone the repo <strong>dostodabsi/bayes_workshop</strong></li>
-<li>otherwise wait for the USB-stick; all materials are on there</li>
 </ul>
 
 </article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>The principled Bayesian</h2></hgroup><article  id="the-principled-bayesian">
