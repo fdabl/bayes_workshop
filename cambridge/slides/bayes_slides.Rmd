@@ -1,6 +1,12 @@
 ---
 title: "Bayesian statistics"
-author: "Peter Edelsbrunner, Fabian Dablander"
+subtitle: "Fresh Statistics in Psychology | JRP Conference 2015"
+author: |
+  | Peter A. Edelsbrunner
+  | ETH Zurich, Learning Sciences
+  | &
+  | Fabian Dablander
+  | University of Tübingen, Cognitive Science
 bibliography: "../../bibliography.bib"
 csl: "../../apa.csl"
 output:
@@ -10,28 +16,109 @@ output:
     css: styles.css
 ---
 
+<!--
+10 min [10] Peter: A few remarks on the "replication crisis" in psychology
+10 min [20] Peter: Statistics: The Status Quo
+15 min [35] Peter: Problems with current statistical practices
+20 min [55] Fabian: The principled Bayesian
+15 min [70] Fabian: The practical Bayesian
+40 min [110] Peter: Software for Bayesian data analysis
+10 min [120] Peter: Discussion
+-->
+
+## Note
+- please install http://jasp-stats.org
+- and Mplus if you like (on the stick)
+- if you're a hacker, git clone the repo **dostodabsi/bayes_workshop**
+- otherwise wait for the USB-stick; all materials are on there
+
+# Statistics
+
+## Statistics
+
+> - <div align="center">
+<img height='300' src='img/bull.png'>
+</div>
+
+> - There is no *truth*
+
+> - No *correct way*
+
+> - Everyone does different things
+
+> - So what?
+
+## Statistics
+
+Silberzahn, R., et al. (2015). Crowdsourcing data analysis: Do soccer referees give more red cards to dark skin toned players? Center for Open Science, https://osf.io/j5v8f/
+
+> - 29 teams of statisticans around the world
+
+> - Same data set, same question
+<div align="center">
+<img height='300' src='img/rc2.jpg'>
+</div>
+
+> - What do they do?
+
+## Statistics
+
+- What would you do?
+
+<div align="center">
+<img height='300' src='img/data.png'>
+</div>
+
+## Statistics
+
+- What do they do?
+
+<div align="center">
+<img height='400' src='img/oddn.png'>
+</div>
+
+## Statistics
+
+- What do they find?
+
+<div align="center">
+<img height='400' src='img/odds.png'>
+</div>
+
+## Statistics
+
+- So what?
+
+> - There is a **reproducibility crisis** in Psychology
+    * **Partially due to statistics practices!**
+    
+> - Statistics is a crucial part of our current approach to empirical science.
+
+> - Statistics **can** be useful.
+
+# Bayesian Statistics
+  
 ## Outline
 
 - A few remarks on the "replication crisis" in psychology
+<!-- Peter, 10 min [10] -->
 
-- **Statistics: The Status Quo**
-    * 1.1 A Bird's Eye View
-    * 1.2 An Example
-    * 1.3 Notes on the history of statistics
+- **Statistics: The Status Quo** <!-- Peter, 10 min [20] -->
+    * 1.1 An Example
+    * 1.2 Notes on the history of statistics
 
-- **Problems with current statistical practices**
-    * 2.1 Null Hypothesis Significance Testing
-    * 2.2 Confidence intervals and statistical power
-    * 2.3 Aggregating Data
+- **Problems with current statistical practices** <!-- Peter, 15 min [35] -->
+    * 2.1 p-Value Hypothesis Testing
+    * 2.2 Confidence intervals: A Solution?
 
 ## Outline
 
-- **The principled Bayesian**
+- **The principled Bayesian** <!-- Fabian, 20 min [55] -->
     * 3.1 Probability and Bayes' rule
     * 3.2 Binomial example (coin tosses -- what else?)
     * 3.4 Model comparison using Bayes factor
 
-- **The practical Bayesian**
+- **The practical Bayesian** <!-- Fabian, 15 min [70] -->
     * 4.1 Creativity example
     * 4.2 Monte Carlo methods
     * 4.3 Markov chain Monte Carlo methods
@@ -39,18 +126,523 @@ output:
 
 ## Outline
 
-- **Software for Bayesian data analysis**
-    * 4.1 various data sets analysed in JASP
-    * 4.2 Mplus (Structure Equation Modeling)
+- **Software for Bayesian data analysis** <!-- Peter, 40 min [110] -->
+    * 5.1 JASP: Examples
+    * 5.2 JASP: Practice
+    * 5.2 Demo: Bayesian SEM
 
-- **Hands-on session**
-- **Discussion**
+- **Discussion** <!-- Peter, 10 min [120] -->
+
+    * Outlook
+    * Questions
+
+# Statistics: The Status Quo <!-- Peter -->
+
+## What most of us are doing in statistics ...
+> "The textbooks are wrong. The teaching is wrong. The seminar
+> you just attended is wrong. The most prestigious journal in your
+> scientific field is wrong.
+
+> - Ziliak and McCloskey (2008)
+
+## An Example: Creativity and Personality <!-- Peter -->
+
+<div align="center">
+<img height="400" src="img/mr1.png">
+</div>
+
+## An Example: Creativity and Personality <!-- Peter -->
+
+<div align="center">
+<img height="400" src="img/mr2.png">
+</div>
+
+## An Example: Creativity and Personality <!-- Peter -->
+
+```{r, eval=FALSE}
+creadata <- read.csv("crea_bayes.csv") # Load data
+summary(lm(fluency ~ N + E + O, data = creadata)) # Multiple regression
+```
+
+<div align="center">
+<img height="300" src="img/Rlinreg.png">
+</div>
+
+## An Example: Risk Behaviour and Social Status <!-- Peter -->
+
+- What does *p* tell us?
+
+> - *The probability to get data this or more extreme in case that in the underlying population there is a zero regression weight between openness and ideational fluency is less than 0.1%*
+    * Null hypothesis: regression weight = 0;
+    * Reject this null: apply 5% convention -> if *p* < .05.
+    * If H0 is true, data very unlikely -> reject H0, accept H1
+    * ...do **this same thing** in **all analyses**...
+
+> - Does this sound *strange* to you?
+
+## history: how did we get here? <!-- Peter -->
+- quick question: how old do you think is **modern statistics**?
+
+## Ronald A. Fisher
+<img src="img/fisher.jpg" width=500 height=500 />
+
+## Ronald A. Fisher
+
+> - *Statistical Methods for Research Workers* (1925), *Design of Experiments* (1935)
+
+> - His **first** approach to *statistical inference
+    * Null hypothesis $H_0$, $\alpha$
+    * **no alternative hypothesis.**
+    * *p* > .05: ignore results.
+
+> - p-value indicates **strength of evidence**
+    * $p = .001$ is **better** than $p = .049$
+
+## Ronald A. Fisher
+
+Revision:
+> *"No scientific worker has a fixed level of significance at which from year to year, and in all
+  circumstances, he rejects hypotheses; he rather gives his mind to each particular case in the light
+  of his evidence and his ideas."*
+
+- R.A. Fisher (1956), as cited in [@gigerenzer2015surrogate, p.1]
+
+## Jerzy Neyman and Egon Pearson
+
+- Introduced the alternative hypothesis, $H_1$
+    * Concept of a $\beta$ error; statistical power
+- $p < \alpha$, or $p > \alpha$
+- Binary cut-off; not **statistical evidence**
+- They did **behavioral statistics**
+
+## Neyman-Pearson
+> *no test based on probability theory can provide evidence
+> of truth or falsehood.
+> BUT it might govern our behavior,
+> in following which we ensure that in the long run of experience,
+> we shall not be too often wrong.*
+
+- Neyman and Pearson (1933), as cited in [@johansson2011hail, p.118]
+
+## Unification / bastardization
+
+- 1940s/1950s
+    * Psychologists (Guilford) combine both approaches in statistics textbooks
+    * Ignoring differences in names (Fisher vs. Neyman & Pearson) and fundamentals (alternative hypothesis vs. none, fixed alpha vs. not)
+
+> - Current statistical practice:
+    An *evilish hybrid* between those two **incompatible** paradigms
+
+## Unification / bastardization
+
+> statisticians "have already overrun every branch of science with a rapidity of conquest
+> rivalled only by Attila, Mohammed, and the Colorado beetle."
+
+- Did Piaget ever compute a p-value?
+- Did Skinner? what's with Köhler? Pavlov?
+
+# Problems with Current Statistical Practices
+
+## Mindless Statistics
+
+- 1a: setup a statistical hypothesis of **no difference** or **zero correlation**
+- 1b: don't specify the predictions of your research hypothesis
+- 2: Use 0.05 as a convention for rejecting H0
+- 3: always use this procedure [@gigerenzer2004mindless]
+
+## What is *Probability?*
+
+- **Frequentists**, probability is the long-run relative frequency of events
+    * prob. coin coming up heads: Proportion of heads in **infinite** amount of tosses
+    * Asking about probability of next coin toss: **Nonsensical**
+    * Next toss: Either heads, or not
+    * Single events can't be assigned *probability*
+- **Repeatability** becomes a crucial ingredient
+- **Fisher**: Biologist, did lots of repeatable experiments
+
+## What is *probability?*
+
+> - Frequentists cannot talk about...
+
+ * ...the probability of a 3rd world war
+ * ...climate change
+ * ...you failing your next exam
+ * ...**any non repeatable event**
+ 
+> - Sneak peek: Single events are about **uncertainty**
+
+> - Probability conceptualized as long-run average frequency:
+  No answer to essential question in science
+  *"what is the probability that my hypothesis / theory is true?"*
+
+## What is in a p-value?
+(Haller et al., 2002; Oakes, 1986)
+ - We found a beta weight of openness to epxerience for the prediction of insight
+ - *b* = 0.11, *p* < .001
+
+## What is in a p-value?
+- *We have absolutely disproved the null hypothesis of no difference.*
+
+## What is in a p-value?
+<img src="img/hell_NO.jpg" width=400 height=400 />
+
+## What is in a p-value?
+- *We have absolutely disproved the null hypothesis of no difference.*
+- everything in statistics is probabilistic, there are no **absolutes**
+
+## What is in a p-value?
+- *We have found the probability of the null hypothesis being true.*
+
+## What is in a p-value?
+<img src="img/cat_NO.jpg" width=400 height=400 />
+
+## What is in a p-value?
+- *We have found the probability of the null hypothesis being true.*
+
+- Our probability is assigned to our data, not to the hypotheses
+    * Sneak peek: The latter is what we want
+
+## What is in a p-value?
+- *We have absolutely proved the alternative hypothesis.*
+
+## What is in a p-value?
+<img src="img/hell_NO.jpg" width=400 height=400 />
+
+## What is in a p-value?
+- *We have absolutely proved the alternative hypothesis.*
+- Same as statement 1: Probabilistic, not absolute.
+
+## What is in a p-value?
+- *We can deduce the probability of the alternative hypothesis being true.*
+
+## What is in a p-value?
+<img src="img/cat_NO.jpg" width=400 height=400 />
+
+## What is in a p-value?
+- *We can deduce the probability of the experimental hypothesis being true.*
+- Same as statement 2: No probabilities assigned to hypotheses.
+
+## What is in a p-value?
+- *We know, if we decide to reject the null hypothesis, the probability that we are making the wrong decision.*
+
+## What is in a p-value?
+<img src="img/classic_NO.jpg" width=400 height=400 />
+
+## What is in a p-value?
+> - *We know, if you decide to reject the null hypothesis, the probability that we are making the wrong decision.*
+> - but $\alpha$?
+> - $\alpha$ is about an infinite amount of experiments
+> - in this case, the probability is $1 - p(H_0)$
+> - Sneak peek: We want to assign $p(H_0)$
 
 
-## Note
-- please install http://jasp-stats.org
-- if you're a hacker, git clone the repo **dostodabsi/bayes_workshop**
-- otherwise wait for the USB-stick; all materials are on there
+## What is in a p-value?
+- *If the experiment were repeated a great number of times, we would obtain a significant result on 99% of occasions.*
+
+## What is in a p-value?
+<img src="img/unsure_NO.jpg" width=400 height=400 />
+
+## What is in a p-value?
+- *If the experiment were repeated a great number of times, we would obtain a significant result on 99% of occasions.*
+- **Replication fallacy** (Haller et al., 2002)
+
+## What is in a p-value?
+
+<img src="img/haller_misinterpretation.png" width=600 height=500 />
+
+# frequentist inference
+
+## how a frequentist draws inference
+- suppose you are being asked 26 questions about Bayesian statistics ($N = 26$)
+- you happen to answer 8 correctly ($k = 8$)
+- are you better than guessing?
+- test $H_0: \theta = \frac{1}{2}$ against $H_1: \theta \neq \frac{1}{2}$
+  
+## how a frequentist draws inference
+- to obtain the **sampling distribution** assume that $H_0: \theta = \frac{1}{2}$ holds
+- imagine that the experiment is repeated very many times under **identical circumstances**
+- for each **hypothetical** experiment, calculate the test statistic of the **hypothetical** sample
+- the distribution of these test statistics are called the **sampling distribution**
+
+## graphically [@wagenmakers2007practical]
+<img src="img/sampling_distribution.png" />
+
+## sampling plan
+- there are two different ways to conduct the experiment
+- either fix $N = 26$ and count the number of correct answers
+- or ask so many questions until one gets $k = 8$ correct answers
+- first one is binomial, the second one is negative binomial
+- $p(k | \theta, N) = \binom{n}{k} \theta^k (1 - \theta)^{n - k}$
+- $p(N | \theta, z) = \binom{n - 1}{k - 1} \theta^k (1 - \theta)^{n - k}$
+
+## note
+- a frequentist **needs** this sampling distribution
+- often, properties of the sampling distribution can be derived analytically from the sample data
+- for example, the variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{s^2}{N}$
+- this is one reason why frequentism got so much traction: it is computationally trivial
+
+## bootstrapping
+- in order to **see** what happens here, let us simulate a large number of replications of the experiment!
+- we will draw independent random samples from our actual observed data, and compute the test statistic of that draw
+- in the binomial case, the test statistic is the **number of correct answers**
+- in the negative binomial case, the test statistic is the **number of questions**
+
+## binomial bootstrapping
+```{r}
+binom.boot <- function(dat, samples = 10000) {
+    n <- length(dat) # is fixed!
+    result <- numeric(samples)
+
+    for (i in 1:samples) {
+        draw <- sample(dat, n, replace = TRUE)
+        result[i] <- sum(draw)
+    }
+
+    result
+}
+```
+
+## negative binomial bootstrapping
+```{r}
+nbinom.boot <- function(dat, samples = 10000) {
+    k <- sum(dat) # is fixed!
+    result <- numeric(samples)
+
+    for (i in 1:samples) {
+        ss <- sample(c(0, 1), 1, prob = c(0.5, 0.5))
+
+        while (sum(ss) != k) {
+            ss <- c(ss, sample(c(0, 1), 1, prob = c(0.5, 0.5)))
+        }
+
+        result[i] <- length(ss)
+    }
+    result
+}
+```
+
+## practical difference
+<img src="img/sampling_binomial.png" height="500" width="700"/>
+
+## frequentist inference
+- assumes that the parameter $\theta$ is fixed
+- only the data is allowed to vary
+- we can intuit that confidence intervals, statistical power etc. are not properties of the data
+- they are properties of the **testing procedure**
+
+
+## p-values: a death in five acts
+
+## Act I
+<img src="img/sampling_distribution.png" width=700 height=500 />
+
+## Act I
+- Result of statistical analysis depends on intention of researcher
+- Intentions define space of possible (unobserved) data (Wagenmakers, 2007)
+
+## Act I
+- suppose I ask you 26 questions on Bayesian stats, and you get 8 right
+- the last question you answered, you answered correctly
+- were you better than chance? $H_0: \theta = 0.5$
+- there are two possible sampling plans
+- ask 26 questions, and see how many you answered correctly (**binomial**)
+- ask questions so long until you answer 8 correctly (**negative binomial**)
+- ***the data are the data are the data*** (example from Kruschke, 2010, Ch. 11)
+
+## Act I
+<img src="img/sampling_binomial.png" width=700 height=500 />
+
+## Act I
+```{r}
+N <- 26
+k <- 8
+
+binomial <- pbinom(k, N, 0.5) * 2
+negbinomial <- pnbinom(k, N, 0.5) * 2
+
+binomial # fail to reject
+
+negbinomial # science paper!!
+```
+
+## Act II
+- optional stopping [@sanborn2014frequentist; @rouder2014optional]
+- look at data, test, gather more data, test, etc.
+
+## Act II, demo
+```{r, message = FALSE, eval = FALSE}
+source("http://rynesherman.com/phack.r") # read in the p-hack function
+
+res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
+   maxN=200, alpha=.05, alternative="two.sided", graph=TRUE, sims=2000)
+```
+
+## Act II, demo
+<img src="img/phack1.png" />
+
+## Act II, implications
+- inflated $\alpha$ (p-hacking!)
+- assume you tested 20 participants, and get $p = 0.057$
+- unethical
+- money & ressources
+- just downright horrible
+
+## Act II, Bayes note
+> "the rules governing when data collection stops are irrelevant to data interpretation. It
+> is entirely appropriate to collect data **until a point has been proven or disproven**, or until
+> the data collector runs out of time, money, or patience."
+
+- Edwards et al. (1963)
+
+
+## Act III
+- Don't quantify statistical evidence; (Wagenmakers, 2007)
+- $p = 0.04, n = 10$ is more evidence than $p = 0.04, n = 1000$
+- in fact, the latter is support for $H_0$!
+- are violently biased against $H_0$
+
+## Act IV
+- violently biased against $H_0$
+- underlying logic of p-values: either the null hypothesis is false, or a rare event has occured
+- following example taken from Rouder et al. (in press)
+
+## p-values: flawed reasoning
+- the following is logically correct:
+- (Premise): If Hypothesis $H$ is true, then event $X$ will not occur.
+- (Premise): Event $X$ occured.
+- (Conclusion): Hypothesis $H$ is not true.
+
+## p-values: flawed reasoning
+- this **does not** translate to probabilistic settings
+- (Premise): If Hypothesis $H$ is true, then event $X$ is **unlikely**.
+- (Premise): Event $X$ occured.
+- (Conclusion): Hypothesis $H$ is **probably not true**.
+
+## p-values: flawed reasoning
+- take this example as demonstration:
+- (Premise): If Jane is an American, then it will be unlikely that she is a U. S. Congressperson.
+- (Premise): Jane is a U. S. Congressperson.
+- (Conclusion): Jane is probably not an American.
+- by only looking at $p(D|H_0)$, p-values are violently biased against $H_0$
+
+## the case of Sally Clark
+- both Clark's babies died, where $p(\text{baby dies}) = \frac{1}{8543}$
+- thus the probability that both babies died is roughly 1 in 73 million
+- since this is soo incredibly low ($p < 0.00001$ or whatnot), Clark **probably killed** her babies
+- indeed, in November 1999, a jury found poor Sally guilty of double murder
+
+## see any problem with that?
+
+## the case of Sally Clark
+> "The jury needs to weigh up two competing explanations for the babies’ deaths: SIDS or murder. The fact that two deaths by SIDS is
+> quite unlikely is, taken alone, of little value. Two deaths by murder may well be even
+> more unlikely. What matters is the relative likelihood of the deaths under each
+> explanation, not just how unlikely they are under one explanation."
+
+- **President of the Royal Statistical Society** (2002)
+
+## the case of Sally Clark
+- in fact, $p(\text{baby dies} | \text{sudden infant death})$ is higher than $p(\text{baby dies} | \text{murder})$
+- the ratio of these two - the **likelihood ratio** - is the proper measure of statistical evidence
+- statistical evidence is **always** relative; there is **no free lunch**
+
+
+## Act V
+- p-value give you $p(\text{D or more extreme}|H_0)$
+- what we want is $p(H|D)$, the probability that our hypothesis is true!
+- there is a subtle, but important difference
+- $p(\text{you are dead} | \text{shark has bitten off your head})$ is very high :(
+- $p(\text{shark has bitten off your head} | \text{you are dead})$ is very low!
+
+
+## Effect Sizes and Confidence Intervals: The *Frequentist* Solution?
+- Effect Size
+    * A measure of the strength of an effect
+    * e.g., a correlation of *r* = .35, a difference between experimental conditions of Cohen's *d* = 0.30
+    
+- Confidence interval
+    * The area within which in 95% of replications (same experiment/measures, same sample size drawn from the same population) the real parameter (effect) will be
+
+- Example:
+    * *There was a significant difference between the control group and the intervention group, p = .002, d = 0.34 [0.22, 0.44]*
+
+## Effect Sizes and Confidence Intervals: A Solution?
+
+<div align="center">
+<img height='400' src='img/cummingcover.png'>
+</div>
+
+## Cumming, 2014
+* *"We need to make substantial changes to how we conduct research"*
+
+## Cumming, 2014
+
+> - Replicate (x)
+
+> - Adapt meta-analytical thinking (x)
+
+> - Avoid NHST (x)
+
+> - Don't trust any p-value (x)
+
+## Cumming, 2014
+
+<div align="center">
+<img height='500' src='img/cumming_25table.png'>
+</div>
+
+## Cumming, 2014
+
+- ES are the main research outcome (...?)
+- The CI tells us the precision of a study (...?)
+    * ...a much better approach than declaring the result "statistically significant" (...?)
+- "Enjoy the benefits!" (...?)
+
+## Cumming, 2014
+
+* So, what does a SINGLE confidence interval tell me?
+* Nothing
+
+## ES and CI are NOT the solution
+### Part I: Morey et al., 2014
+
+* "For psychological science to be a healthy science, both estimation and hypothesis testing are needed."
+* Estimation is necessary in pretheoretical work before clear predictions can be made, and for theory revision.
+* Hypothesis testing, not estimation, is necessary for testing the quantitative predictions of theories.
+* None is more informative than the other.
+* They answer different questions.
+* Estimation alone produces a massive catalogue devoid of theoretical content.
+* Hypothesis testing alone may cause researchers to miss rich, meaningful structure in data.
+* **It is crucial for estimation and hypothesis testing to be advocated side by side.**
+
+## ES and CI are NOT the solution
+### Part II: Hoekstra et al., 2014
+
+<div align="center">
+<img height='400' src='img/hoekstra_CIquestions.png'>
+</div>
+
+## ES and CI are NOT the solution
+### Part II: Hoekstra et al., 2014
+
+<div align="center">
+<img height='400' src='img/hoekstra_results.png'>
+</div>
+
+## ES and CI are NOT the solution
+### Part III: Lee, 2014
+
+(Lee, [here](https://webfiles.uci.edu/mdlee/Lee2014_NewStatistics.pdf))
+
+<div align="center">
+<img height='400' src='img/michaellee.png'>
+</div>
+
+## Confidence Intervals: A Solution?
+
+> - Effect size estimation is no solution.
+
+> - Apparently, frequentist statistics has something flawed inherent.
 
 ## Anybody read the blog?
 ![hot](img/bayeshot.jpg)
@@ -604,6 +1196,7 @@ $$
 - in the real world, however, things are rarely that clear:
 - "... the enthusiast's interocular trauma may be the skeptic's random error. A little arithmetic to verify the extent of the trauma can yield great peace of mind for little cost." [@edwards1963bayesian, p. 217]
 
+<<<<<<< HEAD
 ## BayesFactor R-package
 ```{r, eval = FALSE}
 libray('BayesFactor')
@@ -621,41 +1214,183 @@ lmBF(score ~ hat, data = dat)
 ```
 
 
-# JASP
-## JASP
+# Software for Bayesian data analysis
+
+## JASP: Example
 - developed by a research group around Jonathon Love in Amsterdam
 - provides a free, open-source, modern alternative to SPSS
 - does frequentist as well as Bayesian inference
 - computes Bayes factors -- providing us with a great peace of mind
 
-## Motivating example
+## JASP: Example
 - in replication research, being able to support the null hypothesis is crucial
 - Topolski and Sparenberk (2012) found that counter clockwise movements lead to an orientation towards the future and novelty
 - Wagenmakers et al. (2015) directly replicated this research
 
-## turning the hands of time
+## JASP: Example
+
+*Turning the hands of time - with kitchen rolls!*
+
 <img src="img/turning_hands.png" height="500" width="700"/>
 
-## Demo
-
-## kitchen rolls wrap up
+## JASP: Example
 - you can find the pre-registration form of this research [here](https://osf.io/p3isc/), see the section **sampling plan**
 - they failed to replicate the effect; the data were about 10 times more likely under $H_0$ then under $H_1$
-- descriptives point in the other direction as originally observed (higher openness when counter clock wise)
+- descriptives point in the other direction than originally observed (higher openness when counter clock wise)
 
-## bathing habits
+## JASP: Example
+
+*Bathing habits - compensating loneliness wit heat!*
+
 - lonely people compensate the lack of social warmth by taking warmer showers and baths [@bargh2012bath]
 - ummmmmmm, really?
 - @donnellan2014association tried to replicate this in 9 experiments with over 3000 participants
 - @wagenmakers2015absence re-analysed the data using Bayesian inference
 
-## Demo
-
-## bathing wrap up
+## JASP: Example
 - *p* values are uniformly distributed under $H_0$
-- must be Bayesian to quantify support for $H_0$ 
-- because there is a difference between $p > 0.05$, the data are uninformative
-- and $p > 0.05$, data are informative and support $H_0$
-- classical statistics **does not make** this distinction
+- Difference: $p > 0.05$, the data are uninformative
+  vs. $p > 0.05$, the data are informative and support $H_0$
+- Frequentist statistics:
+  We don't know which one is the case
+- Bayesfactor:
+  We know which one is the case!
+  -> Quantifies support for $H_0$ 
+
+## JASP: Practice
+
+
+
+Practicing interpretation of CIs, BFs, prior choice
+
+## Dataset
+
+- Executive functions, intelligence, personality, **creativity** + insight
+
+<img src="img/date.png" height="500" width="700"/>
+
+- *N* = 230 university students
+
+## Bayesian SEM
+
+Structural Equation Modeling
+
+> - Analysis of (variance) **covariance** (mean) structures
+    * Compare whether "theoretically allowed" parameter estimates suffice to approximate empirical data
+
+<img src="img/cor1.png" height="500" width="700"/>
+
+## Bayesian SEM
+
+Structural Equation Modeling
+
+- Analysis of (variance) **covariance** (mean) structures
+    * Compare whether "theoretically allowed" parameter estimates suffice to approximate empirical data
+
+<img src="img/cor2.png" height="500" width="700"/>
+
+## Bayesian SEM
+
+Structural Equation Modeling
+
+- Analysis of (variance) **covariance** (mean) structures
+    * Compare whether "allowed" parameter estimates suffice to approximate empirical data
+
+- Emphasis on *latent variables*
+    * Non-observed variables representing psychological constructs
+    * Get rid of measurement error
+
+- Highly flexible approach
+
+## Bayesian SEM: Descriptives
+
+<div align="center">
+<img height='300' src='img/des_flu.jpg'>
+</div>
+
+## Bayesian SEM: Descriptives
+
+<div align="center">
+<img height='300' src='img/des_flu_ml.jpg'>
+</div>
+
+## Bayesian SEM: Descriptives
+
+<div align="center">
+<img height='400' src='img/des_flu_ba.jpg'>
+</div>
+
+## Bayesian SEM: t-test
+
+<div align="center">
+<img height='400' src='img/t_ins_md.jpg'>
+</div>
+
+## Bayesian SEM: t-test
+
+<div align="center">
+<img height='400' src='img/t_ins_re.jpg'>
+</div>
+
+## Bayesian SEM: (Multiple) Regression
+
+<div align="center">
+<img height='400' src='img/t_ins_re.jpg'>
+</div>
+
+## Bayesian SEM: RMANOVA
+
+## Bayesian SEM: MANOVA
+
+## Bayesian SEM: RMMANOVA -> Cross-lagged model
+
+## Bayesian SEM: RMMANOVA -> Cross-lagged model -> Change score model
+
+## Bayesian SEM: CFA
+
+vds approximate MI!
+
+## Bayesian SEM: Group Comparisons
+
+> - Mean comparisons
+
+> - Multigroup CFA
+
+## Bayesian SEM: Super huge model
+
+## A1. Reporting Bayesian Analysis
+
+- Prior choice (informative/non-informative, rationales)
+- Convergence: Trace plots (for important parameters)
+    * see also van de Schoot et al., 2013
+
+## A2. Literature
+
+**JEPS Bulletin blog posts:**
+http://blog.efpsa.org/2014/11/17/bayesian-statistics-what-is-it-and-why-do-we-need-it-2/
+http://blog.efpsa.org/2015/08/03/bayesian-statistics-why-and-how/
+
+**Application in R and Mplus:**
+van de Schoot, R., Kaplan, D., Denissen, J., Asendorpf, J. B., Neyer, F. J., & van Aken, M. A. (2013). A gentle introduction to Bayesian analysis: Applications to developmental research. Child Development, 85, 841-860. doi:10.1111/cdev.12169
+
+**Application in R:**
+Kruschke, J. K. (2014). Doing bayesian data analysis: A tutorial with R, JAGS, and Stan (2nd ed.).  Academic Press.
+
+**Bayesian SEM in Mplus:**
+Kaplan & Depaoli (2012). Bayesian Structural Equation Modeling. In: Hoyle, R. H.(Ed): Handbook of Structural Equation Modeling. pp.650-673. Guilford Press.
+
+## A3. Software
+
+(From most user-friendly to most elaborate)
+- JASP http://jasp-stats.org
+- BayesFactor http://bayesfactorpcl.r-forge.r-project.org
+- Mplus http://statmodel.com/
+    * Kaplan & Depaoli, 2012; van de Schoot et al., 2013
+- JAGS http://mcmc-jags.sourceforge.net
+- Stan http://mc-stan.org
 
 ## References
+
+Van de Schoot, R., Kaplan, D., Denissen, J., Asendorpf, J. B., Neyer, F. J., & van Aken, M. A. G. (2013). A Gentle Introduction to Bayesian Analysis: Applications to Developmental Research. Child Development, 85, 841-860. http://doi.org/10.1111/cdev.12169
+
+

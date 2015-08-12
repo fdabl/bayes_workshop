@@ -1,0 +1,10 @@
+literature/*.aux
+literature/*.bbl
+literature/*.bcf
+literature/*.blg
+literature/*.log
+literature/*.out
+literature/*.run.xml
+literature/*.tex.bcf
+literature/*.tex.blg
+literature/*.synctex.gz
