@@ -312,3 +312,18 @@ ggs_density(ss)
 ```
 
 We see that the degrees of freedom parameter $\nu$ is above 30 (but with great uncertainty!), so that the normal approximation is good.
+
+
+# 7. Bayes factor
+In our case, it's obvious -- hats do have a substantial influence on creativity. These data pass the *interocular traumatic test*, that is, they are so obvious, it hits you right between the head! In the real world, however,
+things are rarely this clear:
+> "… the enthusiast's interocular trauma may be the skeptic's random error. A little arithmetic to verify the extent of the trauma can yield great peace of mind for little cost."
+
+- @edwards1963bayesian, p. 217
+
+The **BayesFactor** R-package provides us with great piece of mind:
+```{r, message = FALSE}
+library('BayesFactor')
+
+lmBF(score ~ hat, data = dat)
+```

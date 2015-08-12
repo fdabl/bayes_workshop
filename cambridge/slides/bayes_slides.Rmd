@@ -52,17 +52,55 @@ output:
 - if you're a hacker, git clone the repo **dostodabsi/bayes_workshop**
 - otherwise wait for the USB-stick; all materials are on there
 
+## Anybody read the blog?
+![hot](img/bayeshot.jpg)
+
 # The principled Bayesian
+
+## Probability as subjective belief
+- "What's the probability that it will rain tomorrow"?
+    * Frequentist: "That is a non-sensical question."
+    * Bayesian: "I guess about 40%."
+- if probabilities are subjective, don't we have a problem?
+- how do we quantify them, then?
+
+## Measuring probability
+![money](img/money.png)
+
+## Measuring probability
+- Frank Ramsey had a gread idea (Ramsey, 1926)
+- use bets to quantify subjective belief
+- for 1$ in return, how much $$ would you bet on
+    * Germany winning against Brazil in soccer?
+    * that it is going to be at least 30°C tomorrow?
+
+## Measuring probability
+- Germany: 3$
+- Weather: 5$
+- these are (betting) odds
+- to convert them into probability, calculate:
+$$
+Pr = \frac{odds}{1 + odds}
+$$
+- Germany: $3 / (1 + 3) = .75$
+- Weather: $5 / (1 + 5) = .83$
+
+## Measuring probability
+- it's not about *any* subjective beliefs
+- it's about subjective beliefs that obey probability
+- if they do not, we can construct a *Dutch book*
+- that is, a bet in which the bettor is guaranteed to lose
 
 ## Probability: Sum rule
 - an urn holds $N$ balls: $R$ red, $B$ blue, the rest white
-- uncertainty of drawing a red ball: $R / N$
-- uncertainty of drawing a coloured ball: $R / N + B / N$
+- probability of drawing a red ball: $R / N$
+- probability of drawing a coloured ball: $R / N + B / N$
+- example from @lindley2000philosophy
 
 ## Probability: Product rule
-- an urn holds $N$ balls: $R$ red, $1 - R$ white, $S$ spotted, $1 - S$ plain
+- another urn holds $N$ balls: $R$ red, $1 - R$ white, $S$ spotted, $1 - S$ plain
 - given that, there are $T$ spotted *and* red balls
-- uncertainty of drawing such a ball is: $T / N$
+- probability of drawing such a ball is: $T / N$
 - $\frac{T}{N} = \frac{R}{N} \times \frac{T}{R} = \frac{S}{N} \times \frac{T}{S}$
 - what does this mean?
 
@@ -98,11 +136,11 @@ $$
 
 ## Summing up
 - we have derived the intuitive product and sum rule of probability
-- this is the core of Bayesian statistics -- I'm not kidding!
+- this is the core of Bayesian statistics (I'm not kidding!)
 - the rest is just being smart about how to apply them
 
 
-## Derivation of Bayes' rule
+## Bayes' rule: Derivation
 - it's just conditional probability:
 $$
 \begin{align}
@@ -120,7 +158,7 @@ P(\text{spotted}|\text{red}) &= \frac{P(\text{spotted}) \times P(\text{red}|\tex
 \end{align*}
 $$
 
-## Bayes' rule: intuition
+## Bayes' rule: Intuition
 - what is the probability of my hypothesis, p($H$), given the data, $\textbf{y}$, I have collected?
 $$
 p(H|\textbf{y}) = \frac{p(H)p(\textbf{y}|H)}{p(\textbf{y})}
@@ -216,11 +254,13 @@ $$
 - Visualisations from a great blog post by [Alexander Etz](http://alexanderetz.com/2015/08/09/understanding-bayes-visualization-of-bf/)
 - explain:
     * Bayesian updating
+    * Coherence
     * Cromwell's Rule
     * flat priors and maximum likelihood
+    * convergence of initially different prior beliefs
 
 
-## Interim conclusion II
+## Interim conclusion I
 - Bayesian statistics follows from probability
 - it thus inherits favourable properties that classical statistics lacks
 - **rationality**: if one violates Bayesian reasoning, one can systematically loose money
@@ -289,6 +329,8 @@ $$
     * Bayes factor interpretation
     * Savage-Dickey density ratio
     * parameter estimation versus hypothesis testing
+    * hint at intervall null hypothesis
+    * remark that Bayes factor looks at *prediction*
     * Bayes factor always interpretable -- regardless of sample size
 
 ## Bayes factor: Savage-Dickey density ratio
@@ -305,12 +347,18 @@ $$
 - BayesFactor, JASP use default priors
 
 
-## Interim conclusion III
+## Interim conclusion II
 - Bayes factor quantifies statistical evidence
 - allows us to state evidence for $H_0$
 - no issue with sequential testing
 - does not depend on the sample size
 - if the data are uninformative, the Bayes factor will tell you exactly that
+- which is an incredibly important feature
+- two deficits of *p* values:
+    * depend on sample size ($p = .03, N = 1000$ is support for $H_0$, not $H_1$!)
+    * if $p > .05$, we don't know if it is due to low power, or uninformative data
+    * **people literally died because of this shortcoming**
+
 
 
 ## Principled conclusion
@@ -406,7 +454,7 @@ where $\omega^2$ depends on $\sigma^2$ and $S$ depends on $\mu$
 - we don't get marginal posterior distributions, $p(\mu|\textbf{y})$ and $p(\sigma^2|\textbf{y})$ when using independent priors
 - but it is those that we want for drawing inferences!
 - use **Markov chain Monte Carlo** methods (in this case: *Gibbs Sampling*)
-- let's first discuss Monte Carlo on a simple example
+- let's first discuss Monte Carlo on a simple example [@rouder2005introduction]
 
 ## distribution of reaction times
 - reaction times are not (log)normally distributed
@@ -432,6 +480,10 @@ many times from f($\theta$), the density of $\theta$**
 
 ## Monte Carlo integration
 - we sample from $\eta$ using "rexp" and use this value for $x | \eta$ in "rnorm"
+$$
+\eta \sim \mathcal{Exp}(\nu) \\[1ex]
+x | \eta \sim \mathcal{N}(\mu + \eta, \sigma^2)
+$$
 
 ## Monte Carlo integration
 ```{r}
@@ -551,6 +603,23 @@ $$
 - they are so obvious -- it hits you right between the eyes!
 - in the real world, however, things are rarely that clear:
 - "... the enthusiast's interocular trauma may be the skeptic's random error. A little arithmetic to verify the extent of the trauma can yield great peace of mind for little cost." [@edwards1963bayesian, p. 217]
+
+## BayesFactor R-package
+```{r, eval = FALSE}
+libray('BayesFactor')
+
+lmBF(score ~ hat, data = dat)
+
+## Bayes factor analysis
+## --------------
+## [1] hat : 11448182 ±0%
+## 
+## Against denominator:
+##   Intercept only 
+## ---
+## Bayes factor type: BFlinearModel, JZS
+```
+
 
 # JASP
 ## JASP
