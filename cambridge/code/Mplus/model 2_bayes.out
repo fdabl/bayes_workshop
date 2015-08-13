@@ -1,0 +1,452 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/13/2015   8:57 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE
+   id age gender edu_self edu_moth edu_fath hobbies
+   nidpar vddpar
+   N E O A C
+   schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+   CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+   GF NB_mi NB_RT_mi NB_RT_co
+   StroopE1 StroopE2 StroopE3
+   ShiftC1 ShiftC2 ShiftC3
+   Flu1 Flu2 Flu3 Flu4
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+   ins1_art ins2_art ins3_art ins4_art
+   ins5_art ins6_art ins7_art ins8_art
+   fluency2 fluency3 fluency4
+   flu_qu GF_qu O2;
+
+  USEVARIABLES ARE
+  insight
+  gender;
+
+  MISSING = ALL(9999);
+
+  ANALYSIS:
+  estimator = Bayes;
+  biterations is 50000 (10000); ! maximum(minimum) MCMC draws in each chain. Burn-in: First
+
+
+  MODEL:
+  insight ON gender;
+
+  OUTPUT:
+  stdyx tech8;
+
+  PLOT:
+  type = plot2;
+
+
+
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+  biterations is 50000 (10000); ! maximum(minimum) MCMC draws in each chain. Burn-in: First h
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    1
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   INSIGHT
+
+Observed independent variables
+   GENDER
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               2
+  Random seed for the first chain                                0
+  Starting value information                           UNPERTURBED
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                               50000
+  K-th iteration used for thinning                               1
+
+Input data file(s)
+  crea_bayes.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns             1
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        1.000
+ GENDER         1.000         1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                               3
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                 -7.222             7.381
+
+          Posterior Predictive P-Value              0.510
+
+Information Criterion
+
+          Deviance (DIC)                          949.444
+          Estimated Number of Parameters (pD)       3.003
+          Bayesian (BIC)                          959.720
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ INSIGHT    ON
+    GENDER             0.991       0.267      0.000       0.464       1.505      *
+
+ Intercepts
+    INSIGHT            2.667       0.374      0.000       1.940       3.408      *
+
+ Residual Variances
+    INSIGHT            3.605       0.345      0.000       3.019       4.377      *
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ INSIGHT    ON
+    GENDER             0.235       0.061      0.000       0.110       0.348      *
+
+ Intercepts
+    INSIGHT            1.367       0.218      0.000       0.950       1.793      *
+
+ Residual Variances
+    INSIGHT            0.945       0.028      0.000       0.879       0.988      *
+
+
+R-SQUARE
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    INSIGHT            0.055       0.028      0.000       0.012       0.121
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              INSIGHT       GENDER
+              ________      ________
+ 1                  0             0
+
+
+           LAMBDA
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT            0             0
+ GENDER             0             0
+
+
+           THETA
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT            0
+ GENDER             0             0
+
+
+           ALPHA
+              INSIGHT       GENDER
+              ________      ________
+ 1                  1             0
+
+
+           BETA
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT            0             2
+ GENDER             0             0
+
+
+           PSI
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT            3
+ GENDER             0             0
+
+
+     STARTING VALUES
+
+
+           NU
+              INSIGHT       GENDER
+              ________      ________
+ 1              0.000         0.000
+
+
+           LAMBDA
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        1.000         0.000
+ GENDER         0.000         1.000
+
+
+           THETA
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        0.000
+ GENDER         0.000         0.000
+
+
+           ALPHA
+              INSIGHT       GENDER
+              ________      ________
+ 1              3.970         0.000
+
+
+           BETA
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        0.000         0.000
+ GENDER         0.000         0.000
+
+
+           PSI
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        1.884
+ GENDER         0.000         0.108
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 3~IG(-1.000,0.000)          infinity            infinity            infinity
+
+
+TECHNICAL 8 OUTPUT
+
+
+
+     Kolmogorov-Smirnov comparing posterior distributions across chains 1 and 2 using 100 draws.
+
+
+
+
+
+     Parameter   KS Statistic P-value
+     Parameter 2    0.1200    0.4431
+     Parameter 3    0.1100    0.5560
+     Parameter 1    0.0900    0.7942
+
+
+
+     Simulated prior distributions
+
+     Parameter       Prior Mean  Prior Variance  Prior Std. Dev.
+
+
+     Parameter 1 Improper Prior
+     Parameter 2 Improper Prior
+     Parameter 3 Improper Prior
+
+
+   TECHNICAL 8 OUTPUT FOR BAYES ESTIMATION
+
+     CHAIN    BSEED
+     1        0
+     2        285380
+
+                     POTENTIAL       PARAMETER WITH
+     ITERATION    SCALE REDUCTION      HIGHEST PSR
+     100              1.025               3
+     200              1.000               1
+     300              1.007               2
+     400              1.001               3
+     500              1.000               1
+     600              1.001               1
+     700              1.004               1
+     800              1.002               1
+     900              1.001               1
+     1000             1.002               1
+     1100             1.002               3
+     1200             1.001               3
+     1300             1.001               3
+     1400             1.000               1
+     1500             1.000               1
+     1600             1.000               1
+     1700             1.000               1
+     1800             1.000               1
+     1900             1.000               1
+     2000             1.000               1
+     2100             1.000               1
+     2200             1.000               1
+     2300             1.000               1
+     2400             1.000               1
+     2500             1.000               1
+     2600             1.000               1
+     2700             1.000               1
+     2800             1.000               1
+     2900             1.000               1
+     3000             1.000               1
+     3100             1.000               1
+     3200             1.000               1
+     3300             1.000               1
+     3400             1.000               1
+     3500             1.000               1
+     3600             1.000               1
+     3700             1.000               1
+     3800             1.000               1
+     3900             1.000               1
+     4000             1.000               1
+     4100             1.000               1
+     4200             1.000               1
+     4300             1.000               1
+     4400             1.000               1
+     4500             1.000               1
+     4600             1.000               1
+     4700             1.000               1
+     4800             1.000               1
+     4900             1.000               1
+     5000             1.000               1
+     5100             1.000               1
+     5200             1.000               1
+     5300             1.000               1
+     5400             1.000               1
+     5500             1.000               1
+     5600             1.000               1
+     5700             1.000               1
+     5800             1.000               1
+     5900             1.000               1
+     6000             1.000               1
+     6100             1.000               1
+     6200             1.000               1
+     6300             1.000               1
+     6400             1.000               1
+     6500             1.000               1
+     6600             1.000               1
+     6700             1.000               1
+     6800             1.000               1
+     6900             1.000               1
+     7000             1.000               1
+     7100             1.000               1
+     7200             1.000               1
+     7300             1.000               1
+     7400             1.000               1
+     7500             1.000               1
+     7600             1.000               1
+     7700             1.000               1
+     7800             1.000               1
+     7900             1.000               1
+     8000             1.000               1
+     8100             1.000               1
+     8200             1.000               1
+     8300             1.000               1
+     8400             1.000               1
+     8500             1.000               1
+     8600             1.000               1
+     8700             1.000               1
+     8800             1.000               1
+     8900             1.000               1
+     9000             1.000               1
+     9100             1.000               1
+     9200             1.000               1
+     9300             1.000               1
+     9400             1.000               1
+     9500             1.000               1
+     9600             1.000               2
+     9700             1.000               1
+     9800             1.000               1
+     9900             1.000               1
+     10000            1.000               1
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Bayesian posterior parameter distributions
+  Bayesian posterior parameter trace plots
+  Bayesian autocorrelation plots
+  Bayesian posterior predictive checking scatterplots
+  Bayesian posterior predictive checking distribution plots
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model 2_bayes.dgm
+
+     Beginning Time:  20:57:54
+        Ending Time:  20:57:55
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

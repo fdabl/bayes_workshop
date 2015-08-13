@@ -6,7 +6,7 @@ author: |
   | ETH Zurich, Learning Sciences
   | &
   | Fabian Dablander
-  | University of Tubingen, Cognitive Science
+  | University of Tübingen, Cognitive Science
 bibliography: "../../bibliography.bib"
 csl: "../../apa.csl"
 output:
@@ -19,9 +19,9 @@ output:
 <!--
 10 min [10] Peter: A few remarks on the "replication crisis" in psychology
 10 min [20] Peter: Statistics: The Status Quo
-15 min [35] Peter: Problems with current statistical practices
+10 min [35] Peter: Problems with current statistical practices
 20 min [55] Fabian: The principled Bayesian
-15 min [70] Fabian: The practical Bayesian
+20 min [70] Fabian: The practical Bayesian
 40 min [110] Peter: Software for Bayesian data analysis
 10 min [120] Peter: Discussion
 -->
@@ -101,24 +101,23 @@ Silberzahn, R., et al. (2015). Crowdsourcing data analysis: Do soccer referees g
 ## Outline
 
 - A few remarks on the "replication crisis" in psychology
-<!-- Peter, 10 min [10] -->
 
-- **Statistics: The Status Quo** <!-- Peter, 10 min [20] -->
+- **Statistics: The Status Quo**
     * 1.1 An Example
     * 1.2 Notes on the history of statistics
 
-- **Problems with current statistical practices** <!-- Peter, 15 min [35] -->
+- **Problems with current statistical practices**
     * 2.1 p-Value Hypothesis Testing
     * 2.2 Confidence intervals: A Solution?
 
 ## Outline
 
-- **The principled Bayesian** <!-- Fabian, 20 min [55] -->
+- **The principled Bayesian**
     * 3.1 Probability and Bayes' rule
     * 3.2 Binomial example (coin tosses -- what else?)
     * 3.4 Model comparison using Bayes factor
 
-- **The practical Bayesian** <!-- Fabian, 15 min [70] -->
+- **The practical Bayesian**
     * 4.1 Creativity example
     * 4.2 Monte Carlo methods
     * 4.3 Markov chain Monte Carlo methods
@@ -137,6 +136,211 @@ Silberzahn, R., et al. (2015). Crowdsourcing data analysis: Do soccer referees g
     * Questions
 
 # Statistics: The Status Quo <!-- Peter -->
+
+# The Status Quo in Statistics
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 .
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+.                          .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                .
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+.                          .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 .
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+.                          .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       .
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+.                          .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 .
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+.                          .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+what's taught              .
+
+<div id="contrast">borrowed from EJ Wagenmakers</div>
+
+
+## A Bird's Eye View <!-- Fabian -->
+  Classical Statistics     Bayesian Statistics
+----------------------     ---------------------------
+Ad-hoc                     Axiomatic
+Incoherent                 Coherent
+Paradoxical                Intuitive
+Irrational                 Rational
+Ugly                       Pretty
+Irrelevant                 Relevant
+what's taught              what's not taught
+
+<div id="contrast">borrowed from [EJ Wagenmakers](https://docs.google.com/file/d/0B-Ww24m3ZkEyMEpudlVsX3pRVzA/edit)</div>
 
 ## What most of us are doing in statistics ...
 > "The textbooks are wrong. The teaching is wrong. The seminar
@@ -157,7 +361,7 @@ Silberzahn, R., et al. (2015). Crowdsourcing data analysis: Do soccer referees g
 <img height="400" src="img/mr2.png">
 </div>
 
-## An Example: Creativity and Personality <!-- Peter -->
+## An Example: Creativity and Personality
 
 ```{r, eval=FALSE}
 creadata <- read.csv("crea_bayes.csv") # Load data
@@ -168,12 +372,12 @@ summary(lm(fluency ~ N + E + O, data = creadata)) # Multiple regression
 <img height="300" src="img/Rlinreg.png">
 </div>
 
-## An Example: Risk Behaviour and Social Status <!-- Peter -->
+## An Example: Creativity and Personality
 
 - What does *p* tell us?
 
-> - *The probability to get data this or more extreme in case that in the underlying population there is a zero regression weight between openness and ideational fluency is less than 0.1%*
-    * Null hypothesis: regression weight = 0;
+> - *The probability to get data this or more extreme in case that in the underlying population there is no association between openness and ideational fluency is less than 0.1%*
+    * Null hypothesis: association = 0;
     * Reject this null: apply 5% convention -> if *p* < .05.
     * If H0 is true, data very unlikely -> reject H0, accept H1
     * ...do **this same thing** in **all analyses**...
@@ -190,7 +394,7 @@ summary(lm(fluency ~ N + E + O, data = creadata)) # Multiple regression
 
 > - *Statistical Methods for Research Workers* (1925), *Design of Experiments* (1935)
 
-> - His **first** approach to *statistical inference
+> - His **first** approach to *statistical inference*
     * Null hypothesis $H_0$, $\alpha$
     * **no alternative hypothesis.**
     * *p* > .05: ignore results.
@@ -201,7 +405,7 @@ summary(lm(fluency ~ N + E + O, data = creadata)) # Multiple regression
 ## Ronald A. Fisher
 
 Revision:
-> *"No scientific worker has a fixed level of significance at which from year to year, and in all
+*"No scientific worker has a fixed level of significance at which from year to year, and in all
   circumstances, he rejects hypotheses; he rather gives his mind to each particular case in the light
   of his evidence and his ideas."*
 
@@ -235,11 +439,11 @@ Revision:
 
 ## Unification / bastardization
 
-> statisticians "have already overrun every branch of science with a rapidity of conquest
-> rivalled only by Attila, Mohammed, and the Colorado beetle."
+*statisticians "have already overrun every branch of science with a rapidity of conquest
+rivalled only by Attila, Mohammed, and the Colorado beetle."*
 
 - Did Piaget ever compute a p-value?
-- Did Skinner? what's with KÃ¶hler? Pavlov?
+- Did Skinner? what's with Köhler? Pavlov?
 
 # Problems with Current Statistical Practices
 
@@ -260,7 +464,7 @@ Revision:
 - **Repeatability** becomes a crucial ingredient
 - **Fisher**: Biologist, did lots of repeatable experiments
 
-## What is *probability?*
+## What is *Probability?*
 
 > - Frequentists cannot talk about...
 
@@ -275,265 +479,51 @@ Revision:
   No answer to essential question in science
   *"what is the probability that my hypothesis / theory is true?"*
 
-## What is in a p-value?
-(Haller et al., 2002; Oakes, 1986)
- - We found a beta weight of openness to epxerience for the prediction of insight
- - *b* = 0.11, *p* < .001
-
-## What is in a p-value?
-- *We have absolutely disproved the null hypothesis of no difference.*
-
-## What is in a p-value?
-<img src="img/hell_NO.jpg" width=400 height=400 />
-
-## What is in a p-value?
-- *We have absolutely disproved the null hypothesis of no difference.*
-- everything in statistics is probabilistic, there are no **absolutes**
-
-## What is in a p-value?
-- *We have found the probability of the null hypothesis being true.*
-
-## What is in a p-value?
-<img src="img/cat_NO.jpg" width=400 height=400 />
-
-## What is in a p-value?
-- *We have found the probability of the null hypothesis being true.*
-
-- Our probability is assigned to our data, not to the hypotheses
-    * Sneak peek: The latter is what we want
-
-## What is in a p-value?
-- *We have absolutely proved the alternative hypothesis.*
-
-## What is in a p-value?
-<img src="img/hell_NO.jpg" width=400 height=400 />
-
-## What is in a p-value?
-- *We have absolutely proved the alternative hypothesis.*
-- Same as statement 1: Probabilistic, not absolute.
-
-## What is in a p-value?
-- *We can deduce the probability of the alternative hypothesis being true.*
-
-## What is in a p-value?
-<img src="img/cat_NO.jpg" width=400 height=400 />
-
-## What is in a p-value?
-- *We can deduce the probability of the experimental hypothesis being true.*
-- Same as statement 2: No probabilities assigned to hypotheses.
-
-## What is in a p-value?
-- *We know, if we decide to reject the null hypothesis, the probability that we are making the wrong decision.*
-
-## What is in a p-value?
-<img src="img/classic_NO.jpg" width=400 height=400 />
-
-## What is in a p-value?
-> - *We know, if you decide to reject the null hypothesis, the probability that we are making the wrong decision.*
-> - but $\alpha$?
-> - $\alpha$ is about an infinite amount of experiments
-> - in this case, the probability is $1 - p(H_0)$
-> - Sneak peek: We want to assign $p(H_0)$
-
-
-## What is in a p-value?
-- *If the experiment were repeated a great number of times, we would obtain a significant result on 99% of occasions.*
-
-## What is in a p-value?
-<img src="img/unsure_NO.jpg" width=400 height=400 />
-
-## What is in a p-value?
-- *If the experiment were repeated a great number of times, we would obtain a significant result on 99% of occasions.*
-- **Replication fallacy** (Haller et al., 2002)
 
 ## What is in a p-value?
 
-<img src="img/haller_misinterpretation.png" width=600 height=500 />
+*p*...
 
-# frequentist inference
+- ...disproves the null hypothesis of no difference.
+- ...proves the alternative hypothesis.
+- ...indicates the probability of the null hypothesis being true.
+- ...indicates the probability of the alternative hypothesis being true.
+- ...indicates the probability of the experimental hypothesis being true.
+- ...indicates the probability of a wrong decision in case we reject the null hypothesis.
+- ...indicates that in 99% of cases we would obtain a significant result when repeating the experiment.
+- ...indicates the probability of the data or more extreme data given that the null hypothesis is true.
 
-## how a frequentist draws inference
-- suppose you are being asked 26 questions about Bayesian statistics ($N = 26$)
-- you happen to answer 8 correctly ($k = 8$)
-- are you better than guessing?
-- test $H_0: \theta = \frac{1}{2}$ against $H_1: \theta \neq \frac{1}{2}$
-  
-## how a frequentist draws inference
-- to obtain the **sampling distribution** assume that $H_0: \theta = \frac{1}{2}$ holds
-- imagine that the experiment is repeated very many times under **identical circumstances**
-- for each **hypothetical** experiment, calculate the test statistic of the **hypothetical** sample
-- the distribution of these test statistics are called the **sampling distribution**
+## What is in a p-value?
 
-## graphically [@wagenmakers2007practical]
+*p*...
+
+- ...disproves the null hypothesis of no difference.
+- ...proves the alternative hypothesis.
+- ...indicates the probability of the null hypothesis being true.
+- ...indicates the probability of the alternative hypothesis being true.
+- ...indicates the probability of the experimental hypothesis being true.
+- ...indicates the probability of a wrong decision in case we reject the null hypothesis.
+- ...indicates that in 99% of cases we would obtain a significant result when repeating the experiment.
+- **...indicates the probability of the data or more extreme data given that the null hypothesis is true.**
+
+## What is in a p-value?
 <img src="img/sampling_distribution.png" />
+[@wagenmakers2007practical]
 
-## sampling plan
-- there are two different ways to conduct the experiment
-- either fix $N = 26$ and count the number of correct answers
-- or ask so many questions until one gets $k = 8$ correct answers
-- first one is binomial, the second one is negative binomial
-- $p(k | \theta, N) = \binom{n}{k} \theta^k (1 - \theta)^{n - k}$
-- $p(N | \theta, z) = \binom{n - 1}{k - 1} \theta^k (1 - \theta)^{n - k}$
+## What is in a p-value? 
+- A frequentist **needs** this sampling distribution
+- Often, properties of the sampling distribution can be derived analytically from the sample data
+- Variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{s^2}{N}$
+- One reason why frequentism got so much traction: It is computationally trivial!
 
-## note
-- a frequentist **needs** this sampling distribution
-- often, properties of the sampling distribution can be derived analytically from the sample data
-- for example, the variance of the **sampling distribution** of the **sample mean** is $\sigma^2 = \frac{s^2}{N}$
-- this is one reason why frequentism got so much traction: it is computationally trivial
-
-## bootstrapping
-- in order to **see** what happens here, let us simulate a large number of replications of the experiment!
-- we will draw independent random samples from our actual observed data, and compute the test statistic of that draw
-- in the binomial case, the test statistic is the **number of correct answers**
-- in the negative binomial case, the test statistic is the **number of questions**
-
-## binomial bootstrapping
-```{r}
-binom.boot <- function(dat, samples = 10000) {
-    n <- length(dat) # is fixed!
-    result <- numeric(samples)
-
-    for (i in 1:samples) {
-        draw <- sample(dat, n, replace = TRUE)
-        result[i] <- sum(draw)
-    }
-
-    result
-}
-```
-
-## negative binomial bootstrapping
-```{r}
-nbinom.boot <- function(dat, samples = 10000) {
-    k <- sum(dat) # is fixed!
-    result <- numeric(samples)
-
-    for (i in 1:samples) {
-        ss <- sample(c(0, 1), 1, prob = c(0.5, 0.5))
-
-        while (sum(ss) != k) {
-            ss <- c(ss, sample(c(0, 1), 1, prob = c(0.5, 0.5)))
-        }
-
-        result[i] <- length(ss)
-    }
-    result
-}
-```
-
-## practical difference
-<img src="img/sampling_binomial.png" height="500" width="700"/>
-
-## frequentist inference
-- assumes that the parameter $\theta$ is fixed
-- only the data is allowed to vary
-- we can intuit that confidence intervals, statistical power etc. are not properties of the data
-- they are properties of the **testing procedure**
-
-
-## p-values: a death in five acts
-
-## Act I
-<img src="img/sampling_distribution.png" width=700 height=500 />
-
-## Act I
-- Result of statistical analysis depends on intention of researcher
-- Intentions define space of possible (unobserved) data (Wagenmakers, 2007)
-
-## Act I
-- suppose I ask you 26 questions on Bayesian stats, and you get 8 right
-- the last question you answered, you answered correctly
-- were you better than chance? $H_0: \theta = 0.5$
-- there are two possible sampling plans
-- ask 26 questions, and see how many you answered correctly (**binomial**)
-- ask questions so long until you answer 8 correctly (**negative binomial**)
-- ***the data are the data are the data*** (example from Kruschke, 2010, Ch. 11)
-
-## Act I
-<img src="img/sampling_binomial.png" width=700 height=500 />
-
-## Act I
-```{r}
-N <- 26
-k <- 8
-
-binomial <- pbinom(k, N, 0.5) * 2
-negbinomial <- pnbinom(k, N, 0.5) * 2
-
-binomial # fail to reject
-
-negbinomial # science paper!!
-```
-
-## Act II
-- optional stopping [@sanborn2014frequentist; @rouder2014optional]
-- look at data, test, gather more data, test, etc.
-
-## Act II, demo
-```{r, message = FALSE, eval = FALSE}
-source("http://rynesherman.com/phack.r") # read in the p-hack function
-
-res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
-   maxN=200, alpha=.05, alternative="two.sided", graph=TRUE, sims=2000)
-```
-
-## Act II, demo
-<img src="img/phack1.png" />
-
-## Act II, implications
-- inflated $\alpha$ (p-hacking!)
-- assume you tested 20 participants, and get $p = 0.057$
-- unethical
-- money & ressources
-- just downright horrible
-
-## Act II, Bayes note
-> "the rules governing when data collection stops are irrelevant to data interpretation. It
-> is entirely appropriate to collect data **until a point has been proven or disproven**, or until
-> the data collector runs out of time, money, or patience."
-
-- Edwards et al. (1963)
-
-
-## Act III
-- Don't quantify statistical evidence; (Wagenmakers, 2007)
-- $p = 0.04, n = 10$ is more evidence than $p = 0.04, n = 1000$
-- in fact, the latter is support for $H_0$!
-- are violently biased against $H_0$
-
-## Act IV
-- violently biased against $H_0$
-- underlying logic of p-values: either the null hypothesis is false, or a rare event has occured
-- following example taken from Rouder et al. (in press)
-
-## p-values: flawed reasoning
-- the following is logically correct:
-- (Premise): If Hypothesis $H$ is true, then event $X$ will not occur.
-- (Premise): Event $X$ occured.
-- (Conclusion): Hypothesis $H$ is not true.
-
-## p-values: flawed reasoning
-- this **does not** translate to probabilistic settings
-- (Premise): If Hypothesis $H$ is true, then event $X$ is **unlikely**.
-- (Premise): Event $X$ occured.
-- (Conclusion): Hypothesis $H$ is **probably not true**.
-
-## p-values: flawed reasoning
-- take this example as demonstration:
-- (Premise): If Jane is an American, then it will be unlikely that she is a U. S. Congressperson.
-- (Premise): Jane is a U. S. Congressperson.
-- (Conclusion): Jane is probably not an American.
-- by only looking at $p(D|H_0)$, p-values are violently biased against $H_0$
-
-## the case of Sally Clark
+## The Case of Sally Clark
 - both Clark's babies died, where $p(\text{baby dies}) = \frac{1}{8543}$
 - thus the probability that both babies died is roughly 1 in 73 million
 - since this is soo incredibly low ($p < 0.00001$ or whatnot), Clark **probably killed** her babies
 - indeed, in November 1999, a jury found poor Sally guilty of double murder
+> - see any problem with that?
 
-## see any problem with that?
-
-## the case of Sally Clark
+## The Case of Sally Clark
 > "The jury needs to weigh up two competing explanations for the babiesâ€™ deaths: SIDS or murder. The fact that two deaths by SIDS is
 > quite unlikely is, taken alone, of little value. Two deaths by murder may well be even
 > more unlikely. What matters is the relative likelihood of the deaths under each
@@ -541,19 +531,34 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 
 - **President of the Royal Statistical Society** (2002)
 
-## the case of Sally Clark
+## The Case of Sally Clark
 - in fact, $p(\text{baby dies} | \text{sudden infant death})$ is higher than $p(\text{baby dies} | \text{murder})$
 - the ratio of these two - the **likelihood ratio** - is the proper measure of statistical evidence
 - statistical evidence is **always** relative; there is **no free lunch**
 
 
-## Act V
+## The Wrong Probability
 - p-value give you $p(\text{D or more extreme}|H_0)$
 - what we want is $p(H|D)$, the probability that our hypothesis is true!
 - there is a subtle, but important difference
 - $p(\text{you are dead} | \text{shark has bitten off your head})$ is very high :(
 - $p(\text{shark has bitten off your head} | \text{you are dead})$ is very low!
 
+## The Wrong Probability
+- Don't quantify statistical evidence; (Wagenmakers, 2007)
+- $p = 0.04, n = 10$ is more evidence than $p = 0.04, n = 1000$
+- in fact, the latter is support for $H_0$!
+- are violently biased against $H_0$
+
+<!--
+
+## frequentist inference
+- assumes that the parameter $\theta$ is fixed
+- only the data is allowed to vary
+- confidence intervals, statistical power etc. are not properties of the data
+- they are properties of the **testing procedure**
+
+-->
 
 ## Effect Sizes and Confidence Intervals: The *Frequentist* Solution?
 - Effect Size
@@ -664,7 +669,7 @@ res <- phack(initialN=30, hackrate=5, grp1M=0, grp2M=0, grp1SD=1, grp2SD=1,
 - use bets to quantify subjective belief
 - for 1$ in return, how much $$ would you bet on
     * Germany winning against Brazil in soccer?
-    * that it is going to be at least 30Â°C tomorrow?
+    * that it is going to be at least 30°C tomorrow?
 
 ## Measuring probability
 - Germany: 3$
@@ -722,9 +727,7 @@ $$
 ## Implication of Sum rule
 - $P(\text{red}) = P(\text{red}|\text{spotted}) + P(\text{red}|\text{plain})$
 - $P(\text{red})$ is called a marginal probability
-- by summing up all the conditional probabilities, we arrive at the marginal
-- this will be important when we talk about the marginal likelihood in model comparison
-
+- by summing up all the conditional probabilities, we arrive at the marginal probability
 
 ## Summing up
 - we have derived the intuitive product and sum rule of probability
@@ -789,19 +792,6 @@ $$
 - a conjugate prior is a prior that when combined with the likelihood yields a posterior that is of the same
 distributional family as the prior
 - the parameters of conjugate priors can be interpreted as prior data
-
-$$
-\begin{align*}
-\mathcal{N}(\mu_0, \sigma_0^2) &\text{ is conjugate for } \mu \text{ in } \mathcal{N}(\mu, \sigma^2) \\
-\mathcal{IG}(\alpha, \beta) &\text{ is conjugate for } \sigma^2 \text{ in } \mathcal{N}(\mu, \sigma^2) \\
-\mathcal{Beta}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Bin}(n, p) \\
-\mathcal{Beta}(\alpha, \beta) &\text{ is conjugate to } \mathcal{NegBin}(n, p) \\
-\mathcal{Dir}(\omega) &\text{ is conjugate to } \mathcal{Mult}(\theta) \\
-\mathcal{G}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Pois}(n, \lambda) \\
-\mathcal{G}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Exp}(n, \lambda) \\
-\mathcal{Pareto}(\alpha, \beta) &\text{ is conjugate to } \mathcal{Unif}(a, b) \\
-\end{align*}
-$$
 
 ## Binomial example: likelihood
 - instead of $p(\textbf{y}|\theta)$ we write $\mathcal{L}(\theta; \textbf{y})$
@@ -913,7 +903,7 @@ $$
 ## Bayes factor: Interpretation
 - the Bayes factor is a generalization of the likelihood ratio
 - recall before, we compared $H_0: \theta = .5$ against $H_1: \theta = .9$
-- Bayes factors let us test composite hypothesis, like $H_0: \theta \neq 0$
+- Bayes factors let us test composite hypothesis, like $H_0: \theta \neq .5$
 - for this, we have to specify a prior distribution over $\theta$
 
 ## Bayes factor: shiny demo
@@ -1196,7 +1186,6 @@ $$
 - in the real world, however, things are rarely that clear:
 - "... the enthusiast's interocular trauma may be the skeptic's random error. A little arithmetic to verify the extent of the trauma can yield great peace of mind for little cost." [@edwards1963bayesian, p. 217]
 
-<<<<<<< HEAD
 ## BayesFactor R-package
 ```{r, eval = FALSE}
 libray('BayesFactor')
@@ -1233,6 +1222,8 @@ lmBF(score ~ hat, data = dat)
 
 <img src="img/turning_hands.png" height="500" width="700"/>
 
+# Exercise
+
 ## JASP: Example
 - you can find the pre-registration form of this research [here](https://osf.io/p3isc/), see the section **sampling plan**
 - they failed to replicate the effect; the data were about 10 times more likely under $H_0$ then under $H_1$
@@ -1247,6 +1238,8 @@ lmBF(score ~ hat, data = dat)
 - @donnellan2014association tried to replicate this in 9 experiments with over 3000 participants
 - @wagenmakers2015absence re-analysed the data using Bayesian inference
 
+# Exercise
+
 ## JASP: Example
 - *p* values are uniformly distributed under $H_0$
 - Difference: $p > 0.05$, the data are uninformative
@@ -1257,11 +1250,7 @@ lmBF(score ~ hat, data = dat)
   We know which one is the case!
   -> Quantifies support for $H_0$ 
 
-## JASP: Practice
-
-
-
-Practicing interpretation of CIs, BFs, prior choice
+# Questions
 
 ## Dataset
 

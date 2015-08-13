@@ -1,0 +1,171 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/12/2015  11:16 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE
+   id age gender edu_self edu_moth edu_fath hobbies
+   nidpar vddpar
+   N E O A C
+   schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+   CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+   GF NB_mi NB_RT_mi NB_RT_co
+   StroopE1 StroopE2 StroopE3
+   ShiftC1 ShiftC2 ShiftC3
+   Flu1 Flu2 Flu3 Flu4
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+   ins1_art ins2_art ins3_art ins4_art
+   ins5_art ins6_art ins7_art ins8_art
+   fluency2 fluency3 fluency4
+   flu_qu GF_qu O2;
+
+  USEVARIABLES ARE
+  fluency;
+
+  MISSING = ALL(9999);
+
+  ANALYSIS:
+  estimator = Bayes;
+
+  MODEL:
+  [fluency];
+  fluency;
+
+
+
+
+
+
+*** WARNING in MODEL command
+  All variables are uncorrelated with all other variables in the model.
+  Check that this is what is intended.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    1
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   FLUENCY
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               2
+  Random seed for the first chain                                0
+  Starting value information                           UNPERTURBED
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                               50000
+  K-th iteration used for thinning                               1
+
+Input data file(s)
+  crea_bayes.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns             1
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              FLUENCY
+              ________
+ FLUENCY        1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                               2
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                 -7.920             4.432
+
+          Posterior Predictive P-Value              0.500
+
+Information Criterion
+
+          Deviance (DIC)                         1147.528
+          Estimated Number of Parameters (pD)       1.991
+          Bayesian (BIC)                         1154.405
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ Means
+    FLUENCY           10.616       0.196      0.000      10.213      10.991      *
+
+ Variances
+    FLUENCY            8.602       0.764      0.000       6.965       9.984      *
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model 1_bayes.dgm
+
+     Beginning Time:  11:16:26
+        Ending Time:  11:16:26
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

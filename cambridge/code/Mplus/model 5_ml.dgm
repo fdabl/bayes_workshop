@@ -1,0 +1,55 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+  Creativity and stuff
+
+DATA:
+FILE = crea_bayes.dat;
+VARIABLE:
+NAMES ARE
+ id age gender edu_self edu_moth edu_fath hobbies
+ nidpar vddpar
+ N E O A C
+ schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+ CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+ GF NB_mi NB_RT_mi NB_RT_co
+ StroopE1 StroopE2 StroopE3
+ ShiftC1 ShiftC2 ShiftC3
+ Flu1 Flu2 Flu3 Flu4
+ ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+ ins1_art ins2_art ins3_art ins4_art
+ ins5_art ins6_art ins7_art ins8_art
+ fluency2 fluency3 fluency4
+ flu_qu GF_qu O2;
+USEVARIABLES ARE
+fluency fluency2;
+MISSING = ALL(9999);
+ANALYSIS:
+estimator = MLR;
+OUTPUT:
+stdyx;
+MODEL:
+fluency2 ON fluency;
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+1
+0
+1
+fluency2 fluency
+2
+1 0
+0
+0
+1 1 fluency fluency2    0.994    0.011
+4 1 fluency2    0.284    0.025
+11 1 fluency fluency2    0.983    0.002
+14 1 fluency2    0.033    0.004
+31 1 fluency fluency2    0.994    0.011
+34 1 fluency2    0.284    0.025

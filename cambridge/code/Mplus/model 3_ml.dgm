@@ -1,0 +1,73 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+  Creativity and stuff
+
+DATA:
+FILE = crea_bayes.dat;
+VARIABLE:
+NAMES ARE
+ id age gender edu_self edu_moth edu_fath hobbies
+ nidpar vddpar
+ N E O A C
+ schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+ CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+ GF NB_mi NB_RT_mi NB_RT_co
+ StroopE1 StroopE2 StroopE3
+ ShiftC1 ShiftC2 ShiftC3
+ Flu1 Flu2 Flu3 Flu4
+ ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+ ins1_art ins2_art ins3_art ins4_art
+ ins5_art ins6_art ins7_art ins8_art
+ fluency2 fluency3 fluency4
+ flu_qu GF_qu O2;
+USEVARIABLES ARE
+fluency
+gender
+GF
+O;
+MISSING = ALL(9999);
+ANALYSIS:
+estimator = MLR;
+OUTPUT:
+stdyx tech4;
+MODEL:
+fluency ON gender GF O;
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+1
+0
+3
+fluency gender gf o
+2
+1 0 0 0
+0
+0
+1 1 gender fluency    0.434    0.416
+1 1 gf fluency    0.042    0.206
+1 1 o fluency    0.112    0.031
+4 1 fluency    7.858    0.731
+2 1 gender gf  999.000  999.000
+2 1 gender o  999.000  999.000
+2 1 gf o  999.000  999.000
+11 1 gender fluency    0.069    0.066
+11 1 gf fluency    0.013    0.064
+11 1 o fluency    0.247    0.068
+14 1 fluency    0.930    0.035
+12 1 gender gf  999.000  999.000
+12 1 gender o  999.000  999.000
+12 1 gf o  999.000  999.000
+31 1 gender fluency    0.434    0.416
+31 1 gf fluency    0.042    0.206
+31 1 o fluency    0.112    0.031
+34 1 fluency    7.858    0.731
+32 1 gender gf  999.000  999.000
+32 1 gender o  999.000  999.000
+32 1 gf o  999.000  999.000

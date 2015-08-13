@@ -1,0 +1,145 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+  Creativity and stuff
+
+DATA:
+FILE = crea_bayes.dat;
+VARIABLE:
+NAMES ARE
+ id
+ age
+ gender
+ edu_self
+ edu_moth
+ edu_fath
+ hobbies
+ nidpar
+ vddpar
+ N
+ E
+ O
+ A
+ C
+ schizo
+ NB_co
+ INSIGHT
+ STROOP
+ SHIFTCOS
+ fluency
+ CAQ_tot
+ CAQ_tal
+ FKAL_ach
+ FKAL_spe
+ CAQ_arts
+ GF
+ NB_mi
+ NB_RT_mi
+ NB_RT_co
+ StroopE1 StroopE2 StroopE3
+ ShiftC1 ShiftC2 ShiftC3
+ Flu1 Flu2 Flu3 Flu4
+ ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+ ins1_art ins2_art ins3_art ins4_art
+ ins5_art ins6_art ins7_art ins8_art
+ fluency2 fluency3 fluency4
+ flu_qu
+ GF_qu
+ O2
+ ;
+USEVARIABLES ARE
+fluency fluency2 fluency3 fluency4
+;
+MISSING = ALL(9999);
+ANALYSIS:
+    estimator = BAYES;
+    bseed = 666;
+    stvalues = ML;
+    chains = 4;
+    processors = 4;
+    bconvergence is .05;
+    biterations is 50000 (1000);
+    thin is 10;
+OUTPUT:
+residual
+tech1
+tech2 tech3 tech4 tech8
+tech10
+stdyx
+svalues
+ ;
+PLOT:
+type is plot1
+plot2
+plot3
+;
+series is fluency fluency2 fluency3 fluency4 (*);
+MODEL:
+i BY fluency-fluency4@1;
+s BY fluency@0 fluency2@1 fluency3@2 fluency4@3;
+INPUT_END
+3
+3
+0
+3
+BAYES
+1
+GENERAL
+0
+4
+2
+0
+fluency fluency2 fluency3 fluency4 i s
+1
+-1 -1 -1 -1 0 0
+0
+2
+i
+fluency fluency2 fluency3 fluency4
+s
+fluency fluency2 fluency3 fluency4
+1 1 I FLUENCY    1.000    0.000    1.000    1.000
+1 1 I FLUENCY2    1.000    0.000    1.000    1.000
+1 1 I FLUENCY3    1.000    0.000    1.000    1.000
+1 1 I FLUENCY4    1.000    0.000    1.000    1.000
+1 1 S FLUENCY    0.000    0.000    0.000    0.000
+1 1 S FLUENCY2    1.000    0.000    1.000    1.000
+1 1 S FLUENCY3    2.000    0.000    2.000    2.000
+1 1 S FLUENCY4    3.000    0.000    3.000    3.000
+2 1 S I   -0.028    0.042   -0.092    0.072
+4 1 FLUENCY    0.011    0.013    0.000    0.050
+4 1 FLUENCY2    0.271    0.028    0.224    0.328
+4 1 FLUENCY3    0.565    0.059    0.454    0.687
+4 1 FLUENCY4    0.784    0.076    0.646    0.955
+5 1 I    8.624    0.789    7.330   10.433
+5 1 S    0.002    0.004    0.000    0.012
+11 1 I FLUENCY    0.999    0.001    0.997    1.000
+11 1 I FLUENCY2    0.987    0.005    0.976    0.996
+11 1 I FLUENCY3    0.973    0.010    0.949    0.990
+11 1 I FLUENCY4    0.963    0.014    0.933    0.987
+11 1 S FLUENCY    0.000    0.000    0.000    0.000
+11 1 S FLUENCY2    0.015    0.010    0.004    0.038
+11 1 S FLUENCY3    0.030    0.019    0.008    0.075
+11 1 S FLUENCY4    0.044    0.029    0.013    0.112
+12 1 S I   -0.192    0.430   -0.989    0.432
+14 1 FLUENCY    0.001    0.001    0.000    0.006
+14 1 FLUENCY2    0.031    0.004    0.023    0.040
+14 1 FLUENCY3    0.062    0.008    0.047    0.078
+14 1 FLUENCY4    0.084    0.011    0.066    0.110
+15 1 I    1.000    0.000    1.000    1.000
+15 1 S    1.000    0.000    1.000    1.000
+31 1 I FLUENCY    0.999    0.001    0.997    1.000
+31 1 I FLUENCY2    0.987    0.005    0.976    0.996
+31 1 I FLUENCY3    0.973    0.010    0.949    0.990
+31 1 I FLUENCY4    0.963    0.014    0.933    0.987
+31 1 S FLUENCY    0.000    0.000    0.000    0.000
+31 1 S FLUENCY2    0.015    0.010    0.004    0.038
+31 1 S FLUENCY3    0.030    0.019    0.008    0.075
+31 1 S FLUENCY4    0.044    0.029    0.013    0.112
+32 1 S I   -0.192    0.430   -0.989    0.432
+34 1 FLUENCY    0.001    0.001    0.000    0.006
+34 1 FLUENCY2    0.031    0.004    0.023    0.040
+34 1 FLUENCY3    0.062    0.008    0.047    0.078
+34 1 FLUENCY4    0.084    0.011    0.066    0.110
+35 1 I    1.000    0.000    1.000    1.000
+35 1 S    1.000    0.000    1.000    1.000

@@ -1,0 +1,538 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/12/2015   9:37 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE ! variable names; maximum 8 characters!
+   id ! case id
+   age ! Age in years
+   gender ! Gender (1 = female)
+   edu_self ! Education level (1 = mandatory school, 5 = university degree)
+   edu_moth ! Education mother
+   edu_fath ! Education father
+   hobbies ! Favourite type of hobbies (1 = creative, 2 = sports, 3 = intellectual stuff)
+   nidpar ! inductive reasoning
+   vddpar ! deductive reasoning
+   N ! neuroticism
+   E ! extraversion
+   O ! openness
+   A ! agreeableness
+   C ! conscientiousness
+   schizo ! schizotypic personality
+   NB_co ! nback score (updating)
+   INSIGHT ! insight problems sum score
+   STROOP ! stroop task score (inhibition)
+   SHIFTCOS ! shifting task score (shifting/switching)
+   fluency ! number creative ideas
+   CAQ_tot ! Creative Achievements questionnaire sum score
+   CAQ_tal ! Creative talent sum score
+   FKAL_ach ! Different creative achievements questionnaire
+   FKAL_spe ! Creative specialisations score
+   CAQ_arts ! Creative achievements in arts score
+   GF ! Fluid intelligence score
+   NB_mi ! NBACK - Number mistakes
+   NB_RT_mi ! NBACK Mean time mistakes
+   NB_RT_co ! NBACK Mean time correct
+   StroopE1 StroopE2 StroopE3 ! stroop task partial scores
+   ShiftC1 ShiftC2 ShiftC3 ! shifting task partial scores
+   Flu1 Flu2 Flu3 Flu4 ! fluency task partial scores
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8 ! insight task item scores
+   ins1_art ins2_art ins3_art ins4_art ! insight task type of insight per item
+   ins5_art ins6_art ins7_art ins8_art ! insight task type of insight per item
+   fluency2 fluency3 fluency4 ! Fluency score 5, 10, 15 years later
+   flu_qu ! quadratic fluency term
+   GF_qu ! quadratic intelligence term
+   ; ! end variable names
+
+  USEVARIABLES ARE ! define variables used for present analysis
+  INSIGHT
+  GF
+  GF_qu
+  !ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+  !ins1_art ins2_art ins3_art ins4_art ins5_art ins6_art ins7_art ins8_art
+  ; ! end usevariables list
+
+  MISSING = ALL(9999); ! define which values indicate missings
+
+  !CATEGORICAL ARE ! define categorical dependent variables
+  ! ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+  ! ins1_art ins2_art ins3_art ins4_art
+  ! ins5_art ins6_art ins7_art ins8_art
+  ! ; ! end categorical dependent variables list
+
+  analysis:
+      estimator = BAYES; ! use Bayesian estimation
+      bseed = 666; ! set seed
+      stvalues = ML; ! use maximul likelihood to estimate start values
+      chains = 4; ! number of MCMC chains
+      processors = 4; ! number of cores
+      !bconvergence is .05; ! gelman rubin criterion maximum for convergence determination
+      !fbiterations is 50000; ! Force specific number of iterations
+      biterations is 50000 (1000); ! maximum(minimum) MCMC draws in each chain
+      !point is mean; !select parameter point estimation criterion (default: median)
+      thin is 10; !set thinning rate
+
+  model: ! Define the statistical model
+  INSIGHT ON GF (a);
+  INSIGHT ON GF_qu (b);
+  !insc BY ins1-ins8 (a1-a8); ! define a latent factor (specifiy character labels)
+  !insi BY ins1_art-ins8_art (ia1-ia8); ! define a latent factor
+  !insc WITH insi; ! define correlation between latent factors
+  !stroop BY StroopE1 StroopE2 StroopE3;
+  !shift BY ShiftC1 ShiftC2 ShiftC3;
+  !insc ON stroop shift gen nidpar vddpar;
+  !insi ON stroop shift gen nidpar vddpar;
+
+  !MODEL PRIORS: ! set non-default priors in this section
+  !a ~ N(0,10); ! set parameter "a" to prior normal distribution with mean 0, variance 10
+
+  !a1-a8 ~ N(0,5); ! Set Prior on specific parameter
+
+  OUTPUT:
+  !sampstat ! descriptives (not with Bayes)
+  residual ! residuals
+  tech1 ! Parameter numbers
+  tech2 tech3 tech4 tech8
+  tech10 ! only with categorical/count outcomes
+  stdyx ! Standardized parameters
+  svalues ! Save values
+   ; ! end specification of output
+
+  plot:
+  type is plot2; ! Bayesian plots (trace plots, posteriors)
+
+
+
+
+
+
+
+
+*** WARNING in OUTPUT command
+  TECH10 option is only available with categorical or count outcomes.
+  Request for TECH10 is ignored.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    1
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   INSIGHT
+
+Observed independent variables
+   GF          GF_QU
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               4
+  Random seed for the first chain                              666
+  Starting value information                                    ML
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                               50000
+  K-th iteration used for thinning                              10
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            0
+  Adaptive quadrature                                           ON
+Cholesky                                                       OFF
+
+Input data file(s)
+  crea_bayes.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns             1
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        1.000
+ GF             1.000         1.000
+ GF_QU          1.000         1.000         1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                               4
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                 -5.779             9.337
+
+          Posterior Predictive P-Value              0.431
+
+Information Criterion
+
+          Deviance (DIC)                          921.317
+          Estimated Number of Parameters (pD)       4.156
+          Bayesian (BIC)                          934.686
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ INSIGHT    ON
+    GF                 1.028       0.184      0.000       0.659       1.373      *
+    GF_QU             -0.114       0.088      0.108      -0.295       0.063
+
+ Intercepts
+    INSIGHT            3.597       0.141      0.000       3.315       3.879      *
+
+ Residual Variances
+    INSIGHT            3.168       0.335      0.000       2.649       4.021      *
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ INSIGHT    ON
+    GF                 0.476       0.079      0.000       0.313       0.622      *
+    GF_QU             -0.109       0.083      0.108      -0.269       0.055
+
+ Intercepts
+    INSIGHT            1.831       0.123      0.000       1.586       2.092      *
+
+ Residual Variances
+    INSIGHT            0.827       0.044      0.000       0.741       0.913      *
+
+
+R-SQUARE
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    INSIGHT            0.173       0.044      0.000       0.087       0.259
+
+
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     insight ON gf*1.02780 (a);
+     insight ON gf_qu*-0.11417 (b);
+
+     [ insight*3.59675 ];
+
+     insight*3.16780;
+
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL
+
+
+           Means
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ 1              3.969         0.480         1.055
+
+
+           Covariances
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        3.801
+ GF             0.710         0.825
+ GF_QU          0.845         1.210         3.488
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ 1                  0             0             0
+
+
+           LAMBDA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT            0             0             0
+ GF                 0             0             0
+ GF_QU              0             0             0
+
+
+           THETA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT            0
+ GF                 0             0
+ GF_QU              0             0             0
+
+
+           ALPHA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ 1                  1             0             0
+
+
+           BETA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT            0             2             3
+ GF                 0             0             0
+ GF_QU              0             0             0
+
+
+           PSI
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT            4
+ GF                 0             0
+ GF_QU              0             0             0
+
+
+     STARTING VALUES
+
+
+           NU
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ 1              0.000         0.000         0.000
+
+
+           LAMBDA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        1.000         0.000         0.000
+ GF             0.000         1.000         0.000
+ GF_QU          0.000         0.000         1.000
+
+
+           THETA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        0.000
+ GF             0.000         0.000
+ GF_QU          0.000         0.000         0.000
+
+
+           ALPHA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ 1              3.970         0.000         0.000
+
+
+           BETA
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        0.000         0.000         0.000
+ GF             0.000         0.000         0.000
+ GF_QU          0.000         0.000         0.000
+
+
+           PSI
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        1.884
+ GF             0.000         0.414
+ GF_QU          0.000         0.000         1.752
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 3~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 4~IG(-1.000,0.000)          infinity            infinity            infinity
+
+
+TECHNICAL 2 OUTPUT
+
+
+TECHNICAL 3 OUTPUT
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4
+              ________      ________      ________      ________
+        1   0.182068D-01
+        2  -0.377321D-02  0.332222D-01
+        3  -0.276867D-02 -0.115253D-01  0.786157D-02
+        4   0.441483D-08 -0.418724D-07  0.210199D-07  0.835170D-01
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4
+              ________      ________      ________      ________
+        1       1.000
+        2      -0.153         1.000
+        3      -0.231        -0.713         1.000
+        4       0.000         0.000         0.000         1.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4
+              ________      ________      ________      ________
+        1   0.199601D-01
+        2  -0.448217D-02  0.338083D-01
+        3  -0.280808D-02 -0.112465D-01  0.781314D-02
+        4   0.190972D-02 -0.224825D-02 -0.419000D-03  0.112084D+00
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4
+              ________      ________      ________      ________
+        1       1.000
+        2      -0.173         1.000
+        3      -0.225        -0.692         1.000
+        4       0.040        -0.037        -0.014         1.000
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ 1              3.969         0.480         1.055
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        3.801
+ GF             0.710         0.825
+ GF_QU          0.845         1.210         3.488
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              INSIGHT       GF            GF_QU
+              ________      ________      ________
+ INSIGHT        1.000
+ GF             0.401         1.000
+ GF_QU          0.232         0.713         1.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+
+     Simulated prior distributions
+
+     Parameter       Prior Mean  Prior Variance  Prior Std. Dev.
+
+
+     Parameter 1 Improper Prior
+     Parameter 2 Improper Prior
+     Parameter 3 Improper Prior
+     Parameter 4 Improper Prior
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.51318520D+03    0.0000000    0.0000000  EM
+              2 -0.45643386D+03   56.7513376    0.1105865  EM
+              3 -0.45643386D+03    0.0000000    0.0000000  EM
+
+   TECHNICAL 8 OUTPUT FOR BAYES ESTIMATION
+
+                     POTENTIAL       PARAMETER WITH
+     ITERATION    SCALE REDUCTION      HIGHEST PSR
+     100              1.032               3
+     200              1.038               4
+     300              1.014               4
+     400              1.003               4
+     500              1.005               3
+     600              1.006               4
+     700              1.003               3
+     800              1.002               1
+     900              1.005               2
+     1000             1.003               2
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Bayesian posterior parameter distributions
+  Bayesian posterior parameter trace plots
+  Bayesian autocorrelation plots
+  Bayesian posterior predictive checking scatterplots
+  Bayesian posterior predictive checking distribution plots
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model3.dgm
+
+     Beginning Time:  09:37:15
+        Ending Time:  09:37:16
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

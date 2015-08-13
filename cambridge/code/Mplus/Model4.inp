@@ -1,0 +1,93 @@
+TITLE:  Creativity and stuff
+
+DATA:
+FILE = crea_bayes.dat; ! name of data set
+
+VARIABLE: 
+NAMES ARE ! variable names; maximum 8 characters!
+ id ! case id
+ age ! Age in years
+ gender ! Gender (1 = female)
+ edu_self ! Education level (1 = mandatory school, 5 = university degree)
+ edu_moth ! Education mother
+ edu_fath ! Education father
+ hobbies ! Favourite type of hobbies (1 = creative, 2 = sports, 3 = intellectual stuff)
+ nidpar ! inductive reasoning
+ vddpar ! deductive reasoning
+ N ! neuroticism
+ E ! extraversion
+ O ! openness
+ A ! agreeableness
+ C ! conscientiousness
+ schizo ! schizotypic personality
+ NB_co ! nback score (updating)
+ INSIGHT ! insight problems sum score
+ STROOP ! stroop task score (inhibition)
+ SHIFTCOS ! shifting task score (shifting/switching)
+ fluency ! number creative ideas
+ CAQ_tot ! Creative Achievements questionnaire sum score
+ CAQ_tal ! Creative talent sum score
+ FKAL_ach ! Different creative achievements questionnaire
+ FKAL_spe ! Creative specialisations score
+ CAQ_arts ! Creative achievements in arts score
+ GF ! Fluid intelligence score
+ NB_mi ! NBACK - Number mistakes
+ NB_RT_mi ! NBACK Mean time mistakes
+ NB_RT_co ! NBACK Mean time correct
+ StroopE1 StroopE2 StroopE3 ! stroop task partial scores
+ ShiftC1 ShiftC2 ShiftC3 ! shifting task partial scores
+ Flu1 Flu2 Flu3 Flu4 ! fluency task partial scores
+ ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8 ! insight task item scores
+ ins1_art ins2_art ins3_art ins4_art ! insight task type of insight per item
+ ins5_art ins6_art ins7_art ins8_art ! insight task type of insight per item
+ fluency2 fluency3 fluency4 ! Fluency score 5, 10, 15 years later
+ flu_qu ! quadratic fluency term
+ GF_qu ! quadratic intelligence term
+ O2 ! Openness 5 years later
+ ; ! end variable names
+
+USEVARIABLES ARE ! define variables used for present analysis
+fluency fluency2 fluency3 fluency4
+; ! end usevariables list
+
+MISSING = ALL(9999); ! define which values indicate missings
+
+analysis: 
+    estimator = BAYES; ! use Bayesian estimation
+    bseed = 666; ! set seed
+    stvalues = ML; ! use maximum likelihood to estimate start values
+    chains = 4; ! number of MCMC chains
+    processors = 4; ! number of cores
+    bconvergence is .05; ! gelman rubin criterion maximum for convergence determination
+    biterations is 50000 (1000); ! maximum(minimum) MCMC draws in each chain. Burn-in: First half
+    thin is 10; !set thinning rate
+
+model: ! Define the statistical model
+i BY fluency-fluency4@1;
+s BY fluency@0 fluency2@1 fluency3@2 fluency4@3;
+
+!MODEL PRIORS: ! set non-default priors in this section
+!a ~ N(0,10); ! set parameter "a" to prior normal distribution with mean 0, variance 10
+
+!a1-a8 ~ N(0,5); ! Set Prior on specific parameter
+
+OUTPUT:
+!sampstat ! descriptives (not with Bayes)
+residual ! residuals
+tech1 ! Parameter numbers
+tech2 tech3 tech4 tech8
+tech10 ! only with categorical/count outcomes
+stdyx ! Standardized parameters
+svalues ! Save values
+ ; ! end specification of output
+
+plot:
+type is plot1
+plot2 ! Bayesian plots (trace plots, posteriors)
+plot3
+;
+series is fluency fluency2 fluency3 fluency4 (*);
+
+ 
+
+

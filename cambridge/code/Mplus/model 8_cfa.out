@@ -1,0 +1,528 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/12/2015   4:16 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE
+   id age gender edu_self edu_moth edu_fath hobbies
+   nidpar vddpar
+   N E O A C
+   schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+   CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+   GF NB_mi NB_RT_mi NB_RT_co
+   StroopE1 StroopE2 StroopE3
+   ShiftC1 ShiftC2 ShiftC3
+   Flu1 Flu2 Flu3 Flu4
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+   ins1_art ins2_art ins3_art ins4_art
+   ins5_art ins6_art ins7_art ins8_art
+   fluency2 fluency3 fluency4
+   flu_qu GF_qu O2;
+
+  USEVARIABLES ARE
+  ins1-ins8;
+
+  MISSING = ALL(9999);
+
+  ANALYSIS:
+  estimator = Bayes;
+
+  MODEL:
+
+  insight BY ins1-ins8;
+
+  OUTPUT:
+  stdyx tech8;
+
+
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   INS1        INS2        INS3        INS4        INS5        INS6
+   INS7        INS8
+
+Continuous latent variables
+   INSIGHT
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               2
+  Random seed for the first chain                                0
+  Starting value information                           UNPERTURBED
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                               50000
+  K-th iteration used for thinning                               1
+
+Input data file(s)
+  crea_bayes.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns            16
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              INS1          INS2          INS3          INS4          INS5
+              ________      ________      ________      ________      ________
+ INS1           1.000
+ INS2           0.978         0.978
+ INS3           0.987         0.970         0.987
+ INS4           1.000         0.978         0.987         1.000
+ INS5           0.887         0.883         0.887         0.887         0.887
+ INS6           0.961         0.943         0.952         0.961         0.870
+ INS7           0.974         0.957         0.961         0.974         0.870
+ INS8           0.983         0.965         0.970         0.983         0.874
+
+
+           Covariance Coverage
+              INS6          INS7          INS8
+              ________      ________      ________
+ INS6           0.961
+ INS7           0.948         0.974
+ INS8           0.948         0.957         0.983
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                              24
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                 -9.153            25.359
+
+          Posterior Predictive P-Value              0.281
+
+Information Criterion
+
+          Deviance (DIC)                         1985.071
+          Estimated Number of Parameters (pD)      22.880
+          Bayesian (BIC)                         2069.629
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ INSIGHT  BY
+    INS1               1.000       0.000      0.000       1.000       1.000
+    INS2               2.328       0.325      0.000       1.646       2.896      *
+    INS3               1.252       0.329      0.000       0.662       1.992      *
+    INS4               0.978       0.289      0.000       0.449       1.571      *
+    INS5               0.175       0.168      0.127      -0.140       0.532
+    INS6               1.017       0.321      0.000       0.462       1.709      *
+    INS7               2.135       0.342      0.000       1.526       2.908      *
+    INS8               2.047       0.302      0.000       1.541       2.698      *
+
+ Intercepts
+    INS1               0.813       0.027      0.000       0.760       0.869      *
+    INS2               0.489       0.035      0.000       0.412       0.559      *
+    INS3               0.418       0.036      0.000       0.341       0.495      *
+    INS4               0.380       0.032      0.000       0.322       0.451      *
+    INS5               0.078       0.019      0.000       0.041       0.115      *
+    INS6               0.703       0.031      0.000       0.646       0.767      *
+    INS7               0.440       0.036      0.000       0.375       0.513      *
+    INS8               0.738       0.029      0.000       0.676       0.795      *
+
+ Variances
+    INSIGHT            0.020       0.005      0.000       0.013       0.032      *
+
+ Residual Variances
+    INS1               0.138       0.014      0.000       0.116       0.179      *
+    INS2               0.147       0.021      0.000       0.112       0.200      *
+    INS3               0.216       0.022      0.000       0.181       0.261      *
+    INS4               0.220       0.021      0.000       0.182       0.265      *
+    INS5               0.069       0.007      0.000       0.058       0.086      *
+    INS6               0.192       0.021      0.000       0.154       0.234      *
+    INS7               0.170       0.022      0.000       0.128       0.216      *
+    INS8               0.115       0.017      0.000       0.080       0.151      *
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ INSIGHT  BY
+    INS1               0.356       0.042      0.000       0.279       0.446      *
+    INS2               0.644       0.060      0.000       0.513       0.751      *
+    INS3               0.359       0.077      0.000       0.204       0.507      *
+    INS4               0.286       0.073      0.000       0.131       0.419      *
+    INS5               0.095       0.085      0.127      -0.075       0.272
+    INS6               0.314       0.085      0.000       0.136       0.464      *
+    INS7               0.590       0.065      0.000       0.459       0.713      *
+    INS8               0.647       0.060      0.000       0.533       0.774      *
+
+ Intercepts
+    INS1               2.037       0.110      0.000       1.839       2.263      *
+    INS2               0.972       0.081      0.000       0.787       1.130      *
+    INS3               0.843       0.083      0.000       0.666       0.993      *
+    INS4               0.777       0.071      0.000       0.642       0.925      *
+    INS5               0.289       0.072      0.000       0.145       0.440      *
+    INS6               1.522       0.102      0.000       1.305       1.723      *
+    INS7               0.861       0.081      0.000       0.701       1.032      *
+    INS8               1.664       0.101      0.000       1.442       1.840      *
+
+ Variances
+    INSIGHT            1.000       0.000      0.000       1.000       1.000
+
+ Residual Variances
+    INS1               0.873       0.030      0.000       0.801       0.922      *
+    INS2               0.585       0.075      0.000       0.437       0.737      *
+    INS3               0.871       0.055      0.000       0.743       0.958      *
+    INS4               0.918       0.041      0.000       0.825       0.983      *
+    INS5               0.991       0.021      0.000       0.926       1.000      *
+    INS6               0.902       0.052      0.000       0.784       0.982      *
+    INS7               0.652       0.077      0.000       0.492       0.789      *
+    INS8               0.581       0.078      0.000       0.401       0.716      *
+
+
+R-SQUARE
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    INS1               0.127       0.030      0.000       0.078       0.199
+    INS2               0.415       0.075      0.000       0.263       0.563
+    INS3               0.129       0.055      0.000       0.042       0.257
+    INS4               0.082       0.041      0.000       0.017       0.175
+    INS5               0.009       0.021      0.000       0.000       0.074
+    INS6               0.098       0.052      0.000       0.018       0.216
+    INS7               0.348       0.077      0.000       0.211       0.508
+    INS8               0.419       0.078      0.000       0.284       0.599
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              INS1          INS2          INS3          INS4          INS5
+              ________      ________      ________      ________      ________
+ 1                  1             2             3             4             5
+
+
+           NU
+              INS6          INS7          INS8
+              ________      ________      ________
+ 1                  6             7             8
+
+
+           LAMBDA
+              INSIGHT
+              ________
+ INS1               0
+ INS2               9
+ INS3              10
+ INS4              11
+ INS5              12
+ INS6              13
+ INS7              14
+ INS8              15
+
+
+           THETA
+              INS1          INS2          INS3          INS4          INS5
+              ________      ________      ________      ________      ________
+ INS1              16
+ INS2               0            17
+ INS3               0             0            18
+ INS4               0             0             0            19
+ INS5               0             0             0             0            20
+ INS6               0             0             0             0             0
+ INS7               0             0             0             0             0
+ INS8               0             0             0             0             0
+
+
+           THETA
+              INS6          INS7          INS8
+              ________      ________      ________
+ INS6              21
+ INS7               0            22
+ INS8               0             0            23
+
+
+           ALPHA
+              INSIGHT
+              ________
+ 1                  0
+
+
+           BETA
+              INSIGHT
+              ________
+ INSIGHT            0
+
+
+           PSI
+              INSIGHT
+              ________
+ INSIGHT           24
+
+
+     STARTING VALUES
+
+
+           NU
+              INS1          INS2          INS3          INS4          INS5
+              ________      ________      ________      ________      ________
+ 1              0.813         0.484         0.414         0.383         0.074
+
+
+           NU
+              INS6          INS7          INS8
+              ________      ________      ________
+ 1              0.706         0.442         0.730
+
+
+           LAMBDA
+              INSIGHT
+              ________
+ INS1           1.000
+ INS2           1.000
+ INS3           1.000
+ INS4           1.000
+ INS5           1.000
+ INS6           1.000
+ INS7           1.000
+ INS8           1.000
+
+
+           THETA
+              INS1          INS2          INS3          INS4          INS5
+              ________      ________      ________      ________      ________
+ INS1           0.081
+ INS2           0.000         0.125
+ INS3           0.000         0.000         0.122
+ INS4           0.000         0.000         0.000         0.119
+ INS5           0.000         0.000         0.000         0.000         0.034
+ INS6           0.000         0.000         0.000         0.000         0.000
+ INS7           0.000         0.000         0.000         0.000         0.000
+ INS8           0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              INS6          INS7          INS8
+              ________      ________      ________
+ INS6           0.104
+ INS7           0.000         0.128
+ INS8           0.000         0.000         0.099
+
+
+           ALPHA
+              INSIGHT
+              ________
+ 1              0.000
+
+
+           BETA
+              INSIGHT
+              ________
+ INSIGHT        0.000
+
+
+           PSI
+              INSIGHT
+              ________
+ INSIGHT        1.000
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 3~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 4~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 5~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 6~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 7~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 8~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 9~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 10~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 11~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 12~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 13~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 14~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 15~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 16~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 17~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 18~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 19~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 20~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 21~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 22~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 23~IG(-1.000,0.000)         infinity            infinity            infinity
+     Parameter 24~IG(-1.000,0.000)         infinity            infinity            infinity
+
+
+TECHNICAL 8 OUTPUT
+
+
+
+     Kolmogorov-Smirnov comparing posterior distributions across chains 1 and 2 using 100 draws.
+
+
+
+
+
+     Parameter   KS Statistic P-value
+     Parameter 10    0.3100    0.0001
+
+     THE KOLMOGOROV-SMIRNOV DISTRIBUTION TEST FOR PARAMETER 10 HAS A P-VALUE 0.0001,
+     INDICATING DISCREPANT POSTERIOR DISTRIBUTIONS IN THE DIFFERENT MCMC CHAINS.
+     THIS MAY INDICATE NON-CONVERGENCE DUE TO AN INSUFFICIENT NUMBER OF MCMC ITERATIONS OR IT MAY
+     INDICATE A NON-IDENTIFIED MODEL. SPECIFY A LARGER NUMBER OF MCMC ITERATIONS USING THE FBITER
+     OPTION OF THE ANALYSIS COMMAND TO INVESTIGATE THE PROBLEM.
+
+     Parameter 15    0.3000    0.0002
+     Parameter 9    0.2900    0.0003
+     Parameter 13    0.2900    0.0003
+     Parameter 14    0.2800    0.0006
+     Parameter 12    0.1200    0.4431
+     Parameter 11    0.1100    0.5560
+     Parameter 22    0.0900    0.7942
+     Parameter 4    0.0500    0.9995
+     Parameter 3    0.0500    0.9995
+     Parameter 7    0.0500    0.9995
+     Parameter 23    0.0400    1.0000
+     Parameter 8    0.0300    1.0000
+     Parameter 1    0.0300    1.0000
+     Parameter 6    0.0300    1.0000
+     Parameter 18    0.0200    1.0000
+     Parameter 17    0.0200    1.0000
+     Parameter 2    0.0200    1.0000
+     Parameter 19    0.0100    1.0000
+     Parameter 16    0.0100    1.0000
+     Parameter 5    0.0100    1.0000
+     Parameter 21    0.0100    1.0000
+     Parameter 24    0.0000    1.0000
+     Parameter 20    0.0000    1.0000
+
+
+
+     Simulated prior distributions
+
+     Parameter       Prior Mean  Prior Variance  Prior Std. Dev.
+
+
+     Parameter 1 Improper Prior
+     Parameter 2 Improper Prior
+     Parameter 3 Improper Prior
+     Parameter 4 Improper Prior
+     Parameter 5 Improper Prior
+     Parameter 6 Improper Prior
+     Parameter 7 Improper Prior
+     Parameter 8 Improper Prior
+     Parameter 9 Improper Prior
+     Parameter 10 Improper Prior
+     Parameter 11 Improper Prior
+     Parameter 12 Improper Prior
+     Parameter 13 Improper Prior
+     Parameter 14 Improper Prior
+     Parameter 15 Improper Prior
+     Parameter 16 Improper Prior
+     Parameter 17 Improper Prior
+     Parameter 18 Improper Prior
+     Parameter 19 Improper Prior
+     Parameter 20 Improper Prior
+     Parameter 21 Improper Prior
+     Parameter 22 Improper Prior
+     Parameter 23 Improper Prior
+     Parameter 24 Improper Prior
+
+
+   TECHNICAL 8 OUTPUT FOR BAYES ESTIMATION
+
+     CHAIN    BSEED
+     1        0
+     2        285380
+
+                     POTENTIAL       PARAMETER WITH
+     ITERATION    SCALE REDUCTION      HIGHEST PSR
+     100              2.210               14
+     200              1.310               14
+     300              1.030               13
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model 8_cfa.dgm
+
+     Beginning Time:  16:16:51
+        Ending Time:  16:16:51
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

@@ -1,0 +1,369 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/13/2015   1:35 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE
+   id age gender edu_self edu_moth edu_fath hobbies
+   nidpar vddpar
+   N E O A C
+   schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+   CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+   GF NB_mi NB_RT_mi NB_RT_co
+   StroopE1 StroopE2 StroopE3
+   ShiftC1 ShiftC2 ShiftC3
+   Flu1 Flu2 Flu3 Flu4
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+   ins1_art ins2_art ins3_art ins4_art
+   ins5_art ins6_art ins7_art ins8_art
+   fluency2 fluency3 fluency4
+   flu_qu GF_qu O2;
+
+  USEVARIABLES ARE
+  fluency
+  E
+  N
+  O;
+
+  MISSING = ALL(9999);
+
+  ANALYSIS:
+  estimator = Bayes;
+
+  MODEL:
+
+  fluency ON E N O;
+
+  OUTPUT:
+  stdyx tech8;
+
+
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    1
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   FLUENCY
+
+Observed independent variables
+   E           N           O
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               2
+  Random seed for the first chain                                0
+  Starting value information                           UNPERTURBED
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                               50000
+  K-th iteration used for thinning                               1
+
+Input data file(s)
+  crea_bayes.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns             1
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY        1.000
+ E              1.000         1.000
+ N              1.000         1.000         1.000
+ O              1.000         1.000         1.000         1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                               5
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                 -9.141             8.006
+
+          Posterior Predictive P-Value              0.583
+
+Information Criterion
+
+          Deviance (DIC)                         1132.038
+          Estimated Number of Parameters (pD)       4.726
+          Bayesian (BIC)                         1150.468
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ FLUENCY    ON
+    E                  0.026       0.039      0.210      -0.039       0.110
+    N                 -0.047       0.025      0.030      -0.108       0.007
+    O                  0.111       0.027      0.000       0.058       0.162      *
+
+ Intercepts
+    FLUENCY            7.016       1.751      0.000       3.498      10.121      *
+
+ Residual Variances
+    FLUENCY            7.965       0.666      0.000       6.625       8.987      *
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ FLUENCY    ON
+    E                  0.050       0.075      0.210      -0.070       0.216
+    N                 -0.131       0.069      0.030      -0.284       0.022
+    O                  0.245       0.057      0.000       0.129       0.342      *
+
+ Intercepts
+    FLUENCY            2.416       0.593      0.000       1.118       3.423      *
+
+ Residual Variances
+    FLUENCY            0.899       0.032      0.000       0.839       0.951      *
+
+
+R-SQUARE
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    FLUENCY            0.101       0.032      0.000       0.049       0.161
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ 1                  0             0             0             0
+
+
+           LAMBDA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY            0             0             0             0
+ E                  0             0             0             0
+ N                  0             0             0             0
+ O                  0             0             0             0
+
+
+           THETA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY            0
+ E                  0             0
+ N                  0             0             0
+ O                  0             0             0             0
+
+
+           ALPHA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ 1                  1             0             0             0
+
+
+           BETA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY            0             2             3             4
+ E                  0             0             0             0
+ N                  0             0             0             0
+ O                  0             0             0             0
+
+
+           PSI
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY            5
+ E                  0             0
+ N                  0             0             0
+ O                  0             0             0             0
+
+
+     STARTING VALUES
+
+
+           NU
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ 1              0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY        1.000         0.000         0.000         0.000
+ E              0.000         1.000         0.000         0.000
+ N              0.000         0.000         1.000         0.000
+ O              0.000         0.000         0.000         1.000
+
+
+           THETA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY        0.000
+ E              0.000         0.000
+ N              0.000         0.000         0.000
+ O              0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ 1             10.618         0.000         0.000         0.000
+
+
+           BETA
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY        0.000         0.000         0.000         0.000
+ E              0.000         0.000         0.000         0.000
+ N              0.000         0.000         0.000         0.000
+ O              0.000         0.000         0.000         0.000
+
+
+           PSI
+              FLUENCY       E             N             O
+              ________      ________      ________      ________
+ FLUENCY        4.242
+ E              0.000        16.847
+ N              0.000         0.000        34.681
+ O              0.000         0.000         0.000        20.540
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 3~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 4~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 5~IG(-1.000,0.000)          infinity            infinity            infinity
+
+
+TECHNICAL 8 OUTPUT
+
+
+
+     Kolmogorov-Smirnov comparing posterior distributions across chains 1 and 2 using 100 draws.
+
+
+
+
+
+     Parameter   KS Statistic P-value
+     Parameter 1    0.1000    0.9541
+     Parameter 5    0.0800    0.9958
+     Parameter 3    0.0600    1.0000
+     Parameter 2    0.0400    1.0000
+     Parameter 4    0.0200    1.0000
+
+
+
+     Simulated prior distributions
+
+     Parameter       Prior Mean  Prior Variance  Prior Std. Dev.
+
+
+     Parameter 1 Improper Prior
+     Parameter 2 Improper Prior
+     Parameter 3 Improper Prior
+     Parameter 4 Improper Prior
+     Parameter 5 Improper Prior
+
+
+   TECHNICAL 8 OUTPUT FOR BAYES ESTIMATION
+
+     CHAIN    BSEED
+     1        0
+     2        285380
+
+                     POTENTIAL       PARAMETER WITH
+     ITERATION    SCALE REDUCTION      HIGHEST PSR
+     100              1.000               1
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model 9_multreg.dgm
+
+     Beginning Time:  01:35:04
+        Ending Time:  01:35:04
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

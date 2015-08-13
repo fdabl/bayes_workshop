@@ -1,0 +1,282 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/12/2015  11:21 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE
+   id age gender edu_self edu_moth edu_fath hobbies
+   nidpar vddpar
+   N E O A C
+   schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+   CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+   GF NB_mi NB_RT_mi NB_RT_co
+   StroopE1 StroopE2 StroopE3
+   ShiftC1 ShiftC2 ShiftC3
+   Flu1 Flu2 Flu3 Flu4
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+   ins1_art ins2_art ins3_art ins4_art
+   ins5_art ins6_art ins7_art ins8_art
+   fluency2 fluency3 fluency4
+   flu_qu GF_qu O2;
+
+  USEVARIABLES ARE
+  insight
+  gender;
+
+  MISSING = ALL(9999);
+
+  ANALYSIS:
+  estimator = MLR;
+
+  OUTPUT:
+  stdyx tech4;
+
+  MODEL:
+  insight ON gender;
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    1
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   INSIGHT
+
+Observed independent variables
+   GENDER
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  crea_bayes.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        1.000
+ GENDER         1.000         1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        3
+
+Loglikelihood
+
+          H0 Value                        -471.683
+          H0 Scaling Correction Factor      0.8811
+            for MLR
+          H1 Value                        -471.683
+          H1 Scaling Correction Factor      0.8811
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                     949.366
+          Bayesian (BIC)                   959.680
+          Sample-Size Adjusted BIC         950.172
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                             12.757
+          Degrees of Freedom                     1
+          P-Value                           0.0004
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ INSIGHT  ON
+    GENDER             0.994      0.268      3.708      0.000
+
+ Intercepts
+    INSIGHT            2.665      0.373      7.153      0.000
+
+ Residual Variances
+    INSIGHT            3.539      0.264     13.403      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ INSIGHT  ON
+    GENDER             0.238      0.063      3.787      0.000
+
+ Intercepts
+    INSIGHT            1.376      0.212      6.506      0.000
+
+ Residual Variances
+    INSIGHT            0.943      0.030     31.557      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    INSIGHT            0.057      0.030      1.893      0.058
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.293E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              INSIGHT       GENDER
+              ________      ________
+      1         3.970         1.313
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              INSIGHT       GENDER
+              ________      ________
+      1         0.128         0.031
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        3.751
+ GENDER         0.214         0.215
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        0.269
+ GENDER         0.059         0.011
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        1.000
+ GENDER         0.238         1.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              INSIGHT       GENDER
+              ________      ________
+ INSIGHT        0.000
+ GENDER         0.063         0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model 2_ml.dgm
+
+     Beginning Time:  11:21:18
+        Ending Time:  11:21:18
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

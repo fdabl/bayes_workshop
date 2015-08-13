@@ -1,0 +1,104 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+  Creativity and stuff
+
+DATA:
+FILE = crea_bayes.dat;
+VARIABLE:
+NAMES ARE
+ id age gender edu_self edu_moth edu_fath hobbies
+ nidpar vddpar
+ N E O A C
+ schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+ CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+ GF NB_mi NB_RT_mi NB_RT_co
+ StroopE1 StroopE2 StroopE3
+ ShiftC1 ShiftC2 ShiftC3
+ Flu1 Flu2 Flu3 Flu4
+ ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+ ins1_art ins2_art ins3_art ins4_art
+ ins5_art ins6_art ins7_art ins8_art
+ fluency2 fluency3 fluency4
+ flu_qu GF_qu O2;
+USEVARIABLES ARE
+fluency fluency2 fluency3 fluency4;
+MISSING = ALL(9999);
+ANALYSIS:
+estimator = MLR;
+OUTPUT:
+stdyx;
+MODEL:
+fluency4 ON fluency3@1;
+fluency3 ON fluency2@1;
+fluency2 ON fluency@1;
+fluency-fluency4 (a1);
+s BY fluency2@1 fluency3@1 fluency4@1;
+[fluency2-fluency4@0];
+fluency;
+[s];
+s@0;
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+4
+1
+0
+fluency2 fluency3 fluency4 fluency s
+1
+-1 -1 -1 0 0
+0
+1
+s
+fluency2 fluency3 fluency4
+1 1 s fluency2    1.000    0.000
+1 1 s fluency3    1.000    0.000
+1 1 s fluency4    1.000    0.000
+1 1 fluency3 fluency4    1.000    0.000
+1 1 fluency2 fluency3    1.000    0.000
+1 1 fluency fluency2    1.000    0.000
+2 1 fluency s   -0.115    0.384
+4 1 fluency2    1.588    0.085
+94 1 fluency2 a1
+4 1 fluency3    1.588    0.085
+94 1 fluency3 a1
+4 1 fluency4    1.588    0.085
+94 1 fluency4 a1
+5 1 fluency    8.468    0.795
+5 1 s    0.000    0.000
+11 1 s fluency2  999.000  999.000
+11 1 s fluency3  999.000  999.000
+11 1 s fluency4  999.000  999.000
+11 1 fluency3 fluency4    0.944    0.024
+11 1 fluency2 fluency3    0.937    0.030
+11 1 fluency fluency2    0.928    0.039
+12 1 fluency s  999.000  999.000
+14 1 fluency2    0.162    0.016
+94 1 fluency2 a1
+14 1 fluency3    0.142    0.019
+94 1 fluency3 a1
+14 1 fluency4    0.127    0.022
+94 1 fluency4 a1
+15 1 fluency    1.000    0.000
+15 1 s  999.000  999.000
+31 1 s fluency2  999.000  999.000
+31 1 s fluency3  999.000  999.000
+31 1 s fluency4  999.000  999.000
+31 1 fluency3 fluency4    1.000    0.000
+31 1 fluency2 fluency3    1.000    0.000
+31 1 fluency fluency2    1.000    0.000
+32 1 fluency s  999.000  999.000
+34 1 fluency2    1.588    0.085
+94 1 fluency2 a1
+34 1 fluency3    1.588    0.085
+94 1 fluency3 a1
+34 1 fluency4    1.588    0.085
+94 1 fluency4 a1
+35 1 fluency    8.468    0.795
+35 1 s  999.000  999.000

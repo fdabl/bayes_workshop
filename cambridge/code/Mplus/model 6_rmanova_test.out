@@ -1,0 +1,315 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/13/2015   1:42 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE
+   id age gender edu_self edu_moth edu_fath hobbies
+   nidpar vddpar
+   N E O A C
+   schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+   CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+   GF NB_mi NB_RT_mi NB_RT_co
+   StroopE1 StroopE2 StroopE3
+   ShiftC1 ShiftC2 ShiftC3
+   Flu1 Flu2 Flu3 Flu4
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+   ins1_art ins2_art ins3_art ins4_art
+   ins5_art ins6_art ins7_art ins8_art
+   fluency2 fluency3 fluency4
+   flu_qu GF_qu O2;
+
+  USEVARIABLES ARE
+  fluency fluency2 fluency3 fluency4;
+
+  MISSING = ALL(9999);
+
+  ANALYSIS:
+  estimator = MLR;
+
+  MODEL:
+  fluency4 ON fluency3;
+  fluency3 ON fluency2;
+  fluency2 ON fluency;
+
+  !i BY fluency@1;
+  s BY fluency2@1 fluency3@1 fluency4@1;
+  !i WITH s@0;
+
+  [fluency2-fluency4@0];
+  fluency;
+  [s];
+  s@0;
+
+  OUTPUT:
+  stdyx;
+
+
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    3
+Number of independent variables                                  1
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   FLUENCY2    FLUENCY3    FLUENCY4
+
+Observed independent variables
+   FLUENCY
+
+Continuous latent variables
+   S
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  crea_bayes.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              FLUENCY2      FLUENCY3      FLUENCY4      FLUENCY
+              ________      ________      ________      ________
+ FLUENCY2       1.000
+ FLUENCY3       1.000         1.000
+ FLUENCY4       1.000         1.000         1.000
+ FLUENCY        1.000         1.000         1.000         1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     WARNING:  THE LATENT VARIABLE COVARIANCE MATRIX (PSI) IS NOT POSITIVE
+     DEFINITE.  THIS COULD INDICATE A NEGATIVE VARIANCE/RESIDUAL VARIANCE FOR A
+     LATENT VARIABLE, A CORRELATION GREATER OR EQUAL TO ONE BETWEEN TWO LATENT
+     VARIABLES, OR A LINEAR DEPENDENCY AMONG MORE THAN TWO LATENT VARIABLES.
+     CHECK THE TECH4 OUTPUT FOR MORE INFORMATION.
+     PROBLEM INVOLVING VARIABLE S.
+
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       10
+
+Loglikelihood
+
+          H0 Value                       -1356.559
+          H0 Scaling Correction Factor      0.9849
+            for MLR
+          H1 Value                       -1316.388
+          H1 Scaling Correction Factor      0.9801
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    2733.119
+          Bayesian (BIC)                  2767.499
+          Sample-Size Adjusted BIC        2735.805
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             82.997*
+          Degrees of Freedom                     4
+          P-Value                           0.0000
+          Scaling Correction Factor         0.9680
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.293
+          90 Percent C.I.                    0.240  0.350
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.961
+          TLI                                0.942
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2038.016
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.159
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ S        BY
+    FLUENCY2           1.000      0.000    999.000    999.000
+    FLUENCY3           1.000      0.000    999.000    999.000
+    FLUENCY4           1.000      0.000    999.000    999.000
+
+ FLUENCY4 ON
+    FLUENCY3           1.054      0.013     80.457      0.000
+
+ FLUENCY3 ON
+    FLUENCY2           1.141      0.013     87.777      0.000
+
+ FLUENCY2 ON
+    FLUENCY            1.255      0.015     83.276      0.000
+
+ FLUENCY  WITH
+    S                 -1.636      0.101    -16.126      0.000
+
+ Means
+    FLUENCY           10.618      0.192     55.408      0.000
+    S                 -0.769      0.157     -4.895      0.000
+
+ Intercepts
+    FLUENCY2           0.000      0.000    999.000    999.000
+    FLUENCY3           0.000      0.000    999.000    999.000
+    FLUENCY4           0.000      0.000    999.000    999.000
+
+ Variances
+    FLUENCY            8.750      0.792     11.046      0.000
+    S                  0.000      0.000    999.000    999.000
+
+ Residual Variances
+    FLUENCY2           0.681      0.057     11.897      0.000
+    FLUENCY3           1.077      0.084     12.890      0.000
+    FLUENCY4           2.056      0.176     11.689      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ S        BY
+    FLUENCY2         999.000    999.000    999.000    999.000
+    FLUENCY3         999.000    999.000    999.000    999.000
+    FLUENCY4         999.000    999.000    999.000    999.000
+
+ FLUENCY4 ON
+    FLUENCY3           1.165      0.013     86.928      0.000
+
+ FLUENCY3 ON
+    FLUENCY2           1.169      0.011    108.499      0.000
+
+ FLUENCY2 ON
+    FLUENCY            1.154      0.009    135.048      0.000
+
+ FLUENCY  WITH
+    S                999.000    999.000    999.000    999.000
+
+ Means
+    FLUENCY            3.590      0.165     21.740      0.000
+    S                999.000    999.000    999.000    999.000
+
+ Intercepts
+    FLUENCY2           0.000      0.000    999.000    999.000
+    FLUENCY3           0.000      0.000    999.000    999.000
+    FLUENCY4           0.000      0.000    999.000    999.000
+
+ Variances
+    FLUENCY            1.000      0.000    999.000    999.000
+    S                999.000    999.000    999.000    999.000
+
+ Residual Variances
+    FLUENCY2           0.066      0.008      8.523      0.000
+    FLUENCY3           0.109      0.012      8.832      0.000
+    FLUENCY4           0.255      0.029      8.692      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    FLUENCY2           0.934      0.008    120.920      0.000
+    FLUENCY3           0.891      0.012     72.069      0.000
+    FLUENCY4           0.745      0.029     25.444      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.528E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model 6_rmanova_test.dgm
+
+     Beginning Time:  01:42:55
+        Ending Time:  01:42:55
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

@@ -1,0 +1,698 @@
+Mplus VERSION 7.11
+MUTHEN & MUTHEN
+08/12/2015  10:45 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:  Creativity and stuff
+
+  DATA:
+  FILE = crea_bayes.dat; ! name of data set
+
+  VARIABLE:
+  NAMES ARE ! variable names; maximum 8 characters!
+   id ! case id
+   age ! Age in years
+   gender ! Gender (1 = female)
+   edu_self ! Education level (1 = mandatory school, 5 = university degree)
+   edu_moth ! Education mother
+   edu_fath ! Education father
+   hobbies ! Favourite type of hobbies (1 = creative, 2 = sports, 3 = intellectual stuff)
+   nidpar ! inductive reasoning
+   vddpar ! deductive reasoning
+   N ! neuroticism
+   E ! extraversion
+   O ! openness
+   A ! agreeableness
+   C ! conscientiousness
+   schizo ! schizotypic personality
+   NB_co ! nback score (updating)
+   INSIGHT ! insight problems sum score
+   STROOP ! stroop task score (inhibition)
+   SHIFTCOS ! shifting task score (shifting/switching)
+   fluency ! number creative ideas
+   CAQ_tot ! Creative Achievements questionnaire sum score
+   CAQ_tal ! Creative talent sum score
+   FKAL_ach ! Different creative achievements questionnaire
+   FKAL_spe ! Creative specialisations score
+   CAQ_arts ! Creative achievements in arts score
+   GF ! Fluid intelligence score
+   NB_mi ! NBACK - Number mistakes
+   NB_RT_mi ! NBACK Mean time mistakes
+   NB_RT_co ! NBACK Mean time correct
+   StroopE1 StroopE2 StroopE3 ! stroop task partial scores
+   ShiftC1 ShiftC2 ShiftC3 ! shifting task partial scores
+   Flu1 Flu2 Flu3 Flu4 ! fluency task partial scores
+   ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8 ! insight task item scores
+   ins1_art ins2_art ins3_art ins4_art ! insight task type of insight per item
+   ins5_art ins6_art ins7_art ins8_art ! insight task type of insight per item
+   fluency2 fluency3 fluency4 ! Fluency score 5, 10, 15 years later
+   flu_qu ! quadratic fluency term
+   GF_qu ! quadratic intelligence term
+   O2 ! Openness 5 years later
+   ; ! end variable names
+
+  USEVARIABLES ARE ! define variables used for present analysis
+  fluency fluency2 fluency3 fluency4
+  ; ! end usevariables list
+
+  MISSING = ALL(9999); ! define which values indicate missings
+
+  analysis:
+      estimator = BAYES; ! use Bayesian estimation
+      bseed = 666; ! set seed
+      stvalues = ML; ! use maximul likelihood to estimate start values
+      chains = 4; ! number of MCMC chains
+      processors = 4; ! number of cores
+      bconvergence is .05; ! gelman rubin criterion maximum for convergence determination
+      biterations is 50000 (1000); ! maximum(minimum) MCMC draws in each chain
+      thin is 10; !set thinning rate
+
+  model: ! Define the statistical model
+  i BY fluency-fluency4@1;
+  s BY fluency@0 fluency2@1 fluency3@2 fluency4@3;
+
+  !MODEL PRIORS: ! set non-default priors in this section
+  !a ~ N(0,10); ! set parameter "a" to prior normal distribution with mean 0, variance 10
+
+  !a1-a8 ~ N(0,5); ! Set Prior on specific parameter
+
+  OUTPUT:
+  !sampstat ! descriptives (not with Bayes)
+  residual ! residuals
+  tech1 ! Parameter numbers
+  tech2 tech3 tech4 tech8
+  tech10 ! only with categorical/count outcomes
+  stdyx ! Standardized parameters
+  svalues ! Save values
+   ; ! end specification of output
+
+  plot:
+  type is plot1
+  plot2 ! Bayesian plots (trace plots, posteriors)
+  plot3
+  ;
+  series is fluency fluency2 fluency3 fluency4 (*);
+
+
+
+
+
+
+
+*** WARNING in OUTPUT command
+  TECH10 option is only available with categorical or count outcomes.
+  Request for TECH10 is ignored.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Creativity and stuff
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         230
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   FLUENCY     FLUENCY2    FLUENCY3    FLUENCY4
+
+Continuous latent variables
+   I           S
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               4
+  Random seed for the first chain                              666
+  Starting value information                                    ML
+  Treatment of categorical mediator                         LATENT
+  Algorithm used for Markov chain Monte Carlo           GIBBS(PX1)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                               50000
+  K-th iteration used for thinning                              10
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            0
+  Adaptive quadrature                                           ON
+Cholesky                                                       OFF
+
+Input data file(s)
+  crea_bayes.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns             1
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ FLUENCY        1.000
+ FLUENCY2       1.000         1.000
+ FLUENCY3       1.000         1.000         1.000
+ FLUENCY4       1.000         1.000         1.000         1.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                              11
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                -18.094            11.999
+
+          Posterior Predictive P-Value              0.647
+
+Information Criterion
+
+          Deviance (DIC)                         2651.773
+          Estimated Number of Parameters (pD)       8.203
+          Bayesian (BIC)                         2694.195
+
+
+
+MODEL RESULTS
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ I        BY
+    FLUENCY            1.000       0.000      0.000       1.000       1.000
+    FLUENCY2           1.000       0.000      0.000       1.000       1.000
+    FLUENCY3           1.000       0.000      0.000       1.000       1.000
+    FLUENCY4           1.000       0.000      0.000       1.000       1.000
+
+ S        BY
+    FLUENCY            0.000       0.000      1.000       0.000       0.000
+    FLUENCY2           1.000       0.000      0.000       1.000       1.000
+    FLUENCY3           2.000       0.000      0.000       2.000       2.000
+    FLUENCY4           3.000       0.000      0.000       3.000       3.000
+
+ S        WITH
+    I                 -0.028       0.042      0.290      -0.092       0.072
+
+ Intercepts
+    FLUENCY           10.703       0.161      0.000      10.494      11.061      *
+    FLUENCY2          12.697       0.164      0.000      12.486      13.059      *
+    FLUENCY3          13.670       0.168      0.000      13.448      14.038      *
+    FLUENCY4          13.544       0.171      0.000      13.308      13.916      *
+
+ Variances
+    I                  8.624       0.789      0.000       7.330      10.433      *
+    S                  0.002       0.004      0.000       0.000       0.012      *
+
+ Residual Variances
+    FLUENCY            0.011       0.013      0.000       0.000       0.050      *
+    FLUENCY2           0.271       0.028      0.000       0.224       0.328      *
+    FLUENCY3           0.565       0.059      0.000       0.454       0.687      *
+    FLUENCY4           0.784       0.076      0.000       0.646       0.955      *
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ I        BY
+    FLUENCY            0.999       0.001      0.000       0.997       1.000      *
+    FLUENCY2           0.987       0.005      0.000       0.976       0.996      *
+    FLUENCY3           0.973       0.010      0.000       0.949       0.990      *
+    FLUENCY4           0.963       0.014      0.000       0.933       0.987      *
+
+ S        BY
+    FLUENCY            0.000       0.000      1.000       0.000       0.000
+    FLUENCY2           0.015       0.010      0.000       0.004       0.038      *
+    FLUENCY3           0.030       0.019      0.000       0.008       0.075      *
+    FLUENCY4           0.044       0.029      0.000       0.013       0.112      *
+
+ S        WITH
+    I                 -0.192       0.430      0.290      -0.989       0.432
+
+ Intercepts
+    FLUENCY            3.665       0.166      0.000       3.342       3.981      *
+    FLUENCY2           4.279       0.188      0.000       3.913       4.648      *
+    FLUENCY3           4.541       0.198      0.000       4.149       4.919      *
+    FLUENCY4           4.456       0.194      0.000       4.058       4.811      *
+
+ Variances
+    I                  1.000       0.000      0.000       1.000       1.000
+    S                  1.000       0.000      0.000       1.000       1.000
+
+ Residual Variances
+    FLUENCY            0.001       0.001      0.000       0.000       0.006      *
+    FLUENCY2           0.031       0.004      0.000       0.023       0.040      *
+    FLUENCY3           0.062       0.008      0.000       0.047       0.078      *
+    FLUENCY4           0.084       0.011      0.000       0.066       0.110      *
+
+
+R-SQUARE
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    FLUENCY            0.999       0.001      0.000       0.994       1.000
+    FLUENCY2           0.969       0.004      0.000       0.960       0.977
+    FLUENCY3           0.938       0.008      0.000       0.922       0.953
+    FLUENCY4           0.916       0.011      0.000       0.890       0.934
+
+
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     i BY fluency@1;
+     i BY fluency2@1;
+     i BY fluency3@1;
+     i BY fluency4@1;
+     s BY fluency@0;
+     s BY fluency2@1;
+     s BY fluency3@2;
+     s BY fluency4@3;
+
+     s WITH i*-0.02761;
+
+     [ fluency*10.70256 ];
+     [ fluency2*12.69665 ];
+     [ fluency3*13.66956 ];
+     [ fluency4*13.54420 ];
+
+     fluency*0.01082;
+     fluency2*0.27065;
+     fluency3*0.56507;
+     fluency4*0.78359;
+     i*8.62388;
+     s*0.00196;
+
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL
+
+
+           Means
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ 1             10.703        12.697        13.670        13.544
+
+
+           Covariances
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ FLUENCY        8.635
+ FLUENCY2       8.596         8.841
+ FLUENCY3       8.569         8.545         9.086
+ FLUENCY4       8.541         8.519         8.498         9.259
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ 1                  1             2             3             4
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ FLUENCY            0             0
+ FLUENCY2           0             0
+ FLUENCY3           0             0
+ FLUENCY4           0             0
+
+
+           THETA
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ FLUENCY            5
+ FLUENCY2           0             6
+ FLUENCY3           0             0             7
+ FLUENCY4           0             0             0             8
+
+
+           ALPHA
+              I             S
+              ________      ________
+ 1                  0             0
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     STARTING VALUES
+
+
+           NU
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ 1             10.618        12.607        13.573        13.454
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ FLUENCY        1.000         0.000
+ FLUENCY2       1.000         1.000
+ FLUENCY3       1.000         2.000
+ FLUENCY4       1.000         3.000
+
+
+           THETA
+              FLUENCY       FLUENCY2      FLUENCY3      FLUENCY4
+              ________      ________      ________      ________
+ FLUENCY        4.242
+ FLUENCY2       0.000         4.336
+ FLUENCY3       0.000         0.000         4.533
+ FLUENCY4       0.000         0.000         0.000         4.585
+
+
+           ALPHA
+              I             S
+              ________      ________
+ 1              0.000         0.000
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I              1.000
+ S              0.000         1.000
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 3~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 4~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 5~IG(-1.000,0.000)          infinity            infinity            infinity
+     Parameter 6~IG(-1.000,0.000)          infinity            infinity            infinity
+     Parameter 7~IG(-1.000,0.000)          infinity            infinity            infinity
+     Parameter 8~IG(-1.000,0.000)          infinity            infinity            infinity
+     Parameter 9~IW(0.000,-3)              infinity            infinity            infinity
+     Parameter 10~IW(0.000,-3)             infinity            infinity            infinity
+     Parameter 11~IW(0.000,-3)             infinity            infinity            infinity
+
+
+TECHNICAL 2 OUTPUT
+
+
+TECHNICAL 3 OUTPUT
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4             5
+              ________      ________      ________      ________      ________
+        1   0.367229D-01
+        2   0.365706D-01  0.376538D-01
+        3   0.365702D-01  0.364948D-01  0.389273D-01
+        4   0.365698D-01  0.364570D-01  0.363441D-01  0.398867D-01
+        5  -0.296296D-11 -0.142343D-11 -0.483478D-12 -0.317253D-11  0.178520D-02
+        6   0.203403D-11  0.344569D-11  0.520318D-14  0.167801D-11 -0.122824D-02
+        7  -0.759493D-12 -0.112004D-11  0.195628D-11 -0.306459D-11  0.332519D-03
+        8  -0.390252D-11 -0.316154D-11 -0.373400D-11 -0.590751D-11  0.263113D-02
+        9  -0.147485D-10 -0.161597D-10 -0.170158D-10 -0.144430D-10 -0.168685D-02
+       10   0.128655D-10  0.135220D-10  0.138606D-10  0.125429D-10  0.863893D-03
+       11   0.739995D-12  0.485655D-12  0.439913D-12  0.138976D-11 -0.486246D-03
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                     6             7             8             9            10
+              ________      ________      ________      ________      ________
+        6   0.156595D-02
+        7  -0.130682D-03  0.340918D-02
+        8  -0.156013D-02  0.161604D-02  0.121381D-01
+        9   0.116192D-02 -0.315289D-03 -0.249773D-02  0.621719D+00
+       10  -0.594909D-03  0.136093D-03  0.132877D-02 -0.206905D-02  0.212583D-02
+       11   0.307740D-03 -0.211832D-03 -0.101105D-02  0.462350D-03 -0.243315D-03
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                    11
+              ________
+       11   0.164135D-03
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4             5
+              ________      ________      ________      ________      ________
+        1       1.000
+        2       0.983         1.000
+        3       0.967         0.953         1.000
+        4       0.956         0.941         0.922         1.000
+        5       0.000         0.000         0.000         0.000         1.000
+        6       0.000         0.000         0.000         0.000        -0.735
+        7       0.000         0.000         0.000         0.000         0.135
+        8       0.000         0.000         0.000         0.000         0.565
+        9       0.000         0.000         0.000         0.000        -0.051
+       10       0.000         0.000         0.000         0.000         0.443
+       11       0.000         0.000         0.000         0.000        -0.898
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                     6             7             8             9            10
+              ________      ________      ________      ________      ________
+        6       1.000
+        7      -0.057         1.000
+        8      -0.358         0.251         1.000
+        9       0.037        -0.007        -0.029         1.000
+       10      -0.326         0.051         0.262        -0.057         1.000
+       11       0.607        -0.283        -0.716         0.046        -0.412
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                    11
+              ________
+       11       1.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4             5
+              ________      ________      ________      ________      ________
+        1   0.259321D-01
+        2   0.258022D-01  0.268316D-01
+        3   0.259045D-01  0.258474D-01  0.281927D-01
+        4   0.256853D-01  0.254034D-01  0.257968D-01  0.290264D-01
+        5  -0.381962D-03 -0.381564D-03 -0.335915D-03 -0.377058D-03  0.160145D-03
+        6   0.397912D-03  0.396762D-03  0.379403D-03  0.315533D-03 -0.114904D-03
+        7   0.911288D-03  0.766465D-03  0.112146D-02  0.122073D-02 -0.595664D-04
+        8   0.147649D-02  0.145639D-02  0.146615D-02  0.147782D-02 -0.873203D-04
+        9   0.179180D-01  0.180881D-01  0.186113D-01  0.204103D-01  0.411029D-03
+       10  -0.151810D-02 -0.153540D-02 -0.134243D-02 -0.132762D-02  0.773627D-04
+       11  -0.768501D-04 -0.799286D-04 -0.795625D-04 -0.743237D-04 -0.709972D-05
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                     6             7             8             9            10
+              ________      ________      ________      ________      ________
+        6   0.765309D-03
+        7   0.937104D-04  0.352760D-02
+        8   0.199137D-03  0.137051D-03  0.576771D-02
+        9  -0.133918D-02 -0.205541D-03 -0.309002D-02  0.621844D+00
+       10  -0.147672D-03 -0.826055D-04 -0.247375D-03 -0.224965D-02  0.177920D-02
+       11  -0.416424D-07 -0.210133D-04 -0.667894D-04 -0.306541D-04  0.319044D-04
+
+
+           ESTIMATED COVARIANCE MATRIX FOR PARAMETER ESTIMATES
+                    11
+              ________
+       11   0.128850D-04
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                     1             2             3             4             5
+              ________      ________      ________      ________      ________
+        1       1.000
+        2       0.978         1.000
+        3       0.958         0.940         1.000
+        4       0.936         0.910         0.902         1.000
+        5      -0.187        -0.184        -0.158        -0.175         1.000
+        6       0.089         0.088         0.082         0.067        -0.328
+        7       0.095         0.079         0.112         0.121        -0.079
+        8       0.121         0.117         0.115         0.114        -0.091
+        9       0.141         0.140         0.141         0.152         0.041
+       10      -0.223        -0.222        -0.190        -0.185         0.145
+       11      -0.133        -0.136        -0.132        -0.122        -0.156
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                     6             7             8             9            10
+              ________      ________      ________      ________      ________
+        6       1.000
+        7       0.057         1.000
+        8       0.095         0.030         1.000
+        9      -0.061        -0.004        -0.052         1.000
+       10      -0.127        -0.033        -0.077        -0.068         1.000
+       11       0.000        -0.099        -0.245        -0.011         0.211
+
+
+           ESTIMATED CORRELATION MATRIX FOR PARAMETER ESTIMATES
+                    11
+              ________
+       11       1.000
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              I             S
+              ________      ________
+ 1              0.000         0.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              I             S
+              ________      ________
+ I              8.624
+ S             -0.028         0.002
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              I             S
+              ________      ________
+ I              1.000
+ S             -0.213         1.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+
+     Simulated prior distributions
+
+     Parameter       Prior Mean  Prior Variance  Prior Std. Dev.
+
+
+     Parameter 1 Improper Prior
+     Parameter 2 Improper Prior
+     Parameter 3 Improper Prior
+     Parameter 4 Improper Prior
+     Parameter 5 Improper Prior
+     Parameter 6 Improper Prior
+     Parameter 7 Improper Prior
+     Parameter 8 Improper Prior
+     Parameter 9 Improper Prior
+     Parameter 10 Improper Prior
+     Parameter 11 Improper Prior
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.20746609D+04    0.0000000    0.0000000  EM
+              2 -0.13165361D+04  758.1248058    0.3654211  EM
+              3 -0.13165361D+04    0.0000000    0.0000000  EM
+
+   TECHNICAL 8 OUTPUT FOR BAYES ESTIMATION
+
+                     POTENTIAL       PARAMETER WITH
+     ITERATION    SCALE REDUCTION      HIGHEST PSR
+     100              1.748               1
+     200              1.488               2
+     300              1.275               5
+     400              1.534               1
+     500              1.989               1
+     600              1.831               1
+     700              1.073               10
+     800              1.378               1
+     900              1.220               1
+     1000             1.058               10
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms of sample values
+  Scatterplots (sample values)
+  Bayesian posterior parameter distributions
+  Bayesian posterior parameter trace plots
+  Bayesian autocorrelation plots
+  Bayesian posterior predictive checking scatterplots
+  Bayesian posterior predictive checking distribution plots
+  Estimated means
+  Observed individual values
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\petere\desktop\bayes ws cb\model4.dgm
+
+     Beginning Time:  10:45:25
+        Ending Time:  10:45:28
+       Elapsed Time:  00:00:03
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2013 Muthen & Muthen

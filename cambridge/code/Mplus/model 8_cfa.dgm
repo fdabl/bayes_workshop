@@ -1,0 +1,102 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+  Creativity and stuff
+
+DATA:
+FILE = crea_bayes.dat;
+VARIABLE:
+NAMES ARE
+ id age gender edu_self edu_moth edu_fath hobbies
+ nidpar vddpar
+ N E O A C
+ schizo NB_co INSIGHT STROOP SHIFTCOS fluency
+ CAQ_tot CAQ_tal FKAL_ach FKAL_spe CAQ_arts
+ GF NB_mi NB_RT_mi NB_RT_co
+ StroopE1 StroopE2 StroopE3
+ ShiftC1 ShiftC2 ShiftC3
+ Flu1 Flu2 Flu3 Flu4
+ ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+ ins1_art ins2_art ins3_art ins4_art
+ ins5_art ins6_art ins7_art ins8_art
+ fluency2 fluency3 fluency4
+ flu_qu GF_qu O2;
+USEVARIABLES ARE
+ins1-ins8;
+MISSING = ALL(9999);
+ANALYSIS:
+estimator = Bayes;
+OUTPUT:
+stdyx tech8;
+MODEL:
+insight BY ins1-ins8;
+INPUT_END
+3
+3
+0
+3
+BAYES
+1
+GENERAL
+0
+8
+1
+0
+ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8 insight
+1
+-1 -1 -1 -1 -1 -1 -1 -1 0
+0
+1
+insight
+ins1 ins2 ins3 ins4 ins5 ins6 ins7 ins8
+1 1 INSIGHT INS1    1.000    0.000    1.000    1.000
+1 1 INSIGHT INS2    2.328    0.325    1.646    2.896
+1 1 INSIGHT INS3    1.252    0.329    0.662    1.992
+1 1 INSIGHT INS4    0.978    0.289    0.449    1.571
+1 1 INSIGHT INS5    0.175    0.168   -0.140    0.532
+1 1 INSIGHT INS6    1.017    0.321    0.462    1.709
+1 1 INSIGHT INS7    2.135    0.342    1.526    2.908
+1 1 INSIGHT INS8    2.047    0.302    1.541    2.698
+4 1 INS1    0.138    0.014    0.116    0.179
+4 1 INS2    0.147    0.021    0.112    0.200
+4 1 INS3    0.216    0.022    0.181    0.261
+4 1 INS4    0.220    0.021    0.182    0.265
+4 1 INS5    0.069    0.007    0.058    0.086
+4 1 INS6    0.192    0.021    0.154    0.234
+4 1 INS7    0.170    0.022    0.128    0.216
+4 1 INS8    0.115    0.017    0.080    0.151
+5 1 INSIGHT    0.020    0.005    0.013    0.032
+11 1 INSIGHT INS1    0.356    0.042    0.279    0.446
+11 1 INSIGHT INS2    0.644    0.060    0.513    0.751
+11 1 INSIGHT INS3    0.359    0.077    0.204    0.507
+11 1 INSIGHT INS4    0.286    0.073    0.131    0.419
+11 1 INSIGHT INS5    0.095    0.085   -0.075    0.272
+11 1 INSIGHT INS6    0.314    0.085    0.136    0.464
+11 1 INSIGHT INS7    0.590    0.065    0.459    0.713
+11 1 INSIGHT INS8    0.647    0.060    0.533    0.774
+14 1 INS1    0.873    0.030    0.801    0.922
+14 1 INS2    0.585    0.075    0.437    0.737
+14 1 INS3    0.871    0.055    0.743    0.958
+14 1 INS4    0.918    0.041    0.825    0.983
+14 1 INS5    0.991    0.021    0.926    1.000
+14 1 INS6    0.902    0.052    0.784    0.982
+14 1 INS7    0.652    0.077    0.492    0.789
+14 1 INS8    0.581    0.078    0.401    0.716
+15 1 INSIGHT    1.000    0.000    1.000    1.000
+31 1 INSIGHT INS1    0.356    0.042    0.279    0.446
+31 1 INSIGHT INS2    0.644    0.060    0.513    0.751
+31 1 INSIGHT INS3    0.359    0.077    0.204    0.507
+31 1 INSIGHT INS4    0.286    0.073    0.131    0.419
+31 1 INSIGHT INS5    0.095    0.085   -0.075    0.272
+31 1 INSIGHT INS6    0.314    0.085    0.136    0.464
+31 1 INSIGHT INS7    0.590    0.065    0.459    0.713
+31 1 INSIGHT INS8    0.647    0.060    0.533    0.774
+34 1 INS1    0.873    0.030    0.801    0.922
+34 1 INS2    0.585    0.075    0.437    0.737
+34 1 INS3    0.871    0.055    0.743    0.958
+34 1 INS4    0.918    0.041    0.825    0.983
+34 1 INS5    0.991    0.021    0.926    1.000
+34 1 INS6    0.902    0.052    0.784    0.982
+34 1 INS7    0.652    0.077    0.492    0.789
+34 1 INS8    0.581    0.078    0.401    0.716
+35 1 INSIGHT    1.000    0.000    1.000    1.000
