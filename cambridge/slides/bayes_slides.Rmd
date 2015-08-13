@@ -6,7 +6,7 @@ author: |
   | ETH Zurich, Learning Sciences
   | &
   | Fabian Dablander
-  | University of TÃ¼bingen, Cognitive Science
+  | University of Tubingen, Cognitive Science
 bibliography: "../../bibliography.bib"
 csl: "../../apa.csl"
 output:
@@ -1267,7 +1267,9 @@ Practicing interpretation of CIs, BFs, prior choice
 
 - Executive functions, intelligence, personality, **creativity** + insight
 
-<img src="img/date.png" height="500" width="700"/>
+<div align="center">
+<img height='400' src='img/date.png'>
+</div>
 
 - *N* = 230 university students
 
@@ -1278,7 +1280,9 @@ Structural Equation Modeling
 > - Analysis of (variance) **covariance** (mean) structures
     * Compare whether "theoretically allowed" parameter estimates suffice to approximate empirical data
 
-<img src="img/cor1.png" height="500" width="700"/>
+<div align="center">
+<img height='400' src='img/cor1.png'>
+</div>
 
 ## Bayesian SEM
 
@@ -1287,7 +1291,9 @@ Structural Equation Modeling
 - Analysis of (variance) **covariance** (mean) structures
     * Compare whether "theoretically allowed" parameter estimates suffice to approximate empirical data
 
-<img src="img/cor2.png" height="500" width="700"/>
+<div align="center">
+<img height='400' src='img/cor2.png'>
+</div>
 
 ## Bayesian SEM
 
@@ -1305,50 +1311,64 @@ Structural Equation Modeling
 ## Bayesian SEM: Descriptives
 
 <div align="center">
-<img height='300' src='img/des_flu.jpg'>
+<img height='300' src='img/des_flu.png'>
 </div>
 
 ## Bayesian SEM: Descriptives
 
 <div align="center">
-<img height='300' src='img/des_flu_ml.jpg'>
+<img height='300' src='img/des_flu_ml.png'>
 </div>
 
 ## Bayesian SEM: Descriptives
 
 <div align="center">
-<img height='400' src='img/des_flu_ba.jpg'>
+<img width='1000' src='img/des_flu_ba.png'>
 </div>
 
 ## Bayesian SEM: t-test
 
 <div align="center">
-<img height='400' src='img/t_ins_md.jpg'>
+<img height='400' src='img/t_ins_md.png'>
 </div>
 
 ## Bayesian SEM: t-test
 
 <div align="center">
-<img height='400' src='img/t_ins_re.jpg'>
+<img height='400' src='img/t_ins_re.png'>
 </div>
 
-## Bayesian SEM: (Multiple) Regression
+## Bayesian SEM: (Multiple) Regression/AN(C)OVA/GLM
 
 <div align="center">
-<img height='400' src='img/t_ins_re.jpg'>
+<img height='400' src='img/mr2.png'>
+</div>
+
+## Bayesian SEM: (Multiple) Regression/AN(C)OVA/GLM
+
+<div align="center">
+<img height='400' src='img/mr2.png'>
 </div>
 
 ## Bayesian SEM: RMANOVA
 
-## Bayesian SEM: MANOVA
+<div align="center">
+<img height='400' src='img/rma_flu_md.png'>
+</div>
+
+see Barker et al., 2014
 
 ## Bayesian SEM: RMMANOVA -> Cross-lagged model
+
+<div align="center">
+<img height='400' src='img/lc.png'>
+</div>
 
 ## Bayesian SEM: RMMANOVA -> Cross-lagged model -> Change score model
 
 ## Bayesian SEM: CFA
 
-vds approximate MI!
+approximate MI -> van de Schoot et al., 2013B
 
 ## Bayesian SEM: Group Comparisons
 
@@ -1356,7 +1376,17 @@ vds approximate MI!
 
 > - Multigroup CFA
 
-## Bayesian SEM: Super huge model
+## Bayesian SEM: Further possibilities...
+
+Latent growth models
+
+Mixture models
+
+...
+
+<div align="center">
+<img height='300' src='img/Model11.png'>
+</div>
 
 ## A1. Reporting Bayesian Analysis
 
@@ -1382,15 +1412,23 @@ Kaplan & Depaoli (2012). Bayesian Structural Equation Modeling. In: Hoyle, R. H.
 ## A3. Software
 
 (From most user-friendly to most elaborate)
+
 - JASP http://jasp-stats.org
+
 - BayesFactor http://bayesfactorpcl.r-forge.r-project.org
+
 - Mplus http://statmodel.com/
     * Kaplan & Depaoli, 2012; van de Schoot et al., 2013
+
 - JAGS http://mcmc-jags.sourceforge.net
+
 - Stan http://mc-stan.org
 
 ## References
 
+Barker, D. H., Rancourt, D., & Jelalian, E. (2014). Flexible Models of Change: Using Structural Equations to Match Statistical and Theoretical Models of Multiple Change Processes. Journal of Pediatric Psychology, 39(2), 233-245. http://doi.org/10.1093/jpepsy/jst082
+
 Van de Schoot, R., Kaplan, D., Denissen, J., Asendorpf, J. B., Neyer, F. J., & van Aken, M. A. G. (2013). A Gentle Introduction to Bayesian Analysis: Applications to Developmental Research. Child Development, 85, 841-860. http://doi.org/10.1111/cdev.12169
 
+Van de Schoot, R., Kluytmans, A., Tummers, L., Lugtig, P., Hox, J., & Muthén, B. (2013). Facing off with Scylla and Charybdis: a comparison of scalar, partial, and the novel possibility of approximate measurement invariance. Frontiers in Psychology, 4. http://doi.org/10.3389/fpsyg.2013.00770
 
