@@ -1356,15 +1356,32 @@ Structural Equation Modeling
 <img height='400' src='img/rma_flu_md.png'>
 </div>
 
-see Barker et al., 2014
+## Bayesian SEM: RMANOVA + SEM freedom
+
+<div align="center">
+<img height='400' src='img/rma_flu_mdII.png'>
+</div>
+
+
+## Bayesian SEM: RMANOVA + SEM freedom
+
+<div align="center">
+<img height='400' src='img/rma_flu_mdIII.png'>
+</div>
+
+## Bayesian SEM: RMANOVA + SEM freedom
+
+Latent growth model
+
+<div align="center">
+<img height='400' src='img/Model11.png'>
+</div>
 
 ## Bayesian SEM: RMMANOVA -> Cross-lagged model
 
 <div align="center">
 <img height='400' src='img/lc.png'>
 </div>
-
-## Bayesian SEM: RMMANOVA -> Cross-lagged model -> Change score model
 
 ## Bayesian SEM: CFA
 
@@ -1376,17 +1393,11 @@ approximate MI -> van de Schoot et al., 2013B
 
 > - Multigroup CFA
 
-## Bayesian SEM: Further possibilities...
+## Bayesian SEM
 
-Latent growth models
-
-Mixture models
-
-...
-
-<div align="center">
-<img height='300' src='img/Model11.png'>
-</div>
+> - Break out of schematic statistical testing
+    * There is no sense in sticking to "t-test", "ANOVA", "MANOVA", "ANCOCA", "RMANOVA"
+    * Cross the borders, build **your own** model
 
 ## A1. Reporting Bayesian Analysis
 
@@ -1424,11 +1435,13 @@ Kaplan & Depaoli (2012). Bayesian Structural Equation Modeling. In: Hoyle, R. H.
 
 - Stan http://mc-stan.org
 
-## References
+## ReferencesI
 
 Barker, D. H., Rancourt, D., & Jelalian, E. (2014). Flexible Models of Change: Using Structural Equations to Match Statistical and Theoretical Models of Multiple Change Processes. Journal of Pediatric Psychology, 39(2), 233-245. http://doi.org/10.1093/jpepsy/jst082
 
 Van de Schoot, R., Kaplan, D., Denissen, J., Asendorpf, J. B., Neyer, F. J., & van Aken, M. A. G. (2013). A Gentle Introduction to Bayesian Analysis: Applications to Developmental Research. Child Development, 85, 841-860. http://doi.org/10.1111/cdev.12169
 
 Van de Schoot, R., Kluytmans, A., Tummers, L., Lugtig, P., Hox, J., & Muthén, B. (2013). Facing off with Scylla and Charybdis: a comparison of scalar, partial, and the novel possibility of approximate measurement invariance. Frontiers in Psychology, 4. http://doi.org/10.3389/fpsyg.2013.00770
+
+## References
 
