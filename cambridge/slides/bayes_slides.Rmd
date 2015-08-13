@@ -840,6 +840,41 @@ $$
     * Cromwell's Rule
     * flat priors and maximum likelihood
     * convergence of initially different prior beliefs
+    
+## Why most published research findings are false
+- Ioannidis (2005) argued that most published research findings are false
+- common misconception:
+    * $\alpha = .05$, thus number of false positives is only 5%
+    * problem: we compute $p(\textbf{y}|H)$ and not $p(H|\textbf{y})$
+    * ignores relevant prior information (the base rate of true hypotheses)
+
+## Why most published research findings are false
+![ioannidis](img/ioannidis.png)
+
+## Why most published research findings are false
+$$
+\begin{align*}
+PPV &= \frac{TP}{(TP + FP)} \\[1ex]
+PPV &= \frac{TP(TP + FN) / (TP + FN)}{TP (TP + FN) / (TP + FN) + FP}
+\end{align*}
+$$
+
+- recall that:
+    * $prior = TP + FN$
+    * $power = TP / (TP + FN)$
+    
+- therefore:
+$$
+PPV = \frac{power \times prior}{power \times prior + \alpha}
+$$
+
+## Interim conclusion I
+- to make probability statement about a hypothesis -- you need a prior
+- people often forget the prior (base rate), which makes them overconfident
+- most published research is indeed likely to be false, due to:
+    * publication bias
+    * low statistical power [@cohen1962statistical; @button2013power]
+    * statistical analysis that is contingent on data [@simmons2011false; @gelman2013garden]
 
 
 ## Interim conclusion I
