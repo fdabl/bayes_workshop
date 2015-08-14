@@ -6,7 +6,7 @@ author: |
   | ETH Zurich, Learning Sciences
   | &
   | Fabian Dablander
-  | University of Tübingen, Cognitive Science
+  | University of Tuebingen, Cognitive Science
 bibliography: "../../bibliography.bib"
 csl: "../../apa.csl"
 output:
@@ -19,11 +19,11 @@ output:
 <!--
 10 min [10] Peter: A few remarks on the "replication crisis" in psychology
 10 min [20] Peter: Statistics: The Status Quo
-10 min [35] Peter: Problems with current statistical practices
-20 min [55] Fabian: The principled Bayesian
-20 min [70] Fabian: The practical Bayesian
-40 min [110] Peter: Software for Bayesian data analysis
-10 min [120] Peter: Discussion
+10 min [30] Peter: Problems with current statistical practices
+25 min [55] Fabian: The principled Bayesian
+25 min [80] Fabian: The practical Bayesian
+40 min [120] Peter and Fabian: Software for Bayesian data analysis
+10 min [130] Peter and Fabian: Discussion
 -->
 
 ## Note
@@ -125,21 +125,21 @@ Silberzahn, R., et al. (2015). Crowdsourcing data analysis: Do soccer referees g
 
 ## Outline
 
-- **Software for Bayesian data analysis** <!-- Peter, 40 min [110] -->
+- **Software for Bayesian data analysis**
     * 5.1 JASP: Examples
     * 5.2 JASP: Practice
     * 5.2 Demo: Bayesian SEM
 
-- **Discussion** <!-- Peter, 10 min [120] -->
+- **Discussion**
 
     * Outlook
     * Questions
 
-# Statistics: The Status Quo <!-- Peter -->
+# Statistics: The Status Quo
 
 # The Status Quo in Statistics
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     .
@@ -154,7 +154,7 @@ Ad-hoc                     .
 
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -170,7 +170,7 @@ Ad-hoc                     Axiomatic
 
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -186,7 +186,7 @@ Incoherent                 .
 
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -201,7 +201,7 @@ Incoherent                 Coherent
 
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -217,7 +217,7 @@ Paradoxical                .
 
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -231,7 +231,7 @@ Paradoxical                Intuitive
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -245,7 +245,7 @@ Irrational                 .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -259,7 +259,7 @@ Irrational                 Rational
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -273,7 +273,7 @@ Ugly                       .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -287,7 +287,7 @@ Ugly                       Pretty
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -301,7 +301,7 @@ Irrelevant                 .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View 
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -315,7 +315,7 @@ Irrelevant                 Relevant
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -329,7 +329,7 @@ what's taught              .
 <div id="contrast">borrowed from EJ Wagenmakers</div>
 
 
-## A Bird's Eye View <!-- Fabian -->
+## A Bird's Eye View
   Classical Statistics     Bayesian Statistics
 ----------------------     ---------------------------
 Ad-hoc                     Axiomatic
@@ -349,13 +349,13 @@ what's taught              what's not taught
 
 > - Ziliak and McCloskey (2008)
 
-## An Example: Creativity and Personality <!-- Peter -->
+## An Example: Creativity and Personality 
 
 <div align="center">
 <img height="400" src="img/mr1.png">
 </div>
 
-## An Example: Creativity and Personality <!-- Peter -->
+## An Example: Creativity and Personality
 
 <div align="center">
 <img height="400" src="img/mr2.png">
@@ -384,7 +384,7 @@ summary(lm(fluency ~ N + E + O, data = creadata)) # Multiple regression
 
 > - Does this sound *strange* to you?
 
-## history: how did we get here? <!-- Peter -->
+## history: how did we get here? 
 - quick question: how old do you think is **modern statistics**?
 
 ## Ronald A. Fisher
@@ -443,7 +443,7 @@ Revision:
 rivalled only by Attila, Mohammed, and the Colorado beetle."*
 
 - Did Piaget ever compute a p-value?
-- Did Skinner? what's with Köhler? Pavlov?
+- Did Skinner? what's with Koehler? Pavlov?
 
 # Problems with Current Statistical Practices
 
@@ -669,7 +669,7 @@ rivalled only by Attila, Mohammed, and the Colorado beetle."*
 - use bets to quantify subjective belief
 - for 1$ in return, how much $$ would you bet on
     * Germany winning against Brazil in soccer?
-    * that it is going to be at least 30°C tomorrow?
+    * that it is going to be at least 30?C tomorrow?
 
 ## Measuring probability
 - Germany: 3$
@@ -1465,7 +1465,7 @@ Barker, D. H., Rancourt, D., & Jelalian, E. (2014). Flexible Models of Change: U
 
 Van de Schoot, R., Kaplan, D., Denissen, J., Asendorpf, J. B., Neyer, F. J., & van Aken, M. A. G. (2013). A Gentle Introduction to Bayesian Analysis: Applications to Developmental Research. Child Development, 85, 841-860. http://doi.org/10.1111/cdev.12169
 
-Van de Schoot, R., Kluytmans, A., Tummers, L., Lugtig, P., Hox, J., & Muthén, B. (2013). Facing off with Scylla and Charybdis: a comparison of scalar, partial, and the novel possibility of approximate measurement invariance. Frontiers in Psychology, 4. http://doi.org/10.3389/fpsyg.2013.00770
+Van de Schoot, R., Kluytmans, A., Tummers, L., Lugtig, P., Hox, J., & Muth?n, B. (2013). Facing off with Scylla and Charybdis: a comparison of scalar, partial, and the novel possibility of approximate measurement invariance. Frontiers in Psychology, 4. http://doi.org/10.3389/fpsyg.2013.00770
 
 ## References
 
